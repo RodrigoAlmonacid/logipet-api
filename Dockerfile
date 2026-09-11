@@ -1,20 +1,26 @@
-FROM node:18-alpine
+FROM node:22-alpine
+
+# Desactivar telemetría e interacciones automáticas de Prisma
+ENV PRISMA_DISABLE_TELEMETRY=1
+ENV CHECKPOINT_DISABLE=1
 
 WORKDIR /app
 
-# Copiamos solo los archivos de dependencias primero para aprovechar el caché de Docker
+# Copiar manifiestos de dependencias
 COPY package*.json ./
+
+# Copiar esquema y configuración de Prisma necesarios para el cliente
 COPY prisma ./prisma/
+COPY prisma.config.ts ./
 
-# Instalamos dependencias y generamos el cliente de Prisma
+# Instalar dependencias
 RUN npm install
-RUN npx prisma generate
 
-# Copiamos el resto del código
+# Copiar el código fuente restante
 COPY . .
 
-# Exponemos el puerto de NestJS
-EXPOSE 3000
+# Generar el cliente de Prisma explicitamente
+RUN npx prisma generate
 
-# Comando para iniciar en modo desarrollo con hot-reload
+EXPOSE 3000
 CMD ["npm", "run", "start:dev"]
