@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { PrismaClient } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 
@@ -7,32 +8,38 @@ async function main() {
   const salt = 10;
   
   const rolPrueba = await prisma.rol.upsert({
-    where: { name: 'Logipet' },
+    where: { nombre: 'Logipet' },
     update: {},
-    create: { name: 'Logipet', description: 'Rol inicial de prueba' },
+    create: { nombre: 'Logipet', descripcion: 'Rol inicial de prueba' },
   });
 
-  await prisma.user.upsert({
+  await prisma.empleado.upsert({
     where: { email: 'rodrigo@logipet.com' },
     update: {},
     create: {
       email: 'rodrigo@logipet.com',
-      password: await bcrypt.hash('rodrigoPrueba', salt),
-      firstName: 'Rodrigo',
-      lastName: 'Prueba',
-      roleId: rolPrueba.id,
+      pass: await bcrypt.hash('rodrigoPrueba', salt),
+      nombre: 'Rodrigo',
+      apellido: 'Prueba',
+      legajo: 'prueba-1',
+      roles: {
+        connect : [{ id: rolPrueba.id}],
+      }
     },
   });
 
-  await prisma.user.upsert({
+  await prisma.empleado.upsert({
     where: { email: 'lucas@logipet.com' },
     update: {},
     create: {
       email: 'lucas@logipet.com',
-      password: await bcrypt.hash('lucasPrueba', salt),
-      firstName: 'Lucas',
-      lastName: 'Prueba',
-      roleId: rolPrueba.id,
+      pass: await bcrypt.hash('lucasPrueba', salt),
+      nombre: 'Lucas',
+      apellido: 'Prueba',
+      legajo: 'prueba-2',
+      roles: {
+        connect : [{ id: rolPrueba.id}],
+      }
     },
   });
 }

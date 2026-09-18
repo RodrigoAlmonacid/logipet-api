@@ -1,4 +1,4 @@
-FROM node:22-alpine
+FROM node:22
 
 # Desactivar telemetría e interacciones automáticas de Prisma
 ENV PRISMA_DISABLE_TELEMETRY=1
