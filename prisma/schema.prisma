@@ -1,37 +1,123 @@
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
-// Modelo de Roles (Vendedor, RRHH, Administración, Depósito, Reparto)
+model Empleado {
+  id               Int      @id @default(autoincrement())
+  email            String   @unique
+  nombre           String
+  apellido         String
+  legajo           String   @unique
+  pass             String
+  activo           Boolean  @default(false)
+  roles            Rol[]
+  pedidosGenerados Pedido[]
+  enviosTomados    Envio[]
+}
+
 model Rol {
-  id          Int      @id @default(autoincrement())
-  name        String   @unique
-  description String?
-  users       User[]   // Relación 1 a N con Usuarios
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id          Int        @id @default(autoincrement())
+  nombre      String     @unique
+  descripcion String?
+  empleados   Empleado[]
 }
 
-// Modelo de Usuarios (Empleados)
-model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique // El sistema no permitirá crear dos usuarios con el mismo email
-  password  String   // Contraseña hasheada
-  firstName String
-  lastName  String
-  phone     String?
-  address   String?
-  isActive  Boolean  @default(true) // Para bajas lógicas sin borrar el registro
-  
-  // Claves foráneas y relaciones
-  roleId    Int
-  role      Rol      @relation(fields: [roleId], references: [id])
+model Cliente {
+  id             Int      @id @default(autoincrement())
+  nombre         String
+  telefono       String
+  email          String?
+  ubicacion      String
+  horaAbreMat    String
+  horaAbreVesp   String?
+  horaCierreMat  String?
+  horaCierreVesp String
+  activo         Boolean  @default(false)
+  pedidos        Pedido[]
+}
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model Articulo {
+  id           Int             @id @default(autoincrement())
+  codigo       String          @unique
+  precio       Float
+  presentacion String
+  descripcion  String?
+  nombre       String
+  stock        Int             @default(0)
+  marcaId      Int?
+  marca        Marca?          @relation(fields: [marcaId], references: [id])
+  detalles     DetallePedido[]
+}
+
+model Marca {
+  id        Int        @id @default(autoincrement())
+  nombre    String     @unique
+  articulos Articulo[]
+}
+
+model Pedido {
+  id               Int             @id @default(autoincrement())
+  importe          Float
+  entregaEstimada  DateTime?
+  clienteId        Int
+  cliente          Cliente         @relation(fields: [clienteId], references: [id])
+  empleadoId       Int
+  empleado         Empleado        @relation(fields: [empleadoId], references: [id])
+  envioId          Int?
+  envio            Envio?          @relation(fields: [envioId], references: [id])
+  articulos        DetallePedido[]
+  historialEstados EstadoPedido[]
+}
+
+model DetallePedido {
+  pedidoId    Int
+  articuloId  Int
+  cantidad    Int
+  precioVenta Float
+  pedido      Pedido   @relation(fields: [pedidoId], references: [id])
+  articulo    Articulo @relation(fields: [articuloId], references: [id])
+
+  @@id([pedidoId, articuloId])
+}
+
+model Envio {
+  id           Int        @id @default(autoincrement())
+  fechaEntrega DateTime
+  hojaRuta     String?
+  camionId     Int
+  camion       Camion     @relation(fields: [camionId], references: [id])
+  pedidos      Pedido[]
+  empleados    Empleado[]
+}
+
+model Estado {
+  id          Int            @id @default(autoincrement())
+  nombre      String         @unique
+  descripcion String?
+  pedidos     EstadoPedido[]
+}
+
+model Camion {
+  id        Int     @id @default(autoincrement())
+  interno   Int     @unique
+  marca     String
+  modelo    String?
+  capacidad Float
+  envios    Envio[]
+}
+
+model EstadoPedido {
+  pedidoId   Int
+  estadoId   Int
+  fechaCreac DateTime  @default(now())
+  fechaFin   DateTime?
+  pedido     Pedido    @relation(fields: [pedidoId], references: [id])
+  estado     Estado    @relation(fields: [estadoId], references: [id])
+
+  @@id([pedidoId, estadoId, fechaCreac])
 }
