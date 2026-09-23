@@ -14,7 +14,6 @@ export class AuthService {
   async login(loginDto: LoginDto) {
     const { email, pass } = loginDto;
 
-    // 1. Buscar usuario con sus roles
     const empleado = await this.prisma.empleado.findUnique({
       where: { email },
       include: { roles: true },
@@ -24,18 +23,15 @@ export class AuthService {
       throw new UnauthorizedException('Credenciales inválidas');
     }
 
-    // 2. Regla de negocio: Verificar si está inactivo (asumiendo campo o flag)
-    // if (empleado.estado === 'INACTIVO') {
+    // para cuando el usuario esté inactivo
+    // if (!empleado.estado) {
     //   throw new UnauthorizedException('El usuario se encuentra inactivo');
     // }
-
-    // 3. Comparar contraseñas
     const isPasswordValid = await bcrypt.compare(pass, empleado.pass);
     if (!isPasswordValid) {
       throw new UnauthorizedException('Credenciales inválidas');
     }
 
-    // 4. Armar Payload del JWT
     const payload = {
       sub: empleado.id,
       email: empleado.email,
