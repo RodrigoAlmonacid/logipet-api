@@ -16,6 +16,4 @@ export class CreateEmpleadoDto {
   @IsString()
   @IsNotEmpty()
   legajo: string;
-
-  activo: boolean=false;
 }

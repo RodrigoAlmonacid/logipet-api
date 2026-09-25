@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { RolService } from './rol.service';
+import { PrismaService } from '../prisma/prisma.service';
 import { RolController } from './rol.controller';
+import { RolService } from './rol.service';
 
 @Module({
   controllers: [RolController],
-  providers: [RolService],
+  providers: [RolService, PrismaService],
 })
 export class RolModule {}
