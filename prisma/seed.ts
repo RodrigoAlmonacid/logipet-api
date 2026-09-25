@@ -6,24 +6,36 @@ const prisma = new PrismaClient();
 
 async function main() {
   const salt = 10;
-  
+
   const rolPrueba = await prisma.rol.upsert({
     where: { nombre: 'Logipet' },
     update: {},
     create: { nombre: 'Logipet', descripcion: 'Rol inicial de prueba' },
   });
 
+  const rolAdmin = await prisma.rol.upsert({
+    where: { nombre: 'adminUser' },
+    update: {},
+    create: { nombre: 'adminUser', descripcion: 'Administrador del sistema' },
+  });
+
   await prisma.empleado.upsert({
     where: { email: 'rodrigo@logipet.com' },
-    update: {},
+    update: {
+      activo: true,
+      roles: {
+        connect: [{ id: rolPrueba.id }, { id: rolAdmin.id }],
+      }
+    },
     create: {
       email: 'rodrigo@logipet.com',
       pass: await bcrypt.hash('rodrigoPrueba', salt),
       nombre: 'Rodrigo',
       apellido: 'Prueba',
       legajo: 'prueba-1',
+      activo: true,
       roles: {
-        connect : [{ id: rolPrueba.id}],
+        connect: [{ id: rolPrueba.id }, { id: rolAdmin.id }],
       }
     },
   });
@@ -38,7 +50,7 @@ async function main() {
       apellido: 'Prueba',
       legajo: 'prueba-2',
       roles: {
-        connect : [{ id: rolPrueba.id}],
+        connect: [{ id: rolPrueba.id }],
       }
     },
   });

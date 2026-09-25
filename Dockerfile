@@ -11,7 +11,6 @@ COPY package*.json ./
 
 # Copiar esquema y configuración de Prisma necesarios para el cliente
 COPY prisma ./prisma/
-COPY prisma.config.ts ./
 
 # Instalar dependencias
 RUN npm install
