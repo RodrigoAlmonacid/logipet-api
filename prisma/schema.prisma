@@ -8,16 +8,17 @@ datasource db {
 }
 
 model Empleado {
-  id               Int      @id @default(autoincrement())
-  email            String   @unique
+  id               Int         @id @default(autoincrement())
+  email            String      @unique
   nombre           String
   apellido         String
-  legajo           String   @unique
+  legajo           String      @unique
   pass             String
-  activo           Boolean  @default(false)
+  activo           Boolean     @default(false)
   roles            Rol[]
   pedidosGenerados Pedido[]
   enviosTomados    Envio[]
+  tokens           PassReset[]
 }
 
 model Rol {
@@ -120,4 +121,15 @@ model EstadoPedido {
   estado     Estado    @relation(fields: [estadoId], references: [id])
 
   @@id([pedidoId, estadoId, fechaCreac])
+}
+
+model PassReset {
+  id          Int      @id @default(autoincrement())
+  empleadoId  Int
+  tokenHash   String   @unique
+  fechaExpira DateTime
+  expirado    Boolean  @default(false)
+  fechaCreac  DateTime @default(now())
+
+  empleado    Empleado @relation(fields: [empleadoId], references: [id])
 }
