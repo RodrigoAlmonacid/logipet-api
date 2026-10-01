@@ -1,5 +1,5 @@
 import {
-  BadRequestException, ConflictException, Injectable, NotFoundException,
+  BadRequestException, ConflictException, Injectable, InternalServerErrorException, NotFoundException,
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateEmpleadoDto } from './dto/create-empleado.dto';
@@ -46,6 +46,28 @@ export class EmpleadoService {
 
     // TODO: enviar tempPassword por mail
     return { message: 'Empleado creado exitosamente', empleado, tempPassword };
+  }
+
+  async passReset(id: number, newPass: string) {
+    await this.findOne(id);
+    
+    try {
+      const hashPass = await bcrypt.hash(newPass, 10);
+      
+      const empleadoActualizado = await this.prisma.empleado.update({
+        where: { id },
+        data: { pass: hashPass },
+        select: EMPLEADO_SELECT,
+      });
+
+      return { 
+        message: 'Contraseña actualizada exitosamente', 
+        empleado: empleadoActualizado 
+      };
+      
+    } catch (error) {
+      throw new InternalServerErrorException('Ocurrió un error al intentar actualizar la contraseña');
+    }
   }
 
   findAll() {
