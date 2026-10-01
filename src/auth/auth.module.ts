@@ -12,9 +12,9 @@ import { MailModule } from '../mail/mail.module';
       global: true,
       secret: process.env.JWT_SECRET || 'super_secret_logipet_key',
       signOptions: { expiresIn: '8h' },
-    }),
+    }), MailModule
   ],
   controllers: [AuthController],
-  providers: [AuthService, PrismaService, JwtStrategy, MailModule],
+  providers: [AuthService, PrismaService, JwtStrategy],
 })
 export class AuthModule {}
