@@ -36,11 +36,11 @@ export class EmpleadoService {
     const { email, nombre, apellido, legajo } = dto;
     await this.validarUnicos(email, legajo);
 
-    const tempPassword = 'Logipet' + Math.floor(1000 + Math.random() * 9000);
+    const tempPassword = 'Logipet' + '-' + legajo;
     const pass = await bcrypt.hash(tempPassword, 10);
 
     const empleado = await this.prisma.empleado.create({
-      data: { nombre, apellido, email, legajo, pass },
+      data: { nombre, apellido, email, legajo, pass, createdAt: new Date() },
       select: EMPLEADO_SELECT,
     });
 
@@ -56,7 +56,7 @@ export class EmpleadoService {
       
       const empleadoActualizado = await this.prisma.empleado.update({
         where: { id },
-        data: { pass: hashPass },
+        data: { pass: hashPass, updateAt: new Date() },
         select: EMPLEADO_SELECT,
       });
 
@@ -101,7 +101,7 @@ export class EmpleadoService {
     return this.prisma.empleado.update({
       where: { id },
       data: {
-        ...data,
+        ...data, updateAt: new Date(),
         ...(roleIds && { roles: { set: roleIds.map((rid) => ({ id: rid })) } }),
       },
       select: EMPLEADO_SELECT,
@@ -114,7 +114,7 @@ export class EmpleadoService {
       throw new BadRequestException('No podés dar de baja tu propio usuario');
     }
     await this.findOne(id);
-    await this.prisma.empleado.update({ where: { id }, data: { activo: false } });
+    await this.prisma.empleado.update({ where: { id }, data: { activo: false, deletedAt: new Date() } });
     return { message: 'Empleado dado de baja' };
   }
 
