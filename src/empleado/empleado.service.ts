@@ -4,6 +4,7 @@ import {
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateEmpleadoDto } from './dto/create-empleado.dto';
 import { UpdateEmpleadoDto } from './dto/update-empleado.dto';
+import { MailService } from './../mail/mail.service';
 import * as bcrypt from 'bcrypt';
 
 // Nunca devolvemos `pass`
@@ -19,7 +20,11 @@ const EMPLEADO_SELECT = {
 
 @Injectable()
 export class EmpleadoService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly mailService: MailService
+
+  ) { }
 
   private async validarUnicos(email?: string, legajo?: string, excludeId?: number) {
     if (email) {
@@ -44,27 +49,40 @@ export class EmpleadoService {
       select: EMPLEADO_SELECT,
     });
 
+    const loginLink = `${process.env.FRONT_URL}/login`;
+    await this.mailService.send(
+      empleado.email,
+      'Recuperación de contraseña - LogiPet',
+      `
+        <p>Hola ${empleado.nombre},</p>
+        <p>Bienvenido a LogiPet.</p>
+        <p>Tu cuenta ha sido creada. Ingresá a tu cuenta con tu legajo y esta contraseña temporal:</p>
+        <p><strong>${tempPassword}</strong></p>
+        <p><a href="${loginLink}">Ingresar a mi cuenta</a></p>
+        <p>Te recomendamos cambiar tu contraseña una vez que ingreses.</p>
+      `,
+    );
     // TODO: enviar tempPassword por mail
     return { message: 'Empleado creado exitosamente', empleado, tempPassword };
   }
 
   async passReset(id: number, newPass: string) {
     await this.findOne(id);
-    
+
     try {
       const hashPass = await bcrypt.hash(newPass, 10);
-      
+
       const empleadoActualizado = await this.prisma.empleado.update({
         where: { id },
         data: { pass: hashPass, updateAt: new Date() },
         select: EMPLEADO_SELECT,
       });
 
-      return { 
-        message: 'Contraseña actualizada exitosamente', 
-        empleado: empleadoActualizado 
+      return {
+        message: 'Contraseña actualizada exitosamente',
+        empleado: empleadoActualizado
       };
-      
+
     } catch (error) {
       throw new InternalServerErrorException('Ocurrió un error al intentar actualizar la contraseña');
     }
@@ -102,7 +120,7 @@ export class EmpleadoService {
     return this.prisma.empleado.update({
       where: { id },
       data: {
-        ...data, updateAt: new Date(),
+        ...data, updatedAt: new Date(),
         ...(roleIds && { roles: { set: roleIds.map((rid) => ({ id: rid })) } }),
       },
       select: EMPLEADO_SELECT,
