@@ -37,6 +37,7 @@ export class MarcaService {
 
   findAll() {
     return this.prisma.marca.findMany({
+      where: { deletedAt: null },
       select: MARCA_SELECT,
       orderBy: [{ nombre: 'asc' }],
     });

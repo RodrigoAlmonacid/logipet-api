@@ -13,7 +13,7 @@ const ARTICULO_SELECT = {
   descripcion: true,
   nombre: true,
   stock: true,
-  marcaId: true,
+  marca: { select: { id: true, nombre: true } },
 } as const;
 
 @Injectable()
@@ -41,6 +41,7 @@ export class ArticuloService {
 
   findAll() {
     return this.prisma.articulo.findMany({
+      where: { deletedAt: null },
       select: ARTICULO_SELECT,
       orderBy: [{ nombre: 'asc' }, { marcaId: 'asc' }],
     });

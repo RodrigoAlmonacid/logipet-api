@@ -49,6 +49,7 @@ export class ClienteService {
 
   findAll() {
     return this.prisma.cliente.findMany({
+      where: { deletedAt: null },
       select: CLIENTE_SELECT,
       orderBy: [{ apellido: 'asc' }, { nombre: 'asc' }, { comercio: 'asc' }],
     });
