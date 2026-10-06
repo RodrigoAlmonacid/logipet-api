@@ -37,6 +37,10 @@ export class CreateClienteDto {
   @Matches(/^([01]\d|2[0-3]):[0-5]\d$/)
   horaCierreVesp: string;
 
+  @IsString()
+  @IsNotEmpty()
+  direccion: string;
+
   @IsNotEmpty()
   @IsNumber()
   latitud: number

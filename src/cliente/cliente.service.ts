@@ -18,6 +18,7 @@ const CLIENTE_SELECT = {
   horaCierreMat: true,
   horaAbreVesp: true,
   horaCierreVesp: true,
+  direccion: true,
   latitud: true,
   longitud: true,
   activo: true,
@@ -35,11 +36,11 @@ export class ClienteService {
   }
 
   async create(dto: CreateClienteDto) {
-    const { email, nombre, apellido, comercio, telefono, latitud, longitud, horaAbreMat, horaAbreVesp, horaCierreMat, horaCierreVesp } = dto;
+    const { email, nombre, apellido, comercio, telefono, direccion, latitud, longitud, horaAbreMat, horaAbreVesp, horaCierreMat, horaCierreVesp } = dto;
     await this.validarUnicos(email);
 
     const cliente = await this.prisma.cliente.create({
-      data: { nombre, apellido, comercio, email, telefono,latitud, longitud, horaAbreMat, horaAbreVesp, horaCierreMat, horaCierreVesp, createdAt: new Date() },
+      data: { nombre, apellido, comercio, email, telefono, direccion, latitud, longitud, horaAbreMat, horaAbreVesp, horaCierreMat, horaCierreVesp, createdAt: new Date() },
       select: CLIENTE_SELECT,
     });
 
