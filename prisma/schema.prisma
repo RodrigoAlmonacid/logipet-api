@@ -38,6 +38,7 @@ model Cliente {
   comercio       String
   telefono       String
   email          String    @unique
+  direccion      String
   latitud        Float
   longitud       Float
   horaAbreMat    String
