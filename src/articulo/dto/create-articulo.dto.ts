@@ -1,31 +1,26 @@
-import { IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import {
+  IsInt, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength, Min,
+} from 'class-validator';
 
 export class CreateArticuloDto {
-  @IsString()
-  @IsNotEmpty()
+  @IsString() @IsNotEmpty() @MaxLength(50)
   codigo: string;
 
-  @IsNumber()
-  @IsNotEmpty()
-  precio: number;
-
-  @IsNotEmpty()
-  @IsString()
-  presentacion: string;
-
-  @IsOptional()
-  @IsString()
-  descripcion: string;
-
-  @IsNotEmpty()
-  @IsString()
+  @IsString() @IsNotEmpty() @MaxLength(120)
   nombre: string;
 
-  @IsNumber()
-  @IsOptional()
+  @IsString() @IsNotEmpty() @MaxLength(80)
+  presentacion: string;
+
+  @IsOptional() @IsString() @MaxLength(500)
+  descripcion?: string | null;
+
+  @IsNumber() @Min(0)
+  precio: number;
+
+  @IsInt() @Min(0)
   stock: number;
 
-  @IsNumber()
-  @IsOptional()
-  marcaId: number;
+  @IsOptional() @IsInt()
+  marcaId?: number | null;
 }
