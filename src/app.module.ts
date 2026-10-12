@@ -8,9 +8,11 @@ import { RolModule } from './rol/rol.module';
 import { ClienteModule } from './cliente/cliente.module';
 import { MarcaModule } from './marca/marca.module';
 import { ArticuloModule } from './articulo/articulo.module';
+import { AlicuotaIvaModule } from './alicuotaIva/alicuotaIva.module';
+
 
 @Module({
-  imports: [AuthModule, EmpleadoModule, RolModule, ClienteModule, MarcaModule, ArticuloModule],
+  imports: [AuthModule, EmpleadoModule, RolModule, ClienteModule, MarcaModule, ArticuloModule, AlicuotaIvaModule],
   controllers: [AppController],
   providers: [AppService, PrismaService],
 })

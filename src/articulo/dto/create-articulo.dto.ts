@@ -23,4 +23,7 @@ export class CreateArticuloDto {
 
   @IsOptional() @IsInt()
   marcaId?: number | null;
+
+  @IsOptional() @IsInt()
+  alicuotaIvaId?: number | null;
 }

@@ -4,6 +4,7 @@ import {
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateEmpleadoDto } from './dto/create-empleado.dto';
 import { UpdateEmpleadoDto } from './dto/update-empleado.dto';
+import { MailService } from './../mail/mail.service';
 import * as bcrypt from 'bcrypt';
 
 // Nunca devolvemos `pass`
@@ -13,15 +14,19 @@ const EMPLEADO_SELECT = {
   apellido: true,
   email: true,
   legajo: true,
+  cuil: true,
   activo: true,
   roles: { select: { id: true, nombre: true } },
 } as const;
 
 @Injectable()
 export class EmpleadoService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService, 
+    private readonly mailService: MailService
+  ) { }
 
-  private async validarUnicos(email?: string, legajo?: string, excludeId?: number) {
+  private async validarUnicos(email?: string, legajo?: string, cuil?: string, excludeId?: number) {
     if (email) {
       const e = await this.prisma.empleado.findUnique({ where: { email } });
       if (e && e.id !== excludeId) throw new ConflictException('El email ya se encuentra registrado');
@@ -30,19 +35,37 @@ export class EmpleadoService {
       const l = await this.prisma.empleado.findUnique({ where: { legajo } });
       if (l && l.id !== excludeId) throw new ConflictException('El legajo ya se encuentra registrado');
     }
+    if (cuil) {
+      const c = await this.prisma.empleado.findUnique({ where: { cuil } });
+      if (c && c.id !== excludeId) throw new ConflictException('El cuil ya se encuentra registrado');
+    }
   }
 
   async create(dto: CreateEmpleadoDto) {
-    const { email, nombre, apellido, legajo } = dto;
-    await this.validarUnicos(email, legajo);
+    const { email, nombre, apellido, legajo, cuil } = dto;
+    await this.validarUnicos(email, legajo, cuil);
 
     const tempPassword = 'Logipet' + '-' + legajo;
     const pass = await bcrypt.hash(tempPassword, 10);
 
     const empleado = await this.prisma.empleado.create({
-      data: { nombre, apellido, email, legajo, pass, createdAt: new Date() },
+      data: { nombre, apellido, email, legajo, cuil, pass, createdAt: new Date() },
       select: EMPLEADO_SELECT,
     });
+
+    const loginLink = `${process.env.FRONT_URL}/login`;
+    await this.mailService.send(
+      empleado.email,
+      'Alta de empleado - LogiPet',
+      `
+        <p>Hola ${empleado.nombre},</p>
+        <p>Bienvenido a LogiPet.</p>
+        <p>Tu cuenta ha sido creada. Ingresá a tu cuenta con tu legajo y esta contraseña temporal:</p>
+        <p><strong>${tempPassword}</strong></p>
+        <p><a href="${loginLink}">Ingresar a mi cuenta</a></p>
+        <p>Te recomendamos cambiar tu contraseña una vez que ingreses.</p>
+      `,
+    );
 
     // TODO: enviar tempPassword por mail
     return { message: 'Empleado creado exitosamente', empleado, tempPassword };
@@ -50,21 +73,21 @@ export class EmpleadoService {
 
   async passReset(id: number, newPass: string) {
     await this.findOne(id);
-    
+
     try {
       const hashPass = await bcrypt.hash(newPass, 10);
-      
+
       const empleadoActualizado = await this.prisma.empleado.update({
         where: { id },
         data: { pass: hashPass, updateAt: new Date() },
         select: EMPLEADO_SELECT,
       });
 
-      return { 
-        message: 'Contraseña actualizada exitosamente', 
-        empleado: empleadoActualizado 
+      return {
+        message: 'Contraseña actualizada exitosamente',
+        empleado: empleadoActualizado
       };
-      
+
     } catch (error) {
       throw new InternalServerErrorException('Ocurrió un error al intentar actualizar la contraseña');
     }
@@ -90,7 +113,7 @@ export class EmpleadoService {
   async update(id: number, dto: UpdateEmpleadoDto) {
     await this.findOne(id);
     const { roleIds, ...data } = dto;
-    await this.validarUnicos(data.email, data.legajo, id);
+    await this.validarUnicos(data.email, data.legajo, data.cuil, id);
 
     if (roleIds) {
       const cantidad = await this.prisma.rol.count({ where: { id: { in: roleIds } } });

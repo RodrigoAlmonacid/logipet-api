@@ -16,4 +16,8 @@ export class CreateEmpleadoDto {
   @IsString()
   @IsNotEmpty()
   legajo: string;
+
+  @IsString()
+  @IsNotEmpty()
+  cuil: string;
 }
