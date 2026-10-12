@@ -72,6 +72,7 @@ export class EmpleadoService {
 
   findAll() {
     return this.prisma.empleado.findMany({
+      where: { deletedAt: null },
       select: EMPLEADO_SELECT,
       orderBy: [{ apellido: 'asc' }, { nombre: 'asc' }],
     });

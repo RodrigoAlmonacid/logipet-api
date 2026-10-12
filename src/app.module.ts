@@ -10,14 +10,7 @@ import { MarcaModule } from './marca/marca.module';
 import { ArticuloModule } from './articulo/articulo.module';
 
 @Module({
-  imports: [
-    AuthModule,
-    EmpleadoModule,
-    RolModule,
-    ClienteModule,
-    MarcaModule,
-    ArticuloModule,
-  ],
+  imports: [AuthModule, EmpleadoModule, RolModule, ClienteModule, MarcaModule, ArticuloModule],
   controllers: [AppController],
   providers: [AppService, PrismaService],
 })
