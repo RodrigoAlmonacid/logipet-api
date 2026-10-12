@@ -4,7 +4,6 @@ import {
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateClienteDto } from './dto/create-cliente.dto';
 import { UpdateClienteDto } from './dto/update-cliente.dto';
-import * as bcrypt from 'bcrypt';
 
 // Nunca devolvemos `pass`
 const CLIENTE_SELECT = {
@@ -14,6 +13,8 @@ const CLIENTE_SELECT = {
   comercio: true,
   telefono: true,
   email: true,
+  cuit: true,
+  condicionIva: true,
   horaAbreMat: true,
   horaCierreMat: true,
   horaAbreVesp: true,
@@ -36,11 +37,11 @@ export class ClienteService {
   }
 
   async create(dto: CreateClienteDto) {
-    const { email, nombre, apellido, comercio, telefono, direccion, latitud, longitud, horaAbreMat, horaAbreVesp, horaCierreMat, horaCierreVesp } = dto;
+    const { email, nombre, apellido, comercio, telefono, direccion, latitud, longitud, horaAbreMat, horaAbreVesp, horaCierreMat, horaCierreVesp, cuit, condicionIva } = dto;
     await this.validarUnicos(email);
 
     const cliente = await this.prisma.cliente.create({
-      data: { nombre, apellido, comercio, email, telefono, direccion, latitud, longitud, horaAbreMat, horaAbreVesp, horaCierreMat, horaCierreVesp, createdAt: new Date() },
+      data: { nombre, apellido, comercio, email, telefono, direccion, latitud, longitud, horaAbreMat, horaAbreVesp, horaCierreMat, horaCierreVesp, cuit, condicionIva, createdAt: new Date() },
       select: CLIENTE_SELECT,
     });
 

@@ -1,4 +1,6 @@
-import { IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString, Matches } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsEnum, IsNumber, IsOptional, IsString, Matches } from 'class-validator';
+import { Transform } from 'class-transformer';
+import { CondicionIva } from '@prisma/client';
 
 export class CreateClienteDto {
   @IsString()
@@ -48,4 +50,15 @@ export class CreateClienteDto {
   @IsNotEmpty()
   @IsNumber()
   longitud: number
+
+  @Transform(({ value }) => (value === '' ? undefined : value))
+  @IsOptional()
+  @Matches(/^\d{2}-?\d{8}-?\d{1}$/, {
+    message: 'El CUIT debe tener el formato XX-XXXXXXXX-X',
+  })
+  cuit?: string;
+
+  @IsNotEmpty()
+  @IsEnum(CondicionIva, { message: 'Condición frente al IVA inválida' })
+  condicionIva: CondicionIva;
 }
