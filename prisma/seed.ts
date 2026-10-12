@@ -19,6 +19,21 @@ async function main() {
     create: { nombre: 'adminUser', descripcion: 'Administrador del sistema' },
   });
 
+  const alicuotas = [
+  { porcentaje: 0, codigoAfip: 3, descripcion: 'Exento / 0%' },
+  { porcentaje: 10.5, codigoAfip: 4, descripcion: 'Reducida' },
+  { porcentaje: 21, codigoAfip: 5, descripcion: 'General' },
+  { porcentaje: 27, codigoAfip: 6, descripcion: 'Incrementada' },
+];
+
+  for (const alicuota of alicuotas) {
+    await prisma.alicuotaIva.upsert({
+      where: { codigoAfip: alicuota.codigoAfip },
+      update: {},
+      create: alicuota,
+    });
+  }
+
   await prisma.empleado.upsert({
     where: { email: 'rodrigo@logipet.com' },
     update: {

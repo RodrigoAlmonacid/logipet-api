@@ -14,7 +14,9 @@ const ARTICULO_SELECT = {
   precio: true,
   stock: true,
   marcaId: true,
+  alicuotaIvaId: true,
   marca: { select: { id: true, nombre: true } },
+  alicuotaIva: { select: { id: true, porcentaje: true, descripcion: true } },
   createdAt: true,
   updatedAt: true,
 } as const;
@@ -52,6 +54,7 @@ export class ArticuloService {
         precio: dto.precio,
         stock: dto.stock,
         marcaId: dto.marcaId ?? null,
+        alicuotaIvaId: dto.alicuotaIvaId ?? null,
       },
       select: ARTICULO_SELECT,
     });
