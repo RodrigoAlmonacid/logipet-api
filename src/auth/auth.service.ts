@@ -6,6 +6,7 @@ import { ForgotPasswordDto } from './dto/forgot-password.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { MailService } from '../mail/mail.service';
 import * as bcrypt from 'bcrypt';
+import { createHash, randomBytes } from 'crypto';
 
 const RESET_PASSWORD_PURPOSE = 'reset-password';
 const RESET_TOKEN_TTL = '15m';
@@ -67,12 +68,18 @@ export class AuthService {
       return respuestaGenerica;
     }
 
-    const token = await this.jwtService.signAsync(
-      { sub: empleado.id, purpose: RESET_PASSWORD_PURPOSE },
-      { expiresIn: RESET_TOKEN_TTL },
-    );
+    const rawToken = randomBytes(32).toString('hex');
+    const tokenHash = createHash('sha256').update(rawToken).digest('hex');
 
-    const resetLink = `${process.env.FRONT_URL}/reset-password?token=${token}`;
+    await this.prisma.passReset.create({
+      data: {
+        empleadoId: empleado.id,
+        tokenHash,
+        fechaExpira: new Date(Date.now() + 15 * 60 * 1000),
+      },
+    });
+
+    const resetLink = `${process.env.FRONT_URL}/reset-password?token=${rawToken}`;
 
     await this.mailService.send(
       empleado.email,
@@ -89,25 +96,30 @@ export class AuthService {
   }
 
   async resetPassword(dto: ResetPasswordDto): Promise<{ message: string }> {
-    let payload: { sub: number; purpose: string };
-
-    try {
-      payload = await this.jwtService.verifyAsync(dto.token);
-    } catch {
+    const tokenHash = createHash('sha256').update(dto.token).digest('hex');
+ 
+    const passReset = await this.prisma.passReset.findUnique({ where: { tokenHash } });
+ 
+    const tokenInvalido =
+      !passReset || passReset.usado || passReset.fechaExpira.getTime() < Date.now();
+ 
+    if (tokenInvalido) {
       throw new BadRequestException('El link expiró o no es válido. Pedí uno nuevo.');
     }
-
-    if (payload.purpose !== RESET_PASSWORD_PURPOSE) {
-      throw new BadRequestException('El link expiró o no es válido. Pedí uno nuevo.');
-    }
-
+ 
     const hashedPassword = await bcrypt.hash(dto.newPassword, 10);
-
-    await this.prisma.empleado.update({
-      where: { id: payload.sub },
-      data: { pass: hashedPassword },
-    });
-
+ 
+    await this.prisma.$transaction([
+      this.prisma.empleado.update({
+        where: { id: passReset.empleadoId },
+        data: { pass: hashedPassword },
+      }),
+      this.prisma.passReset.updateMany({
+        where: { empleadoId: passReset.empleadoId, usado: false },
+        data: { usado: true },
+      }),
+    ]);
+ 
     return { message: 'Contraseña actualizada correctamente.' };
   }
 }
