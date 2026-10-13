@@ -2,8 +2,6 @@ import { Body, Controller, Get, HttpCode, HttpStatus, Post, Req, UseGuards } fro
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { AuthGuard } from '@nestjs/passport';
-import { RolesGuard } from './guards/roles.guard';
-import { Roles } from './decorators/roles.decorator';
 import { ForgotPasswordDto } from './dto/forgot-password.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 
@@ -30,8 +28,7 @@ export class AuthController {
   }
 
   @Get('perfil')
-  @UseGuards(AuthGuard('jwt'), RolesGuard)
-  @Roles('Logipet')
+  @UseGuards(AuthGuard('jwt'))
   getPerfil(@Req() req: Request & { user: any }) {
     return req.user;
   }
