@@ -30,6 +30,7 @@ model Rol {
   nombre      String     @unique
   descripcion String?
   empleados   Empleado[]
+  permisos    Permiso[]  @relation("RolPermisos")
 }
 
 model Cliente {
@@ -172,4 +173,11 @@ model AlicuotaIva {
   codigoAfip  Int        @unique
   descripcion String?
   articulos   Articulo[]
+}
+
+model Permiso {
+  id          Int     @id @default(autoincrement())
+  codigo      String  @unique   // ej: "cliente:create"
+  descripcion String?
+  roles       Rol[]   @relation("RolPermisos")
 }
