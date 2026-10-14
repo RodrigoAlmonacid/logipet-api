@@ -10,10 +10,11 @@ import { MarcaModule } from './marca/marca.module';
 import { ArticuloModule } from './articulo/articulo.module';
 import { AlicuotaIvaModule } from './alicuotaIva/alicuotaIva.module';
 import { PermisoModule } from './permiso/permiso.module';
+import { PedidoModule } from './pedido/pedido.module';
 
 
 @Module({
-  imports: [AuthModule, EmpleadoModule, RolModule, ClienteModule, MarcaModule, ArticuloModule, AlicuotaIvaModule, PermisoModule],
+  imports: [AuthModule, EmpleadoModule, RolModule, ClienteModule, MarcaModule, ArticuloModule, AlicuotaIvaModule, PermisoModule, PedidoModule],
   controllers: [AppController],
   providers: [AppService, PrismaService],
 })
