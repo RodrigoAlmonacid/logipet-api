@@ -42,7 +42,10 @@ export class PedidoController {
   }
 
   @Get(':id')
-  @RequirePermissions(PERMISOS.PEDIDO_VIEW)
+  @RequirePermissions(
+  PERMISOS.PEDIDO_VIEW, PERMISOS.PEDIDO_VIEW_ALL,
+  PERMISOS.PEDIDO_APPROVE, PERMISOS.PEDIDO_REJECT, PERMISOS.PEDIDO_PREPARE, PERMISOS.PEDIDO_ROUTE,
+)
   findOne(@Param('id', ParseIntPipe) id: number, @Req() req: { user: AuthUser }) {
     return this.pedidoService.findOne(id, req.user);
   }
