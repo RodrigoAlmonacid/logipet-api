@@ -125,7 +125,7 @@ export class EmpleadoService {
     return this.prisma.empleado.update({
       where: { id },
       data: {
-        ...data, updateAt: new Date(),
+        ...data, updatedAt: new Date(),
         ...(roleIds && { roles: { set: roleIds.map((rid) => ({ id: rid })) } }),
       },
       select: EMPLEADO_SELECT,

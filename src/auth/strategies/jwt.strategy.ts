@@ -16,9 +16,14 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   async validate(payload: any) {
   const empleado = await this.prisma.empleado.findUnique({
     where: { id: payload.sub },
-    include: { roles: true },
+    include: { roles: { include: { permisos: true } } },
   });
+
   if (!empleado || !empleado.activo) throw new UnauthorizedException();
-  return { id: empleado.id, email: empleado.email, roles: empleado.roles.map((r) => r.nombre) };
+
+  const permisosUsuario = Array.from(
+      new Set(empleado.roles.flatMap((rol) => rol.permisos.map((p) => p.codigo))) 
+    );
+  return { id: empleado.id, email: empleado.email, roles: empleado.roles.map((r) => r.nombre), permisos: permisosUsuario };
 }
 }

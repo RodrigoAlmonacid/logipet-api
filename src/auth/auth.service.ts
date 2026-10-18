@@ -8,8 +8,6 @@ import { MailService } from '../mail/mail.service';
 import * as bcrypt from 'bcrypt';
 import { createHash, randomBytes } from 'crypto';
 
-const RESET_PASSWORD_PURPOSE = 'reset-password';
-const RESET_TOKEN_TTL = '15m';
 @Injectable()
 export class AuthService {
   constructor(
@@ -23,7 +21,7 @@ export class AuthService {
 
     const empleado = await this.prisma.empleado.findUnique({
       where: { email },
-      include: { roles: true },
+      include: { roles: { include: { permisos: true } } },
     });
 
     if (!empleado) {
@@ -39,10 +37,13 @@ export class AuthService {
       throw new UnauthorizedException('Credenciales inválidas');
     }
 
+    const permisos = [...new Set(empleado.roles.flatMap((r) => r.permisos.map((p) => p.codigo)))];
+
     const payload = {
       sub: empleado.id,
       email: empleado.email,
       roles: empleado.roles.map((r) => r.nombre),
+      permisos,
     };
 
     return {
@@ -53,6 +54,7 @@ export class AuthService {
         apellido: empleado.apellido,
         email: empleado.email,
         roles: payload.roles,
+        permisos: payload.permisos,
       },
     };
   }

@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsArray, IsInt, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateRolDto {
   @IsString()
@@ -8,4 +8,9 @@ export class CreateRolDto {
   @IsOptional()
   @IsString()
   descripcion?: string;
+
+  @IsOptional()
+  @IsArray()
+  @IsInt({ each: true })
+  permisoIds?: number[];
 }
