@@ -23,7 +23,7 @@ const ESTADOS = [
 async function seedPermisosYRoles() {
   const permisos = await Promise.all(
     Object.values(PERMISOS).map((codigo) =>
-      prisma.permiso.upsert({ where: { codigo }, update: {}, create: { codigo } }),
+      prisma.permiso.upsert({ where: { codigo }, update: { codigo }, create: { codigo } }),
     ),
   );
 
@@ -43,11 +43,15 @@ async function seedPermisosYRoles() {
     PERMISOS.PEDIDO_CONFIRM, PERMISOS.PEDIDO_CANCEL,
     PERMISOS.CLIENTE_VIEW, PERMISOS.ARTICULO_VIEW,
   ]);
-  await upsertRol('encargado', [
-    PERMISOS.CLIENTE_VIEW, PERMISOS.CLIENTE_CREATE, PERMISOS.CLIENTE_UPDATE, PERMISOS.CLIENTE_DELETE,
+  await upsertRol('adminVentas', [
+    PERMISOS.CLIENTE_VIEW, PERMISOS.PEDIDO_APPROVE, PERMISOS.PEDIDO_REJECT,
+    PERMISOS.CLIENTE_VIEW
   ]);
-  await upsertRol('jefeDepartamento', [PERMISOS.CLIENTE_VIEW, PERMISOS.CLIENTE_UPDATE]);
-  await upsertRol('administrativo', [PERMISOS.CLIENTE_VIEW]);
+  await upsertRol('adminUser', [PERMISOS.EMPLEADO_VIEW, PERMISOS.EMPLEADO_CREATE, PERMISOS.EMPLEADO_UPDATE, PERMISOS.EMPLEADO_DELETE]);
+  await upsertRol('adminCliente', [PERMISOS.CLIENTE_VIEW, PERMISOS.CLIENTE_CREATE, PERMISOS.CLIENTE_UPDATE, PERMISOS.CLIENTE_DELETE]);
+  await upsertRol('adminProducto', [PERMISOS.ARTICULO_VIEW, PERMISOS.ARTICULO_CREATE, PERMISOS.ARTICULO_UPDATE, PERMISOS.ARTICULO_DELETE,
+    PERMISOS.MARCA_VIEW, PERMISOS.MARCA_CREATE, PERMISOS.MARCA_UPDATE, PERMISOS.MARCA_DELETE
+  ]);
 }
 
 async function seedCatalogos() {
@@ -77,7 +81,7 @@ async function seedMarcas() {
 }
 
 async function seedArticulos(marcaIds: number[], alicuotaIds: number[]) {
-  const presentaciones = ['Unidad', 'Caja x6', 'Caja x12', 'Caja x24', 'Pack x3', 'Bolsa 1kg', 'Bolsa 5kg', 'Botella 1L'];
+  const presentaciones = ['Unidad', 'Caja x6', 'Caja x12', 'Caja x24', 'Pack x3', 'Bolsa 1kg', 'Bolsa 5kg', 'Bolsa 20kg'];
 
   return Promise.all(
     Array.from({ length: CANTIDAD_ARTICULOS }, (_, i) => {
@@ -142,7 +146,7 @@ async function seedEmpleados() {
   const rolSuperadmin = await prisma.rol.findUniqueOrThrow({ where: { nombre: 'superadmin' } });
   const rolVendedor = await prisma.rol.findUniqueOrThrow({ where: { nombre: 'vendedor' } });
   const otrosRoles = await prisma.rol.findMany({
-    where: { nombre: { in: ['encargado', 'jefeDepartamento', 'administrativo'] } },
+    where: { nombre: { in: ['adminVentas', 'adminUser', 'adminCliente', 'adminProducto'] } },
   });
 
   // Los dos usuarios "de siempre": uno con acceso total, otro vendedor para probar pedidos
@@ -151,7 +155,7 @@ async function seedEmpleados() {
     update: { activo: true, roles: { set: [{ id: rolSuperadmin.id }] } },
     create: {
       email: 'rodrigo@logipet.com', pass: await bcrypt.hash('rodrigoPrueba', SALT),
-      nombre: 'Rodrigo', apellido: 'Prueba', legajo: 'prueba-1', activo: true,
+      nombre: 'Rodrigo', apellido: 'Almonacid', legajo: 'fai-4968', activo: true,
       roles: { connect: [{ id: rolSuperadmin.id }] },
     },
   });
@@ -161,7 +165,7 @@ async function seedEmpleados() {
     update: { activo: true, roles: { set: [{ id: rolVendedor.id }] } },
     create: {
       email: 'lucas@logipet.com', pass: await bcrypt.hash('lucasPrueba', SALT),
-      nombre: 'Lucas', apellido: 'Prueba', legajo: 'prueba-2', activo: true,
+      nombre: 'Lucas', apellido: 'Cerda', legajo: 'fai-4967', activo: true,
       roles: { connect: [{ id: rolVendedor.id }] },
     },
   });
@@ -205,3 +209,66 @@ main()
   .finally(async () => {
     await prisma.$disconnect();
   });
+
+// 
+//   import { PrismaClient } from '@prisma/client';
+// import { PERMISOS as P } from '../src/utils/permisos.constants';
+// 
+// const prisma = new PrismaClient();
+// 
+// const ROLES: Record<string, { descripcion: string; permisos: string[] }> = {
+//   vendedor: {
+//     descripcion: 'Arma presupuestos y confirma pedidos propios',
+//     permisos: [
+//       P.PEDIDO_VIEW, P.PEDIDO_CREATE, P.PEDIDO_UPDATE, P.PEDIDO_CONFIRM, P.PEDIDO_CANCEL,
+//       P.ARTICULO_VIEW, P.CLIENTE_VIEW,
+//     ],
+//   },
+//   administracion: {
+//     descripcion: 'Aprueba o rechaza pedidos y administra maestros',
+//     permisos: [
+//       P.PEDIDO_VIEW, P.PEDIDO_VIEW_ALL, P.PEDIDO_APPROVE, P.PEDIDO_REJECT, P.PEDIDO_CANCEL_ANY,
+//       P.ARTICULO_VIEW, P.ARTICULO_CREATE, P.ARTICULO_UPDATE, P.ARTICULO_DELETE,
+//       P.MARCA_VIEW, P.MARCA_CREATE, P.MARCA_UPDATE, P.MARCA_DELETE,
+//       P.CLIENTE_VIEW, P.CLIENTE_CREATE, P.CLIENTE_UPDATE, P.CLIENTE_DELETE,
+//       P.EMPLEADO_VIEW,
+//     ],
+//   },
+//   deposito: {
+//     descripcion: 'Prepara pedidos',
+//     permisos: [P.PEDIDO_VIEW, P.PEDIDO_VIEW_ALL, P.ARTICULO_VIEW],
+//   },
+//   ruteo: {
+//     descripcion: 'Arma camiones y rutas',
+//     permisos: [P.PEDIDO_VIEW, P.PEDIDO_VIEW_ALL, P.CLIENTE_VIEW],
+//   },
+//   chofer: {
+//     descripcion: 'Entrega pedidos',
+//     permisos: [P.PEDIDO_VIEW, P.PEDIDO_VIEW_ALL, P.CLIENTE_VIEW],
+//   },
+// };
+// 
+// async function main() {
+//   for (const codigo of Object.values(P)) {
+//     await prisma.permiso.upsert({ where: { codigo }, update: {}, create: { codigo } });
+//   }
+// 
+//   for (const [nombre, { descripcion, permisos }] of Object.entries(ROLES)) {
+//     const refs = permisos.map((codigo) => ({ codigo }));
+//     await prisma.rol.upsert({
+//       where: { nombre },
+//       update: { descripcion, permisos: { set: refs } },
+//       create: { nombre, descripcion, permisos: { connect: refs } },
+//     });
+//   }
+// 
+//   // estados del pedido
+//   for (const nombre of [
+//     'borrador', 'pendiente', 'rechazado', 'pendiente_preparacion', 'en_preparacion',
+//     'preparado', 'en_ruta', 'entregado', 'no_entregado', 'cancelado',
+//   ]) {
+//     await prisma.estado.upsert({ where: { nombre }, update: {}, create: { nombre } });
+//   }
+// }
+// 
+// main().finally(() => prisma.$disconnect());

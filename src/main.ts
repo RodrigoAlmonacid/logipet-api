@@ -3,11 +3,11 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
+  const origins = process.env.CORS?.split(',').map((o) => o.trim());
+
   const app = await NestFactory.create(AppModule, {
   });
-  app.enableCors({
-    origin: process.env.CORS,
-  });
+  app.enableCors({ origin: origins?.length ? origins : false });
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -16,6 +16,6 @@ async function bootstrap() {
     }),
   );
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 3000, '0.0.0.0');
 }
 bootstrap();

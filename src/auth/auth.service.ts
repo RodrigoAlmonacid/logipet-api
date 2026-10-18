@@ -8,8 +8,6 @@ import { MailService } from '../mail/mail.service';
 import * as bcrypt from 'bcrypt';
 import { createHash, randomBytes } from 'crypto';
 
-const RESET_PASSWORD_PURPOSE = 'reset-password';
-const RESET_TOKEN_TTL = '15m';
 @Injectable()
 export class AuthService {
   constructor(

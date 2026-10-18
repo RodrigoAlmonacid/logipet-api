@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Empleado {
@@ -96,15 +97,18 @@ model Pedido {
   envio            Envio?          @relation(fields: [envioId], references: [id])
   articulos        DetallePedido[]
   historialEstados EstadoPedido[]
+  stockDescontado  Boolean         @default(false)
 }
 
 model DetallePedido {
-  pedidoId    Int
-  articuloId  Int
-  cantidad    Int
-  precioVenta Float
-  pedido      Pedido   @relation(fields: [pedidoId], references: [id])
-  articulo    Articulo @relation(fields: [articuloId], references: [id])
+  pedidoId              Int
+  articuloId            Int
+  cantidad              Int
+  precioVenta           Float // neto unitario, congelado al vender
+  alicuotaIvaPorcentaje Float    @default(0) // IVA congelado al vender
+  descuentoPorcentaje   Float    @default(0)
+  pedido                Pedido   @relation(fields: [pedidoId], references: [id])
+  articulo              Articulo @relation(fields: [articuloId], references: [id])
 
   @@id([pedidoId, articuloId])
 }
@@ -140,12 +144,14 @@ model Camion {
 }
 
 model EstadoPedido {
-  pedidoId   Int
-  estadoId   Int
-  fechaCreac DateTime  @default(now())
-  fechaFin   DateTime?
-  pedido     Pedido    @relation(fields: [pedidoId], references: [id])
-  estado     Estado    @relation(fields: [estadoId], references: [id])
+  pedidoId    Int
+  estadoId    Int
+  fechaCreac  DateTime    @default(now())
+  fechaFin    DateTime?
+  pedido      Pedido      @relation(fields: [pedidoId], references: [id])
+  estado      Estado      @relation(fields: [estadoId], references: [id])
+  motivo      MotivoBaja?
+  observacion String?
 
   @@id([pedidoId, estadoId, fechaCreac])
 }
@@ -167,6 +173,13 @@ enum CondicionIva {
   CONSUMIDOR_FINAL
 }
 
+enum MotivoBaja {
+  ARREPENTIMIENTO // cancela, devuelve stock
+  PRODUCTO_DANADO // cancela, NO devuelve stock
+  CLIENTE_AUSENTE // no cancela: se reprograma
+  CLIENTE_RECHAZO // cancela, devuelve stock
+}
+
 model AlicuotaIva {
   id          Int        @id @default(autoincrement())
   porcentaje  Float      @unique
@@ -177,7 +190,7 @@ model AlicuotaIva {
 
 model Permiso {
   id          Int     @id @default(autoincrement())
-  codigo      String  @unique   // ej: "cliente:create"
+  codigo      String  @unique // ej: "cliente:create"
   descripcion String?
   roles       Rol[]   @relation("RolPermisos")
 }

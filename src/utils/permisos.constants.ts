@@ -19,9 +19,15 @@ export const PERMISOS = {
     ROL_VIEW: 'rol:view',
     PEDIDO_CREATE: 'pedido:create',
     PEDIDO_VIEW: 'pedido:view',
-    PEDIDO_UPDATE: 'pedido:update',   // modificar en borrador/pendiente
-    PEDIDO_CONFIRM: 'pedido:confirm', // cierra borrador, abre pendiente
+    PEDIDO_UPDATE: 'pedido:update',
+    PEDIDO_CONFIRM: 'pedido:confirm',
     PEDIDO_CANCEL: 'pedido:cancel',
+    PEDIDO_APPROVE: 'pedido:approve',
+    PEDIDO_REJECT: 'pedido:reject',
+    PEDIDO_CANCEL_ANY: 'pedido:cancel_any',
+    PEDIDO_VIEW_ALL: 'pedido:view_all',
+    PEDIDO_PREPARE: 'pedido:prepare',
+    PEDIDO_ROUTE: 'pedido:route',
 } as const;
 
 export type PermisoCodigo = (typeof PERMISOS)[keyof typeof PERMISOS];
