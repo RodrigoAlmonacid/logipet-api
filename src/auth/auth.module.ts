@@ -6,13 +6,15 @@ import { PrismaService } from '../prisma/prisma.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { MailModule } from '../mail/mail.module';
 
+function getJwtSecret(): string {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) throw new Error('JWT_SECRET no está definido');
+  return secret;
+}
+
 @Module({
   imports: [
-    JwtModule.register({
-      global: true,
-      secret: process.env.JWT_SECRET || 'super_secret_logipet_key',
-      signOptions: { expiresIn: '8h' },
-    }), MailModule
+       JwtModule.register({ secret: getJwtSecret(), signOptions: { expiresIn: '8h' } }), MailModule
   ],
   controllers: [AuthController],
   providers: [AuthService, PrismaService, JwtStrategy],

@@ -210,65 +210,65 @@ main()
     await prisma.$disconnect();
   });
 
-// 
-//   import { PrismaClient } from '@prisma/client';
-// import { PERMISOS as P } from '../src/utils/permisos.constants';
-// 
-// const prisma = new PrismaClient();
-// 
-// const ROLES: Record<string, { descripcion: string; permisos: string[] }> = {
-//   vendedor: {
-//     descripcion: 'Arma presupuestos y confirma pedidos propios',
-//     permisos: [
-//       P.PEDIDO_VIEW, P.PEDIDO_CREATE, P.PEDIDO_UPDATE, P.PEDIDO_CONFIRM, P.PEDIDO_CANCEL,
-//       P.ARTICULO_VIEW, P.CLIENTE_VIEW,
-//     ],
-//   },
-//   administracion: {
-//     descripcion: 'Aprueba o rechaza pedidos y administra maestros',
-//     permisos: [
-//       P.PEDIDO_VIEW, P.PEDIDO_VIEW_ALL, P.PEDIDO_APPROVE, P.PEDIDO_REJECT, P.PEDIDO_CANCEL_ANY,
-//       P.ARTICULO_VIEW, P.ARTICULO_CREATE, P.ARTICULO_UPDATE, P.ARTICULO_DELETE,
-//       P.MARCA_VIEW, P.MARCA_CREATE, P.MARCA_UPDATE, P.MARCA_DELETE,
-//       P.CLIENTE_VIEW, P.CLIENTE_CREATE, P.CLIENTE_UPDATE, P.CLIENTE_DELETE,
-//       P.EMPLEADO_VIEW,
-//     ],
-//   },
-//   deposito: {
-//     descripcion: 'Prepara pedidos',
-//     permisos: [P.PEDIDO_VIEW, P.PEDIDO_VIEW_ALL, P.ARTICULO_VIEW],
-//   },
-//   ruteo: {
-//     descripcion: 'Arma camiones y rutas',
-//     permisos: [P.PEDIDO_VIEW, P.PEDIDO_VIEW_ALL, P.CLIENTE_VIEW],
-//   },
-//   chofer: {
-//     descripcion: 'Entrega pedidos',
-//     permisos: [P.PEDIDO_VIEW, P.PEDIDO_VIEW_ALL, P.CLIENTE_VIEW],
-//   },
-// };
-// 
-// async function main() {
-//   for (const codigo of Object.values(P)) {
-//     await prisma.permiso.upsert({ where: { codigo }, update: {}, create: { codigo } });
-//   }
-// 
-//   for (const [nombre, { descripcion, permisos }] of Object.entries(ROLES)) {
-//     const refs = permisos.map((codigo) => ({ codigo }));
-//     await prisma.rol.upsert({
-//       where: { nombre },
-//       update: { descripcion, permisos: { set: refs } },
-//       create: { nombre, descripcion, permisos: { connect: refs } },
-//     });
-//   }
-// 
-//   // estados del pedido
-//   for (const nombre of [
-//     'borrador', 'pendiente', 'rechazado', 'pendiente_preparacion', 'en_preparacion',
-//     'preparado', 'en_ruta', 'entregado', 'no_entregado', 'cancelado',
-//   ]) {
-//     await prisma.estado.upsert({ where: { nombre }, update: {}, create: { nombre } });
-//   }
-// }
-// 
-// main().finally(() => prisma.$disconnect());
+//
+//  import { PrismaClient } from '@prisma/client';
+//import { PERMISOS as P } from '../src/utils/permisos.constants';
+//
+//const prisma = new PrismaClient();
+//
+//const ROLES: Record<string, { descripcion: string; permisos: string[] }> = {
+//  vendedor: {
+//    descripcion: 'Arma presupuestos y confirma pedidos propios',
+//    permisos: [
+//      P.PEDIDO_VIEW, P.PEDIDO_CREATE, P.PEDIDO_UPDATE, P.PEDIDO_CONFIRM, P.PEDIDO_CANCEL,
+//      P.ARTICULO_VIEW, P.CLIENTE_VIEW,
+//    ],
+//  },
+//  administracion: {
+//    descripcion: 'Aprueba o rechaza pedidos y administra maestros',
+//    permisos: [
+//      P.PEDIDO_VIEW, P.PEDIDO_VIEW_ALL, P.PEDIDO_APPROVE, P.PEDIDO_REJECT, P.PEDIDO_CANCEL_ANY,
+//      P.ARTICULO_VIEW, P.ARTICULO_CREATE, P.ARTICULO_UPDATE, P.ARTICULO_DELETE,
+//      P.MARCA_VIEW, P.MARCA_CREATE, P.MARCA_UPDATE, P.MARCA_DELETE,
+//      P.CLIENTE_VIEW, P.CLIENTE_CREATE, P.CLIENTE_UPDATE, P.CLIENTE_DELETE,
+//      P.EMPLEADO_VIEW,
+//    ],
+//  },
+//  deposito: {
+//    descripcion: 'Prepara pedidos',
+//    permisos: [P.PEDIDO_VIEW, P.PEDIDO_VIEW_ALL, P.ARTICULO_VIEW],
+//  },
+//  ruteo: {
+//    descripcion: 'Arma camiones y rutas',
+//    permisos: [P.PEDIDO_VIEW, P.PEDIDO_VIEW_ALL, P.CLIENTE_VIEW],
+//  },
+//  chofer: {
+//    descripcion: 'Entrega pedidos',
+//    permisos: [P.PEDIDO_VIEW, P.PEDIDO_VIEW_ALL, P.CLIENTE_VIEW],
+//  },
+//};
+//
+//async function main() {
+//  for (const codigo of Object.values(P)) {
+//    await prisma.permiso.upsert({ where: { codigo }, update: {}, create: { codigo } });
+//  }
+//
+//  for (const [nombre, { descripcion, permisos }] of Object.entries(ROLES)) {
+//    const refs = permisos.map((codigo) => ({ codigo }));
+//    await prisma.rol.upsert({
+//      where: { nombre },
+//      update: { descripcion, permisos: { set: refs } },
+//      create: { nombre, descripcion, permisos: { connect: refs } },
+//    });
+//  }
+//
+//  // estados del pedido
+//  for (const nombre of [
+//    'borrador', 'pendiente', 'rechazado', 'pendiente_preparacion', 'en_preparacion',
+//    'preparado', 'en_ruta', 'entregado', 'no_entregado', 'cancelado',
+//  ]) {
+//    await prisma.estado.upsert({ where: { nombre }, update: {}, create: { nombre } });
+//  }
+//}
+//
+//main().finally(() => prisma.$disconnect());
