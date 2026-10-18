@@ -174,11 +174,19 @@ export class PedidoService {
     return pedidos.map((p) => this.conLineasCalculadas(p));
   }
 
+  private tieneBandeja(user: AuthUser) {
+    return [PERMISOS.PEDIDO_APPROVE, PERMISOS.PEDIDO_REJECT, PERMISOS.PEDIDO_PREPARE, PERMISOS.PEDIDO_ROUTE]
+      .some((p) => user.permisos.includes(p));
+  }
+
   async findOne(id: number, user?: AuthUser) {
     const pedido = await this.prisma.pedido.findUnique({ where: { id }, include: PEDIDO_INCLUDE });
-    // 404 en vez de 403 para no revelar que el pedido existe
-    if (!pedido || (user && !this.veTodos(user) && pedido.empleadoId !== user.id)) {
-      throw new NotFoundException('Pedido no encontrado');
+    if (!pedido) throw new NotFoundException('Pedido no encontrado');
+
+    if (user && pedido.empleadoId !== user.id) {
+      const esBorrador = estadoActivoDe(pedido.historialEstados).estado.nombre === 'borrador';
+      const autorizado = !esBorrador && (this.veTodos(user) || this.tieneBandeja(user));
+      if (!autorizado) throw new NotFoundException('Pedido no encontrado');
     }
     return this.conLineasCalculadas(pedido);
   }
