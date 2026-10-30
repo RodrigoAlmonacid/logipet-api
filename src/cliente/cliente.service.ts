@@ -25,6 +25,8 @@ const CLIENTE_SELECT = {
   activo: true,
 } as const;
 
+const INCLUDE_COMERCIOS = { comercios: { orderBy: { id: 'asc' as const } } };
+
 @Injectable()
 export class ClienteService {
   constructor(private readonly prisma: PrismaService) {}
@@ -37,47 +39,31 @@ export class ClienteService {
   }
 
   async create(dto: CreateClienteDto) {
-    const { email, nombre, apellido, comercio, telefono, direccion, latitud, longitud, horaAbreMat, horaAbreVesp, horaCierreMat, horaCierreVesp, cuit, condicionIva } = dto;
-    await this.validarUnicos(email);
+  const { comercio, ...datos } = dto;
+    await this.validarUnicos(datos.email);
 
     const cliente = await this.prisma.cliente.create({
-      data: { nombre, apellido, comercio, email, telefono, direccion, latitud, longitud, horaAbreMat, horaAbreVesp, horaCierreMat, horaCierreVesp, cuit, condicionIva, createdAt: new Date() },
-      select: CLIENTE_SELECT,
-    });
+    data: { ...datos, comercios: { create: comercio } },
+    include: INCLUDE_COMERCIOS,
+  });
 
     return { message: 'Cliente creado exitosamente', cliente };
   }
 
   findAll() {
-    return this.prisma.cliente.findMany({
-      where: { deletedAt: null },
-      select: CLIENTE_SELECT,
-      orderBy: [{ apellido: 'asc' }, { nombre: 'asc' }, { comercio: 'asc' }],
-    });
-  }
+  return this.prisma.cliente.findMany({ include: INCLUDE_COMERCIOS, orderBy: { apellido: 'asc' } });
+}
 
-  async findOne(id: number) {
-    const cliente = await this.prisma.cliente.findUnique({
-      where: { id },
-      select: CLIENTE_SELECT,
-    });
-    if (!cliente) throw new NotFoundException('Cliente no encontrado');
-    return cliente  ;
-  }
+async findOne(id: number) {
+  const cliente = await this.prisma.cliente.findUnique({ where: { id }, include: INCLUDE_COMERCIOS });
+  if (!cliente) throw new NotFoundException('Cliente no encontrado');
+  return cliente;
+}
 
-  async update(id: number, dto: UpdateClienteDto) {
-    await this.findOne(id);
-    const { ...data } = dto;
-    await this.validarUnicos(data.email, id);
-
-    return this.prisma.cliente.update({
-      where: { id },
-      data: {
-        ...data, updatedAt: new Date()
-      },
-      select: CLIENTE_SELECT,
-    });
-  }
+async update(id: number, dto: UpdateClienteDto) {
+  await this.findOne(id);
+  return this.prisma.cliente.update({ where: { id }, data: dto, include: INCLUDE_COMERCIOS });
+}
 
   // Baja lógica
   async remove(id: number) {

@@ -92,16 +92,20 @@ export class PedidoController {
   }
 
   @Patch(':id/aprobar')
-  @RequirePermissions(PERMISOS.PEDIDO_APPROVE)
-  aprobar(@Param('id', ParseIntPipe) id: number) {
-    return this.pedidoService.aprobar(id);
-  }
+@RequirePermissions(PERMISOS.PEDIDO_APPROVE)
+aprobar(@Param('id', ParseIntPipe) id: number, @Req() req: { user: AuthUser }) {
+  return this.pedidoService.aprobar(id, req.user.id);
+}
 
-  @Patch(':id/rechazar')
-  @RequirePermissions(PERMISOS.PEDIDO_REJECT)
-  rechazar(@Param('id', ParseIntPipe) id: number, @Body() dto: RechazarPedidoDto) {
-    return this.pedidoService.rechazar(id, dto.observacion);
-  }
+@Patch(':id/rechazar')
+@RequirePermissions(PERMISOS.PEDIDO_REJECT)
+rechazar(
+  @Param('id', ParseIntPipe) id: number,
+  @Body() dto: RechazarPedidoDto,
+  @Req() req: { user: AuthUser },
+) {
+  return this.pedidoService.rechazar(id, dto.observacion, req.user.id);
+}
 }
 //
 // POST pedido/:id/confirmar	pedido:confirmar	vendedor

@@ -9,21 +9,22 @@ datasource db {
 }
 
 model Empleado {
-  id               Int         @id @default(autoincrement())
-  email            String      @unique
+  id               Int            @id @default(autoincrement())
+  email            String         @unique
   nombre           String
   apellido         String
-  legajo           String      @unique
-  cuil             String?     @unique
+  legajo           String         @unique
+  cuil             String?        @unique
   pass             String
-  activo           Boolean     @default(false)
-  createdAt        DateTime    @default(now())
-  updatedAt        DateTime    @updatedAt
+  activo           Boolean        @default(false)
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
   deletedAt        DateTime?
   roles            Rol[]
-  pedidosGenerados Pedido[]
+  pedidosGenerados Pedido[]       @relation("PedidoVendedor")
   enviosTomados    Envio[]
   tokens           PassReset[]
+  estadoPedidos    EstadoPedido[] @relation("EstadoAuditor")
 }
 
 model Rol {
@@ -35,44 +36,63 @@ model Rol {
 }
 
 model Cliente {
-  id             Int          @id @default(autoincrement())
-  nombre         String
-  apellido       String
-  comercio       String
-  telefono       String
-  email          String       @unique
+  id           Int          @id @default(autoincrement())
+  nombre       String
+  apellido     String
+  email        String       @unique
+  telefono     String
+  cuit         String
+  condicionIva CondicionIva @default(CONSUMIDOR_FINAL)
+  activo       Boolean      @default(false)
+  comercios    Comercio[]
+  pedidos      Pedido[]
+}
+
+model Comercio {
+  id             Int      @id @default(autoincrement())
+  nombre         String // lo que hoy es Cliente.comercio
+  telefono       String? // si el del local difiere del dueño
   direccion      String
   latitud        Float
   longitud       Float
   horaAbreMat    String
-  horaAbreVesp   String?
-  horaCierreMat  String?
+  horaCierreMat  String
+  horaAbreVesp   String
   horaCierreVesp String
-  activo         Boolean      @default(false)
-  cuit           String?
-  condicionIva   CondicionIva @default(CONSUMIDOR_FINAL)
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
-  deletedAt      DateTime?
+  activo         Boolean  @default(true)
+  clienteId      Int
+  cliente        Cliente  @relation(fields: [clienteId], references: [id])
   pedidos        Pedido[]
+
+  @@index([clienteId])
+}
+
+enum Especie {
+  PERRO
+  GATO
 }
 
 model Articulo {
-  id            Int             @id @default(autoincrement())
-  codigo        String          @unique
-  precio        Float
-  presentacion  String
-  descripcion   String?
-  nombre        String
-  stock         Int             @default(0)
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
-  deletedAt     DateTime?
-  marcaId       Int?
-  marca         Marca?          @relation(fields: [marcaId], references: [id])
-  alicuotaIvaId Int?
-  alicuotaIva   AlicuotaIva?    @relation(fields: [alicuotaIvaId], references: [id])
-  detalles      DetallePedido[]
+  id                    Int             @id @default(autoincrement())
+  codigo                String          @unique
+  nombre                String
+  descripcion           String?
+  presentacion          String // texto para mostrar: "Bolsa 15 kg", "Caja 12 pouch x 85 g"
+  especie               Especie?
+  precio                Float // neto, sin IVA, por unidad de venta
+  precioSugeridoPublico Float? // con IVA, informativo
+  pesoGramos            Int? // de la unidad de venta completa
+  volumenCm3            Int? // de la unidad de venta completa
+  unidadesPorBulto      Int             @default(1)
+  stock                 Int             @default(0)
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
+  deletedAt             DateTime?
+  marcaId               Int?
+  marca                 Marca?          @relation(fields: [marcaId], references: [id])
+  alicuotaIvaId         Int?
+  alicuotaIva           AlicuotaIva?    @relation(fields: [alicuotaIvaId], references: [id])
+  detalles              DetallePedido[]
 }
 
 model Marca {
@@ -87,17 +107,20 @@ model Marca {
 model Pedido {
   id               Int             @id @default(autoincrement())
   importe          Float
+  pesoGramos       Int             @default(0)
   entregaEstimada  DateTime?
   createdAt        DateTime        @default(now())
   clienteId        Int
   cliente          Cliente         @relation(fields: [clienteId], references: [id])
   empleadoId       Int
-  empleado         Empleado        @relation(fields: [empleadoId], references: [id])
+  empleado         Empleado        @relation("PedidoVendedor", fields: [empleadoId], references: [id])
   envioId          Int?
   envio            Envio?          @relation(fields: [envioId], references: [id])
   articulos        DetallePedido[]
   historialEstados EstadoPedido[]
   stockDescontado  Boolean         @default(false)
+  comercioId       Int
+  comercio         Comercio        @relation(fields: [comercioId], references: [id])
 }
 
 model DetallePedido {
@@ -107,6 +130,7 @@ model DetallePedido {
   precioVenta           Float // neto unitario, congelado al vender
   alicuotaIvaPorcentaje Float    @default(0) // IVA congelado al vender
   descuentoPorcentaje   Float    @default(0)
+  pesoUnitarioGramos    Int?
   pedido                Pedido   @relation(fields: [pedidoId], references: [id])
   articulo              Articulo @relation(fields: [articuloId], references: [id])
 
@@ -152,6 +176,8 @@ model EstadoPedido {
   estado      Estado      @relation(fields: [estadoId], references: [id])
   motivo      MotivoBaja?
   observacion String?
+  auditorId   Int?
+  auditor     Empleado?   @relation("EstadoAuditor", fields: [auditorId], references: [id])
 
   @@id([pedidoId, estadoId, fechaCreac])
 }
