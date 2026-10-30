@@ -26,4 +26,14 @@ export class CreateArticuloDto {
 
   @IsOptional() @IsInt()
   alicuotaIvaId?: number | null;
+
+  @IsOptional() 
+  @IsInt() 
+  @Min(1) 
+  pesoGramos?: number;
+
+  @IsOptional() 
+  @IsInt() 
+  @Min(1) 
+  volumenCm3?: number;
 }
