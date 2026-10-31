@@ -11,4 +11,7 @@ export class CreatePedidoDto {
   @ValidateNested({ each: true })
   @Type(() => ItemPedidoDto)
   items: ItemPedidoDto[];
+
+  @IsInt()
+  comercioId!: number;
 }

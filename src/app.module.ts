@@ -11,11 +11,25 @@ import { ArticuloModule } from './articulo/articulo.module';
 import { AlicuotaIvaModule } from './alicuotaIva/alicuotaIva.module';
 import { PermisoModule } from './permiso/permiso.module';
 import { PedidoModule } from './pedido/pedido.module';
+import { GeocodificacionModule } from './geocodificacion/geocodificacion.module';
+import { ComercioModule } from './comercio/comercio.module';
 
 
 @Module({
-  imports: [AuthModule, EmpleadoModule, RolModule, ClienteModule, MarcaModule, ArticuloModule, AlicuotaIvaModule, PermisoModule, PedidoModule],
+  imports: [
+    AuthModule, 
+    EmpleadoModule, 
+    RolModule, 
+    ClienteModule, 
+    MarcaModule, 
+    ArticuloModule, 
+    AlicuotaIvaModule, 
+    PermisoModule, 
+    PedidoModule, 
+    GeocodificacionModule, 
+    ComercioModule
+  ],
   controllers: [AppController],
   providers: [AppService, PrismaService],
 })
-export class AppModule {}
+export class AppModule { }

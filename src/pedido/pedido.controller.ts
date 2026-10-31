@@ -11,6 +11,7 @@ import { PresupuestoPdfService } from './presupuesto-pdf.service';
 import { RechazarPedidoDto } from './dto/rechazar-pedido.dto';
 import { CancelarPedidoDto } from './dto/cancelat-pedido.dto';
 import { AuthUser } from '../auth/auth-user';
+import { VerificarLineaDto } from './dto/verificar-linea.dto';
 
 @Controller('pedidos')
 @UseGuards(AuthGuard('jwt'), PermissionsGuard)
@@ -43,9 +44,9 @@ export class PedidoController {
 
   @Get(':id')
   @RequirePermissions(
-  PERMISOS.PEDIDO_VIEW, PERMISOS.PEDIDO_VIEW_ALL,
-  PERMISOS.PEDIDO_APPROVE, PERMISOS.PEDIDO_REJECT, PERMISOS.PEDIDO_PREPARE, PERMISOS.PEDIDO_ROUTE,
-)
+    PERMISOS.PEDIDO_VIEW, PERMISOS.PEDIDO_VIEW_ALL,
+    PERMISOS.PEDIDO_APPROVE, PERMISOS.PEDIDO_REJECT, PERMISOS.PEDIDO_PREPARE, PERMISOS.PEDIDO_ROUTE,
+  )
   findOne(@Param('id', ParseIntPipe) id: number, @Req() req: { user: AuthUser }) {
     return this.pedidoService.findOne(id, req.user);
   }
@@ -93,23 +94,52 @@ export class PedidoController {
 
   @Patch(':id/aprobar')
   @RequirePermissions(PERMISOS.PEDIDO_APPROVE)
-  aprobar(@Param('id', ParseIntPipe) id: number) {
-    return this.pedidoService.aprobar(id);
+  aprobar(@Param('id', ParseIntPipe) id: number, @Req() req: { user: AuthUser }) {
+    return this.pedidoService.aprobar(id, req.user.id);
   }
 
   @Patch(':id/rechazar')
   @RequirePermissions(PERMISOS.PEDIDO_REJECT)
-  rechazar(@Param('id', ParseIntPipe) id: number, @Body() dto: RechazarPedidoDto) {
-    return this.pedidoService.rechazar(id, dto.observacion);
+  rechazar(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() dto: RechazarPedidoDto,
+    @Req() req: { user: AuthUser },
+  ) {
+    return this.pedidoService.rechazar(id, dto.observacion, req.user.id);
+  }
+
+  @Get('deposito/actual')
+  @RequirePermissions(PERMISOS.PEDIDO_PREPARE)
+  enPreparacion(@Req() req: { user: AuthUser }) {
+    return this.pedidoService.enPreparacionDe(req.user.id);
+  }
+
+  @Post(':id/tomar')
+  @RequirePermissions(PERMISOS.PEDIDO_PREPARE)
+  tomar(@Param('id', ParseIntPipe) id: number, @Req() req: { user: AuthUser }) {
+    return this.pedidoService.tomar(id, req.user.id);
+  }
+
+  @Post(':id/soltar')
+  @RequirePermissions(PERMISOS.PEDIDO_PREPARE)
+  soltar(@Param('id', ParseIntPipe) id: number, @Req() req: { user: AuthUser }) {
+    return this.pedidoService.soltar(id, req.user.id);
+  }
+
+  @Patch(':id/lineas/:articuloId')
+  @RequirePermissions(PERMISOS.PEDIDO_PREPARE)
+  verificarLinea(
+    @Param('id', ParseIntPipe) id: number,
+    @Param('articuloId', ParseIntPipe) articuloId: number,
+    @Body() dto: VerificarLineaDto,
+    @Req() req: { user: AuthUser },
+  ) {
+    return this.pedidoService.verificarLinea(id, articuloId, dto, req.user.id);
+  }
+
+  @Post(':id/preparado')
+  @RequirePermissions(PERMISOS.PEDIDO_PREPARE)
+  preparado(@Param('id', ParseIntPipe) id: number, @Req() req: { user: AuthUser }) {
+    return this.pedidoService.preparado(id, req.user.id);
   }
 }
-//
-// POST pedido/:id/confirmar	pedido:confirmar	vendedor
-// POST pedido/:id/aprobar	pedido:aprobar	administración
-// POST pedido/:id/rechazar	pedido:rechazar	administración
-// POST pedido/:id/cancelar	pedido:cancelar	vendedor / administración / depósito
-// POST pedido/:id/tomar	pedido:preparar	depósito
-// POST pedido/:id/preparado	pedido:preparar	depósito
-// POST pedido/:id/entregar	pedido:entregar	chofer
-// POST pedido/:id/no-entregado	pedido:entregar	chofer
-// 
