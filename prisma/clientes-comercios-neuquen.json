@@ -1,0 +1,935 @@
+{
+  "nota": "Datos ficticios para pruebas. Direcciones y coordenadas aproximadas, no verificadas.",
+  "clientes": [
+    {
+      "nombre": "Juan",
+      "apellido": "López",
+      "email": "juan.lópez.01@example.com",
+      "telefono": "+54 299 6287245",
+      "cuit": "23475970586",
+      "condicionIva": "MONOTRIBUTO",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "Punto Norte",
+          "telefono": "+54 299 4517759",
+          "direccion": "Novella 2244, Neuquén, Neuquén",
+          "latitud": -38.959635,
+          "longitud": -68.065223,
+          "horaAbreMat": "09:00",
+          "horaCierreMat": "12:00",
+          "horaAbreVesp": "16:00",
+          "horaCierreVesp": "20:00",
+          "activo": true
+        },
+        {
+          "nombre": "La Esquina",
+          "telefono": null,
+          "direccion": "Belgrano 2970, Neuquén, Neuquén",
+          "latitud": -38.954539,
+          "longitud": -68.064951,
+          "horaAbreMat": "08:30",
+          "horaCierreMat": "12:00",
+          "horaAbreVesp": "16:00",
+          "horaCierreVesp": "20:30",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "María",
+      "apellido": "Flores",
+      "email": "maria.flores.02@example.com",
+      "telefono": "+54 299 6074750",
+      "cuit": "23261477556",
+      "condicionIva": "MONOTRIBUTO",
+      "activo": false,
+      "comercios": [
+        {
+          "nombre": "Mercado del Valle",
+          "telefono": "+54 299 4020612",
+          "direccion": "Copahue 1362, Neuquén, Neuquén",
+          "latitud": -38.953729,
+          "longitud": -68.088913,
+          "horaAbreMat": "09:00",
+          "horaCierreMat": "12:30",
+          "horaAbreVesp": "16:30",
+          "horaCierreVesp": "21:00",
+          "activo": true
+        },
+        {
+          "nombre": "Patagonia Mascotas",
+          "telefono": "+54 299 6016128",
+          "direccion": "Rivadavia 796, Neuquén, Neuquén",
+          "latitud": -38.964489,
+          "longitud": -68.038008,
+          "horaAbreMat": "08:30",
+          "horaCierreMat": "12:30",
+          "horaAbreVesp": "16:30",
+          "horaCierreVesp": "21:00",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Carlos",
+      "apellido": "Aguirre",
+      "email": "carlos.aguirre.03@example.com",
+      "telefono": "+54 299 4639458",
+      "cuit": "23162437169",
+      "condicionIva": "RESPONSABLE_INSCRIPTO",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "El Trébol",
+          "telefono": "+54 299 6728667",
+          "direccion": "Lanín 688, Neuquén, Neuquén",
+          "latitud": -38.971396,
+          "longitud": -68.063719,
+          "horaAbreMat": "08:30",
+          "horaCierreMat": "12:00",
+          "horaAbreVesp": "16:30",
+          "horaCierreVesp": "20:00",
+          "activo": true
+        },
+        {
+          "nombre": "Distribuidora Neuquén",
+          "telefono": "+54 299 6193476",
+          "direccion": "Córdoba 4372, Neuquén, Neuquén",
+          "latitud": -38.949678,
+          "longitud": -68.075507,
+          "horaAbreMat": "09:00",
+          "horaCierreMat": "12:00",
+          "horaAbreVesp": "17:00",
+          "horaCierreVesp": "21:00",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Laura",
+      "apellido": "Navarro",
+      "email": "laura.navarro.04@example.com",
+      "telefono": "+54 299 6947944",
+      "cuit": "33348302464",
+      "condicionIva": "MONOTRIBUTO",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "Don Mercado",
+          "telefono": "+54 299 5222458",
+          "direccion": "Av. Argentina 442, Neuquén, Neuquén",
+          "latitud": -38.94149,
+          "longitud": -68.068714,
+          "horaAbreMat": "08:30",
+          "horaCierreMat": "12:00",
+          "horaAbreVesp": "16:30",
+          "horaCierreVesp": "20:30",
+          "activo": true
+        },
+        {
+          "nombre": "Punto de Venta",
+          "telefono": "+54 299 6720209",
+          "direccion": "Juan B. Justo 3200, Neuquén, Neuquén",
+          "latitud": -38.973245,
+          "longitud": -68.088242,
+          "horaAbreMat": "09:00",
+          "horaCierreMat": "12:30",
+          "horaAbreVesp": "16:30",
+          "horaCierreVesp": "21:00",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Martín",
+      "apellido": "Rodríguez",
+      "email": "martin.rodríguez.05@example.com",
+      "telefono": "+54 299 5220977",
+      "cuit": "27260979634",
+      "condicionIva": "CONSUMIDOR_FINAL",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "Comercial del Sur",
+          "telefono": null,
+          "direccion": "Salta 2470, Neuquén, Neuquén",
+          "latitud": -38.963321,
+          "longitud": -68.08126,
+          "horaAbreMat": "08:30",
+          "horaCierreMat": "12:00",
+          "horaAbreVesp": "17:00",
+          "horaCierreVesp": "20:30",
+          "activo": false
+        },
+        {
+          "nombre": "La Estación",
+          "telefono": "+54 299 5348778",
+          "direccion": "Salta 1126, Neuquén, Neuquén",
+          "latitud": -38.969113,
+          "longitud": -68.081931,
+          "horaAbreMat": "08:00",
+          "horaCierreMat": "12:30",
+          "horaAbreVesp": "16:00",
+          "horaCierreVesp": "20:00",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Lucía",
+      "apellido": "Álvarez",
+      "email": "lucia.álvarez.06@example.com",
+      "telefono": "+54 299 5237784",
+      "cuit": "23167343465",
+      "condicionIva": "MONOTRIBUTO",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "Almacén Central",
+          "telefono": "+54 299 4696233",
+          "direccion": "Av. Perticone 622, Neuquén, Neuquén",
+          "latitud": -38.945339,
+          "longitud": -68.08478,
+          "horaAbreMat": "09:00",
+          "horaCierreMat": "12:00",
+          "horaAbreVesp": "16:30",
+          "horaCierreVesp": "20:30",
+          "activo": true
+        },
+        {
+          "nombre": "El Buen Precio",
+          "telefono": null,
+          "direccion": "Juan B. Justo 1870, Neuquén, Neuquén",
+          "latitud": -38.95095,
+          "longitud": -68.038188,
+          "horaAbreMat": "08:00",
+          "horaCierreMat": "12:00",
+          "horaAbreVesp": "17:00",
+          "horaCierreVesp": "20:00",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Diego",
+      "apellido": "Herrera",
+      "email": "diego.herrera.07@example.com",
+      "telefono": "+54 299 5042425",
+      "cuit": "23161898279",
+      "condicionIva": "CONSUMIDOR_FINAL",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "Comercio Andino",
+          "telefono": "+54 299 5007318",
+          "direccion": "Av. Dr. Ramón 2286, Neuquén, Neuquén",
+          "latitud": -38.962032,
+          "longitud": -68.090958,
+          "horaAbreMat": "09:00",
+          "horaCierreMat": "12:30",
+          "horaAbreVesp": "16:30",
+          "horaCierreVesp": "21:00",
+          "activo": true
+        },
+        {
+          "nombre": "Los Álamos",
+          "telefono": "+54 299 6906014",
+          "direccion": "Lanín 2112, Neuquén, Neuquén",
+          "latitud": -38.955205,
+          "longitud": -68.046396,
+          "horaAbreMat": "09:00",
+          "horaCierreMat": "12:30",
+          "horaAbreVesp": "16:00",
+          "horaCierreVesp": "20:30",
+          "activo": false
+        }
+      ]
+    },
+    {
+      "nombre": "Sofía",
+      "apellido": "Ortiz",
+      "email": "sofia.ortiz.08@example.com",
+      "telefono": "+54 299 6999120",
+      "cuit": "30334883651",
+      "condicionIva": "RESPONSABLE_INSCRIPTO",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "La Familia",
+          "telefono": null,
+          "direccion": "Rivadavia 174, Neuquén, Neuquén",
+          "latitud": -38.973602,
+          "longitud": -68.090842,
+          "horaAbreMat": "08:00",
+          "horaCierreMat": "12:30",
+          "horaAbreVesp": "16:00",
+          "horaCierreVesp": "21:00",
+          "activo": true
+        },
+        {
+          "nombre": "Autoservicio Norte",
+          "telefono": "+54 299 5526147",
+          "direccion": "Córdoba 3332, Neuquén, Neuquén",
+          "latitud": -38.935887,
+          "longitud": -68.040622,
+          "horaAbreMat": "08:00",
+          "horaCierreMat": "12:30",
+          "horaAbreVesp": "16:30",
+          "horaCierreVesp": "21:00",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Pablo",
+      "apellido": "Méndez",
+      "email": "pablo.méndez.09@example.com",
+      "telefono": "+54 299 6085691",
+      "cuit": "30207300884",
+      "condicionIva": "MONOTRIBUTO",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "El Encuentro",
+          "telefono": "+54 299 4988691",
+          "direccion": "Av. Perticone 2478, Neuquén, Neuquén",
+          "latitud": -38.940882,
+          "longitud": -68.036363,
+          "horaAbreMat": "08:00",
+          "horaCierreMat": "13:00",
+          "horaAbreVesp": "16:00",
+          "horaCierreVesp": "20:00",
+          "activo": true
+        },
+        {
+          "nombre": "Mercado Patagonia",
+          "telefono": "+54 299 6191255",
+          "direccion": "Av. Argentina 406, Neuquén, Neuquén",
+          "latitud": -38.968631,
+          "longitud": -68.062679,
+          "horaAbreMat": "09:00",
+          "horaCierreMat": "12:30",
+          "horaAbreVesp": "16:30",
+          "horaCierreVesp": "21:00",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Valentina",
+      "apellido": "Romero",
+      "email": "valentina.romero.10@example.com",
+      "telefono": "+54 299 4277620",
+      "cuit": "33381152192",
+      "condicionIva": "CONSUMIDOR_FINAL",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "La Plaza",
+          "telefono": "+54 299 6645499",
+          "direccion": "Av. Olascoaga 2174, Neuquén, Neuquén",
+          "latitud": -38.955408,
+          "longitud": -68.029982,
+          "horaAbreMat": "08:00",
+          "horaCierreMat": "12:00",
+          "horaAbreVesp": "16:30",
+          "horaCierreVesp": "21:00",
+          "activo": true
+        },
+        {
+          "nombre": "Rincón Neuquino",
+          "telefono": "+54 299 4820690",
+          "direccion": "Av. Perticone 2456, Neuquén, Neuquén",
+          "latitud": -38.975617,
+          "longitud": -68.078484,
+          "horaAbreMat": "09:00",
+          "horaCierreMat": "12:30",
+          "horaAbreVesp": "16:30",
+          "horaCierreVesp": "20:00",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Nicolás",
+      "apellido": "Acosta",
+      "email": "nicolas.acosta.11@example.com",
+      "telefono": "+54 299 6414920",
+      "cuit": "23258360052",
+      "condicionIva": "EXENTO",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "El Ahorro",
+          "telefono": null,
+          "direccion": "Perito Moreno 3822, Neuquén, Neuquén",
+          "latitud": -38.928442,
+          "longitud": -68.024737,
+          "horaAbreMat": "08:00",
+          "horaCierreMat": "12:00",
+          "horaAbreVesp": "16:00",
+          "horaCierreVesp": "20:00",
+          "activo": true
+        },
+        {
+          "nombre": "Comercial Oeste",
+          "telefono": "+54 299 5181505",
+          "direccion": "Ministro González 2870, Neuquén, Neuquén",
+          "latitud": -38.96,
+          "longitud": -68.046378,
+          "horaAbreMat": "09:00",
+          "horaCierreMat": "12:30",
+          "horaAbreVesp": "16:30",
+          "horaCierreVesp": "20:00",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Camila",
+      "apellido": "Rojas",
+      "email": "camila.rojas.12@example.com",
+      "telefono": "+54 299 4402184",
+      "cuit": "30135220430",
+      "condicionIva": "CONSUMIDOR_FINAL",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "Punto Verde",
+          "telefono": "+54 299 4298789",
+          "direccion": "Rivadavia 4490, Neuquén, Neuquén",
+          "latitud": -38.931329,
+          "longitud": -68.086578,
+          "horaAbreMat": "08:30",
+          "horaCierreMat": "12:30",
+          "horaAbreVesp": "17:00",
+          "horaCierreVesp": "20:00",
+          "activo": true
+        },
+        {
+          "nombre": "La Terminal",
+          "telefono": null,
+          "direccion": "Godoy 2802, Neuquén, Neuquén",
+          "latitud": -38.936658,
+          "longitud": -68.039419,
+          "horaAbreMat": "08:30",
+          "horaCierreMat": "12:00",
+          "horaAbreVesp": "16:30",
+          "horaCierreVesp": "20:00",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Andrés",
+      "apellido": "Cabrera",
+      "email": "andres.cabrera.13@example.com",
+      "telefono": "+54 299 4100570",
+      "cuit": "20103053766",
+      "condicionIva": "CONSUMIDOR_FINAL",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "El Galpón",
+          "telefono": "+54 299 6630851",
+          "direccion": "República de Italia 1414, Neuquén, Neuquén",
+          "latitud": -38.926718,
+          "longitud": -68.081517,
+          "horaAbreMat": "08:00",
+          "horaCierreMat": "12:30",
+          "horaAbreVesp": "16:00",
+          "horaCierreVesp": "21:00",
+          "activo": true
+        },
+        {
+          "nombre": "Distribuciones del Limay",
+          "telefono": "+54 299 6303209",
+          "direccion": "Av. Dr. Ramón 4340, Neuquén, Neuquén",
+          "latitud": -38.929266,
+          "longitud": -68.055033,
+          "horaAbreMat": "09:00",
+          "horaCierreMat": "12:30",
+          "horaAbreVesp": "17:00",
+          "horaCierreVesp": "20:00",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Florencia",
+      "apellido": "Martínez",
+      "email": "florencia.martínez.14@example.com",
+      "telefono": "+54 299 5872308",
+      "cuit": "23336657024",
+      "condicionIva": "RESPONSABLE_INSCRIPTO",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "La Preferida",
+          "telefono": null,
+          "direccion": "Novella 2930, Neuquén, Neuquén",
+          "latitud": -38.965449,
+          "longitud": -68.046202,
+          "horaAbreMat": "08:00",
+          "horaCierreMat": "12:30",
+          "horaAbreVesp": "17:00",
+          "horaCierreVesp": "20:00",
+          "activo": true
+        },
+        {
+          "nombre": "Mercado Regional",
+          "telefono": null,
+          "direccion": "Salta 1990, Neuquén, Neuquén",
+          "latitud": -38.935276,
+          "longitud": -68.048419,
+          "horaAbreMat": "09:00",
+          "horaCierreMat": "13:00",
+          "horaAbreVesp": "16:30",
+          "horaCierreVesp": "20:00",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Javier",
+      "apellido": "Díaz",
+      "email": "javier.díaz.15@example.com",
+      "telefono": "+54 299 5786235",
+      "cuit": "33324528089",
+      "condicionIva": "RESPONSABLE_INSCRIPTO",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "El Puente",
+          "telefono": "+54 299 4159163",
+          "direccion": "Salta 3758, Neuquén, Neuquén",
+          "latitud": -38.95809,
+          "longitud": -68.083226,
+          "horaAbreMat": "08:00",
+          "horaCierreMat": "13:00",
+          "horaAbreVesp": "16:00",
+          "horaCierreVesp": "20:30",
+          "activo": true
+        },
+        {
+          "nombre": "La Nueva Esquina",
+          "telefono": "+54 299 5076831",
+          "direccion": "Chrestía 3622, Neuquén, Neuquén",
+          "latitud": -38.952292,
+          "longitud": -68.042097,
+          "horaAbreMat": "08:00",
+          "horaCierreMat": "12:00",
+          "horaAbreVesp": "16:00",
+          "horaCierreVesp": "20:00",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Agustina",
+      "apellido": "Fernández",
+      "email": "agustina.fernández.16@example.com",
+      "telefono": "+54 299 6888737",
+      "cuit": "23416754675",
+      "condicionIva": "CONSUMIDOR_FINAL",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "Comercio del Parque",
+          "telefono": "+54 299 6761410",
+          "direccion": "Córdoba 1222, Neuquén, Neuquén",
+          "latitud": -38.976509,
+          "longitud": -68.045531,
+          "horaAbreMat": "09:00",
+          "horaCierreMat": "12:00",
+          "horaAbreVesp": "17:00",
+          "horaCierreVesp": "21:00",
+          "activo": true
+        },
+        {
+          "nombre": "El Progreso",
+          "telefono": "+54 299 4654241",
+          "direccion": "Salta 3778, Neuquén, Neuquén",
+          "latitud": -38.931323,
+          "longitud": -68.040938,
+          "horaAbreMat": "09:00",
+          "horaCierreMat": "12:00",
+          "horaAbreVesp": "16:30",
+          "horaCierreVesp": "20:00",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Matías",
+      "apellido": "Vega",
+      "email": "matias.vega.17@example.com",
+      "telefono": "+54 299 5309255",
+      "cuit": "30164395738",
+      "condicionIva": "RESPONSABLE_INSCRIPTO",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "Punto Sur",
+          "telefono": null,
+          "direccion": "Rivadavia 2948, Neuquén, Neuquén",
+          "latitud": -38.963339,
+          "longitud": -68.091749,
+          "horaAbreMat": "08:30",
+          "horaCierreMat": "12:30",
+          "horaAbreVesp": "17:00",
+          "horaCierreVesp": "20:30",
+          "activo": true
+        },
+        {
+          "nombre": "Almacén Neuquén",
+          "telefono": "+54 299 4730477",
+          "direccion": "Primeros Pobladores 2954, Neuquén, Neuquén",
+          "latitud": -38.944255,
+          "longitud": -68.092434,
+          "horaAbreMat": "08:30",
+          "horaCierreMat": "13:00",
+          "horaAbreVesp": "16:00",
+          "horaCierreVesp": "20:30",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Julieta",
+      "apellido": "Pérez",
+      "email": "julieta.pérez.18@example.com",
+      "telefono": "+54 299 6626502",
+      "cuit": "23203405634",
+      "condicionIva": "MONOTRIBUTO",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "La Cumbre",
+          "telefono": "+54 299 4115612",
+          "direccion": "Belgrano 674, Neuquén, Neuquén",
+          "latitud": -38.964031,
+          "longitud": -68.043997,
+          "horaAbreMat": "08:00",
+          "horaCierreMat": "13:00",
+          "horaAbreVesp": "17:00",
+          "horaCierreVesp": "20:00",
+          "activo": true
+        },
+        {
+          "nombre": "El Roble",
+          "telefono": "+54 299 4836424",
+          "direccion": "República de Italia 1488, Neuquén, Neuquén",
+          "latitud": -38.969173,
+          "longitud": -68.051005,
+          "horaAbreMat": "08:00",
+          "horaCierreMat": "12:00",
+          "horaAbreVesp": "16:00",
+          "horaCierreVesp": "20:00",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Federico",
+      "apellido": "Gutiérrez",
+      "email": "federico.gutiérrez.19@example.com",
+      "telefono": "+54 299 4920638",
+      "cuit": "30378440153",
+      "condicionIva": "MONOTRIBUTO",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "Mercado Amigo",
+          "telefono": "+54 299 4974413",
+          "direccion": "Independencia 2318, Neuquén, Neuquén",
+          "latitud": -38.969275,
+          "longitud": -68.057685,
+          "horaAbreMat": "09:00",
+          "horaCierreMat": "13:00",
+          "horaAbreVesp": "16:30",
+          "horaCierreVesp": "21:00",
+          "activo": true
+        },
+        {
+          "nombre": "La Rueda",
+          "telefono": "+54 299 6277509",
+          "direccion": "Av. Perticone 984, Neuquén, Neuquén",
+          "latitud": -38.970675,
+          "longitud": -68.044732,
+          "horaAbreMat": "09:00",
+          "horaCierreMat": "12:30",
+          "horaAbreVesp": "16:30",
+          "horaCierreVesp": "20:00",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Milagros",
+      "apellido": "Suárez",
+      "email": "milagros.suárez.20@example.com",
+      "telefono": "+54 299 6217754",
+      "cuit": "23283289982",
+      "condicionIva": "CONSUMIDOR_FINAL",
+      "activo": false,
+      "comercios": [
+        {
+          "nombre": "El Cruce",
+          "telefono": "+54 299 6385977",
+          "direccion": "Río Negro 2984, Neuquén, Neuquén",
+          "latitud": -38.966431,
+          "longitud": -68.06135,
+          "horaAbreMat": "09:00",
+          "horaCierreMat": "13:00",
+          "horaAbreVesp": "16:30",
+          "horaCierreVesp": "21:00",
+          "activo": true
+        },
+        {
+          "nombre": "Comercial Centro",
+          "telefono": "+54 299 5466221",
+          "direccion": "Gatica 720, Neuquén, Neuquén",
+          "latitud": -38.963041,
+          "longitud": -68.044415,
+          "horaAbreMat": "08:30",
+          "horaCierreMat": "12:00",
+          "horaAbreVesp": "17:00",
+          "horaCierreVesp": "20:30",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Gabriel",
+      "apellido": "Silva",
+      "email": "gabriel.silva.21@example.com",
+      "telefono": "+54 299 6160106",
+      "cuit": "20268711849",
+      "condicionIva": "CONSUMIDOR_FINAL",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "La Costa",
+          "telefono": "+54 299 5688921",
+          "direccion": "Lanín 1944, Neuquén, Neuquén",
+          "latitud": -38.936922,
+          "longitud": -68.043444,
+          "horaAbreMat": "09:00",
+          "horaCierreMat": "13:00",
+          "horaAbreVesp": "16:00",
+          "horaCierreVesp": "20:00",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Victoria",
+      "apellido": "González",
+      "email": "victoria.gonzález.22@example.com",
+      "telefono": "+54 299 6298887",
+      "cuit": "33118795275",
+      "condicionIva": "RESPONSABLE_INSCRIPTO",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "El Ceibo",
+          "telefono": "+54 299 4628868",
+          "direccion": "Fava 3204, Neuquén, Neuquén",
+          "latitud": -38.962807,
+          "longitud": -68.032502,
+          "horaAbreMat": "08:00",
+          "horaCierreMat": "12:00",
+          "horaAbreVesp": "16:00",
+          "horaCierreVesp": "20:00",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Tomás",
+      "apellido": "Torres",
+      "email": "tomas.torres.23@example.com",
+      "telefono": "+54 299 5804677",
+      "cuit": "20497936668",
+      "condicionIva": "CONSUMIDOR_FINAL",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "La Herradura",
+          "telefono": "+54 299 6171750",
+          "direccion": "Copahue 3090, Neuquén, Neuquén",
+          "latitud": -38.960199,
+          "longitud": -68.080324,
+          "horaAbreMat": "08:30",
+          "horaCierreMat": "12:00",
+          "horaAbreVesp": "16:30",
+          "horaCierreVesp": "20:30",
+          "activo": false
+        }
+      ]
+    },
+    {
+      "nombre": "Carolina",
+      "apellido": "Medina",
+      "email": "carolina.medina.24@example.com",
+      "telefono": "+54 299 5299528",
+      "cuit": "30218174651",
+      "condicionIva": "CONSUMIDOR_FINAL",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "Punto de Encuentro",
+          "telefono": "+54 299 6245965",
+          "direccion": "Godoy 1470, Neuquén, Neuquén",
+          "latitud": -38.948426,
+          "longitud": -68.051666,
+          "horaAbreMat": "09:00",
+          "horaCierreMat": "12:30",
+          "horaAbreVesp": "17:00",
+          "horaCierreVesp": "21:00",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Facundo",
+      "apellido": "Molina",
+      "email": "facundo.molina.25@example.com",
+      "telefono": "+54 299 5607159",
+      "cuit": "30273263027",
+      "condicionIva": "MONOTRIBUTO",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "El Andén",
+          "telefono": "+54 299 5105312",
+          "direccion": "Belgrano 3428, Neuquén, Neuquén",
+          "latitud": -38.96298,
+          "longitud": -68.040034,
+          "horaAbreMat": "08:30",
+          "horaCierreMat": "12:00",
+          "horaAbreVesp": "17:00",
+          "horaCierreVesp": "20:30",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Rocío",
+      "apellido": "Ruiz",
+      "email": "rocio.ruiz.26@example.com",
+      "telefono": "+54 299 4015064",
+      "cuit": "23472092685",
+      "condicionIva": "CONSUMIDOR_FINAL",
+      "activo": false,
+      "comercios": [
+        {
+          "nombre": "Mercado del Río",
+          "telefono": "+54 299 6631441",
+          "direccion": "Entre Ríos 262, Neuquén, Neuquén",
+          "latitud": -38.945991,
+          "longitud": -68.045414,
+          "horaAbreMat": "08:30",
+          "horaCierreMat": "13:00",
+          "horaAbreVesp": "17:00",
+          "horaCierreVesp": "20:00",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Sebastián",
+      "apellido": "Sánchez",
+      "email": "sebastian.sánchez.27@example.com",
+      "telefono": "+54 299 5406259",
+      "cuit": "23406126072",
+      "condicionIva": "CONSUMIDOR_FINAL",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "La Buena Compra",
+          "telefono": "+54 299 5814161",
+          "direccion": "Belgrano 3460, Neuquén, Neuquén",
+          "latitud": -38.952642,
+          "longitud": -68.057974,
+          "horaAbreMat": "09:00",
+          "horaCierreMat": "12:00",
+          "horaAbreVesp": "17:00",
+          "horaCierreVesp": "20:30",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Daniela",
+      "apellido": "Benítez",
+      "email": "daniela.benítez.28@example.com",
+      "telefono": "+54 299 5114128",
+      "cuit": "23197839937",
+      "condicionIva": "RESPONSABLE_INSCRIPTO",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "El Ombú",
+          "telefono": "+54 299 4157898",
+          "direccion": "Santa Fe 1596, Neuquén, Neuquén",
+          "latitud": -38.950883,
+          "longitud": -68.087739,
+          "horaAbreMat": "08:00",
+          "horaCierreMat": "12:30",
+          "horaAbreVesp": "17:00",
+          "horaCierreVesp": "20:30",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Leandro",
+      "apellido": "Castro",
+      "email": "leandro.castro.29@example.com",
+      "telefono": "+54 299 6318296",
+      "cuit": "23120646680",
+      "condicionIva": "CONSUMIDOR_FINAL",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "Comercial Limay",
+          "telefono": "+54 299 4682387",
+          "direccion": "Alderete 3238, Neuquén, Neuquén",
+          "latitud": -38.93937,
+          "longitud": -68.064206,
+          "horaAbreMat": "08:00",
+          "horaCierreMat": "13:00",
+          "horaAbreVesp": "16:30",
+          "horaCierreVesp": "20:00",
+          "activo": true
+        }
+      ]
+    },
+    {
+      "nombre": "Micaela",
+      "apellido": "Morales",
+      "email": "micaela.morales.30@example.com",
+      "telefono": "+54 299 5471589",
+      "cuit": "33407143286",
+      "condicionIva": "CONSUMIDOR_FINAL",
+      "activo": true,
+      "comercios": [
+        {
+          "nombre": "La Rotonda",
+          "telefono": "+54 299 4951279",
+          "direccion": "La Rioja 1392, Neuquén, Neuquén",
+          "latitud": -38.964244,
+          "longitud": -68.082181,
+          "horaAbreMat": "09:00",
+          "horaCierreMat": "12:30",
+          "horaAbreVesp": "16:00",
+          "horaCierreVesp": "21:00",
+          "activo": false
+        }
+      ]
+    }
+  ]
+}

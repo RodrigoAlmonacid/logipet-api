@@ -386,12 +386,45 @@ async function seedArticulos() {
         ...articulo,
         marcaId,
         alicuotaIvaId: iva21.id,
+        stock: randomInt(1, 101),
       },
     });
   }
 
   console.log(`${marcas.size} marcas cargadas`);
   console.log(`${catalogo.length} artículos cargados correctamente`);
+}
+
+async function seedClientes() {
+  console.log('Cargando clientes y comercios...');
+
+  const { clientes } = JSON.parse(
+    readFileSync(
+      join(__dirname, 'clientes-comercios-neuquen.json'),
+      'utf8',
+    ),
+  );
+
+  for (const cliente of clientes) {
+    const { comercios, ...datosCliente } = cliente;
+
+    await prisma.cliente.upsert({
+      where: { email: datosCliente.email },
+
+      update: {
+        ...datosCliente,
+      },
+
+      create: {
+        ...datosCliente,
+        comercios: {
+          create: comercios,
+        },
+      },
+    });
+  }
+
+  console.log(`${clientes.length} clientes cargados correctamente`);
 }
 
 // --------------------------------------------------
@@ -407,6 +440,7 @@ async function main() {
   await seedRolesYPermisos();
   await seedEmpleados();
   await seedArticulos();
+  await seedClientes();
 
   console.log('====================================');
   console.log(' Seed finalizado correctamente');

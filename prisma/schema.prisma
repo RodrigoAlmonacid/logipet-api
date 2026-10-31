@@ -9,22 +9,23 @@ datasource db {
 }
 
 model Empleado {
-  id               Int            @id @default(autoincrement())
-  email            String         @unique
-  nombre           String
-  apellido         String
-  legajo           String         @unique
-  cuil             String?        @unique
-  pass             String
-  activo           Boolean        @default(false)
-  createdAt        DateTime       @default(now())
-  updatedAt        DateTime       @updatedAt
-  deletedAt        DateTime?
-  roles            Rol[]
-  pedidosGenerados Pedido[]       @relation("PedidoVendedor")
-  enviosTomados    Envio[]
-  tokens           PassReset[]
-  estadoPedidos    EstadoPedido[] @relation("EstadoAuditor")
+  id                  Int            @id @default(autoincrement())
+  email               String         @unique
+  nombre              String
+  apellido            String
+  legajo              String         @unique
+  cuil                String?        @unique
+  pass                String
+  activo              Boolean        @default(false)
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
+  deletedAt           DateTime?
+  roles               Rol[]
+  pedidosGenerados    Pedido[]       @relation("PedidoVendedor")
+  enviosTomados       Envio[]
+  tokens              PassReset[]
+  estadoPedidos       EstadoPedido[] @relation("EstadoAuditor")
+  pedidoEnPreparacion Pedido?        @relation("PedidoOperario")
 }
 
 model Rol {
@@ -121,6 +122,8 @@ model Pedido {
   stockDescontado  Boolean         @default(false)
   comercioId       Int
   comercio         Comercio        @relation(fields: [comercioId], references: [id])
+  operarioId       Int?            @unique
+  operario         Empleado?       @relation("PedidoOperario", fields: [operarioId], references: [id])
 }
 
 model DetallePedido {
@@ -133,6 +136,9 @@ model DetallePedido {
   pesoUnitarioGramos    Int?
   pedido                Pedido   @relation(fields: [pedidoId], references: [id])
   articulo              Articulo @relation(fields: [articuloId], references: [id])
+  verificado            Boolean  @default(false) // escaneado y confirmado por el depósito
+  cantidadOriginal      Int? // lo que pidió el vendedor, solo si el depósito lo bajó
+  justificacionAjuste   String?
 
   @@id([pedidoId, articuloId])
 }
