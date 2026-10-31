@@ -12,6 +12,7 @@ import { AuthUser } from '../auth/auth-user';
 import { PERMISOS } from '../utils/permisos.constants';
 import { VISTAS, Vista } from './pedido-vistas';
 import { calcularPeso } from './calculo-peso';
+import { VerificarLineaDto } from './dto/verificar-linea.dto';
 
 const EMPLEADO_RESUMEN = { select: { id: true, nombre: true, apellido: true } };
 
@@ -23,7 +24,8 @@ const PEDIDO_INCLUDE = {
     include: { estado: true, auditor: EMPLEADO_RESUMEN },
     orderBy: { fechaCreac: 'asc' as const },
   },
-  comercio: true
+  comercio: true,
+  operario: EMPLEADO_RESUMEN,
 };
 
 
@@ -42,6 +44,11 @@ export class PedidoService {
         alicuotaIvaPorcentaje: d.alicuotaIvaPorcentaje,
       }),
       pesoGramos: d.pesoUnitarioGramos === null ? null : d.pesoUnitarioGramos * d.cantidad,
+      codigo: d.articulo.codigo,
+      presentacion: d.articulo.presentacion,
+      verificado: d.verificado,
+      cantidadOriginal: d.cantidadOriginal,
+      justificacionAjuste: d.justificacionAjuste,
     }));
 
     const totales = lineas.reduce(
@@ -407,6 +414,128 @@ export class PedidoService {
         await this.cambiarEstado(tx, id, 'cancelado', userId, dto);
         if (REGLAS_MOTIVO[dto.motivo].devuelveStock) await this.devolverStock(tx, id);
       }
+    });
+    return this.findOne(id);
+  }
+
+  // ---------- depósito ----------
+  private async pedidoEnPreparacionDe(tx: Prisma.TransactionClient, id: number, userId: number) {
+    const pedido = await tx.pedido.findUnique({
+      where: { id },
+      include: { historialEstados: { include: { estado: true } } },
+    });
+    if (!pedido) throw new NotFoundException('Pedido no encontrado');
+    if (pedido.operarioId !== userId) throw new ForbiddenException('Este pedido no lo estás preparando vos');
+    if (estadoActivoDe(pedido.historialEstados).estado.nombre !== 'en_preparacion') {
+      throw new BadRequestException('El pedido no está en preparación');
+    }
+    return pedido;
+  }
+
+  private async recalcularTotales(tx: Prisma.TransactionClient, pedidoId: number) {
+    const detalle = await tx.detallePedido.findMany({ where: { pedidoId } });
+    const importe = detalle.reduce(
+      (acc, d) =>
+        acc +
+        calcularLinea({
+          articuloId: d.articuloId,
+          nombre: '',
+          cantidad: d.cantidad,
+          precioVenta: d.precioVenta,
+          descuentoPorcentaje: d.descuentoPorcentaje,
+          alicuotaIvaPorcentaje: d.alicuotaIvaPorcentaje,
+        }).importeFinal,
+      0,
+    );
+    const { pesoGramos } = calcularPeso(detalle);
+    await tx.pedido.update({ where: { id: pedidoId }, data: { importe, pesoGramos } });
+  }
+
+  // el pedido que el operario dejó a medias (para retomarlo al reabrir la app)
+  async enPreparacionDe(userId: number) {
+    const pedido = await this.prisma.pedido.findFirst({ where: { operarioId: userId }, include: PEDIDO_INCLUDE });
+    return pedido ? this.conLineasCalculadas(pedido) : null;
+  }
+
+  async tomar(id: number, userId: number) {
+    const enCurso = await this.prisma.pedido.findFirst({ where: { operarioId: userId }, select: { id: true } });
+    if (enCurso) throw new ConflictException(`Ya tenés el pedido #${enCurso.id} en preparación`);
+
+    try {
+      await this.prisma.$transaction(async (tx) => {
+        await this.cambiarEstado(tx, id, 'en_preparacion', userId);
+        await tx.pedido.update({ where: { id }, data: { operarioId: userId } });
+      });
+    } catch (e) {
+      // dos requests a la vez del mismo operario: lo frena el @unique
+      if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === 'P2002') {
+        throw new ConflictException('Ya tenés un pedido en preparación');
+      }
+      throw e;
+    }
+    return this.findOne(id);
+  }
+
+  async soltar(id: number, userId: number) {
+    await this.prisma.$transaction(async (tx) => {
+      await this.pedidoEnPreparacionDe(tx, id, userId);
+      await this.cambiarEstado(tx, id, 'pendiente_preparacion', userId); // libera operarioId
+      await tx.detallePedido.updateMany({ where: { pedidoId: id }, data: { verificado: false } });
+    });
+    return this.findOne(id);
+  }
+
+  async verificarLinea(id: number, articuloId: number, dto: VerificarLineaDto, userId: number) {
+    await this.prisma.$transaction(async (tx) => {
+      await this.pedidoEnPreparacionDe(tx, id, userId);
+
+      const where = { pedidoId_articuloId: { pedidoId: id, articuloId } };
+      const linea = await tx.detallePedido.findUnique({ where, include: { articulo: true } });
+      if (!linea) throw new NotFoundException('El artículo no pertenece al pedido');
+
+      // el código viene del escáner: se valida acá, no solo en el front
+      if (linea.articulo.codigo !== dto.codigo.trim()) {
+        throw new BadRequestException('El código escaneado no corresponde a este artículo');
+      }
+      if (dto.cantidad > linea.cantidad) {
+        throw new BadRequestException(`No podés superar la cantidad pedida (${linea.cantidad})`);
+      }
+
+      const faltante = linea.cantidad - dto.cantidad;
+      if (faltante > 0 && !dto.justificacion?.trim()) {
+        throw new BadRequestException('Indicá una justificación del faltante');
+      }
+
+      await tx.detallePedido.update({
+        where,
+        data: {
+          cantidad: dto.cantidad,
+          verificado: true,
+          ...(faltante > 0
+            ? { cantidadOriginal: linea.cantidadOriginal ?? linea.cantidad, justificacionAjuste: dto.justificacion!.trim() }
+            : {}),
+        },
+      });
+
+      if (faltante > 0) {
+        // el stock se descontó al aprobar: se devuelve la diferencia
+        await tx.articulo.update({ where: { id: articuloId }, data: { stock: { increment: faltante } } });
+        await this.recalcularTotales(tx, id);
+      }
+    });
+    return this.findOne(id);
+  }
+
+  async preparado(id: number, userId: number) {
+    await this.prisma.$transaction(async (tx) => {
+      await this.pedidoEnPreparacionDe(tx, id, userId);
+
+      const detalle = await tx.detallePedido.findMany({ where: { pedidoId: id } });
+      if (detalle.some((d) => !d.verificado)) throw new BadRequestException('Faltan verificar artículos');
+      if (detalle.every((d) => d.cantidad === 0)) {
+        throw new BadRequestException('El pedido quedó sin artículos: pedile a administración que lo cancele');
+      }
+      await this.cambiarEstado(tx, id, 'preparado', userId); // libera operarioId
     });
     return this.findOne(id);
   }
