@@ -297,6 +297,10 @@ export class PedidoService {
     if (count === 0) throw new ConflictException('El pedido cambió de estado, refrescá la pantalla');
 
     await tx.estadoPedido.create({ data: { pedidoId, estadoId: nuevo.id, auditorId, ...extra } });
+
+    if (activo.estado.nombre === 'en_preparacion' && hasta !== 'en_preparacion') {
+      await tx.pedido.update({ where: { id: pedidoId }, data: { operarioId: null } });
+    }
     return activo.estado.nombre; // estado de origen
   }
 
@@ -451,14 +455,23 @@ export class PedidoService {
     await tx.pedido.update({ where: { id: pedidoId }, data: { importe, pesoGramos } });
   }
 
-  // el pedido que el operario dejó a medias (para retomarlo al reabrir la app)
+  private pedidoEnCursoDe(userId: number) {
+    return this.prisma.pedido.findFirst({
+      where: {
+        operarioId: userId,
+        historialEstados: { some: { fechaFin: null, estado: { nombre: 'en_preparacion' } } },
+      },
+      include: PEDIDO_INCLUDE,
+    });
+  }
+
   async enPreparacionDe(userId: number) {
-    const pedido = await this.prisma.pedido.findFirst({ where: { operarioId: userId }, include: PEDIDO_INCLUDE });
+    const pedido = await this.pedidoEnCursoDe(userId);
     return pedido ? this.conLineasCalculadas(pedido) : null;
   }
 
   async tomar(id: number, userId: number) {
-    const enCurso = await this.prisma.pedido.findFirst({ where: { operarioId: userId }, select: { id: true } });
+    const enCurso = await this.pedidoEnCursoDe(userId);
     if (enCurso) throw new ConflictException(`Ya tenés el pedido #${enCurso.id} en preparación`);
 
     try {
@@ -479,7 +492,27 @@ export class PedidoService {
   async soltar(id: number, userId: number) {
     await this.prisma.$transaction(async (tx) => {
       await this.pedidoEnPreparacionDe(tx, id, userId);
-      await this.cambiarEstado(tx, id, 'pendiente_preparacion', userId); // libera operarioId
+      await this.cambiarEstado(tx, id, 'pendiente_preparacion', userId); // ahora sí libera operarioId
+
+      // deshacer los ajustes por faltante hechos durante la preparación
+      const ajustadas = await tx.detallePedido.findMany({
+        where: { pedidoId: id, cantidadOriginal: { not: null } },
+      });
+      for (const l of ajustadas) {
+        // el faltante se había devuelto al stock: se vuelve a reservar
+        const faltante = l.cantidadOriginal! - l.cantidad;
+        const { count } = await tx.articulo.updateMany({
+          where: { id: l.articuloId, stock: { gte: faltante } },
+          data: { stock: { decrement: faltante } },
+        });
+        if (count === 0) throw new ConflictException('No hay stock para restaurar el pedido original');
+        await tx.detallePedido.update({
+          where: { pedidoId_articuloId: { pedidoId: id, articuloId: l.articuloId } },
+          data: { cantidad: l.cantidadOriginal!, cantidadOriginal: null, justificacionAjuste: null },
+        });
+      }
+      if (ajustadas.length) await this.recalcularTotales(tx, id);
+
       await tx.detallePedido.updateMany({ where: { pedidoId: id }, data: { verificado: false } });
     });
     return this.findOne(id);
