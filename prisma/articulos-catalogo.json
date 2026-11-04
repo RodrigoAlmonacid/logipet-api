@@ -2,7 +2,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7011010",
-    "nombre": "Eukanuba Puppy Small Breed",
+    "nombre": "Puppy Small Breed",
     "descripcion": "Puppy · Razas Pequeñas",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -14,7 +14,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7111030",
-    "nombre": "Eukanuba Puppy Small Breed",
+    "nombre": "Puppy Small Breed",
     "descripcion": "Puppy · Razas Pequeñas",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -26,7 +26,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7011150",
-    "nombre": "Eukanuba Puppy Small Breed",
+    "nombre": "Puppy Small Breed",
     "descripcion": "Puppy · Razas Pequeñas",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -38,7 +38,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7012010",
-    "nombre": "Eukanuba Puppy Medium Breed",
+    "nombre": "Puppy Medium Breed",
     "descripcion": "Puppy · Razas Medianas",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -50,7 +50,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7112030",
-    "nombre": "Eukanuba Puppy Medium Breed",
+    "nombre": "Puppy Medium Breed",
     "descripcion": "Puppy · Razas Medianas",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -62,7 +62,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7012150",
-    "nombre": "Eukanuba Puppy Medium Breed",
+    "nombre": "Puppy Medium Breed",
     "descripcion": "Puppy · Razas Medianas",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -74,7 +74,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7113010",
-    "nombre": "Eukanuba Puppy Large Breed",
+    "nombre": "Puppy Large Breed",
     "descripcion": "Puppy · Razas Grandes",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -86,7 +86,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7113030",
-    "nombre": "Eukanuba Puppy Large Breed",
+    "nombre": "Puppy Large Breed",
     "descripcion": "Puppy · Razas Grandes",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -98,7 +98,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7013150",
-    "nombre": "Eukanuba Puppy Large Breed",
+    "nombre": "Puppy Large Breed",
     "descripcion": "Puppy · Razas Grandes",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -110,7 +110,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7021010",
-    "nombre": "Eukanuba Adult Small Breed",
+    "nombre": "Adult Small Breed",
     "descripcion": "Adult · Razas Pequeñas",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -122,7 +122,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7121030",
-    "nombre": "Eukanuba Adult Small Breed",
+    "nombre": "Adult Small Breed",
     "descripcion": "Adult · Razas Pequeñas",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -134,7 +134,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7021075",
-    "nombre": "Eukanuba Adult Small Breed",
+    "nombre": "Adult Small Breed",
     "descripcion": "Adult · Razas Pequeñas",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "PERRO",
@@ -146,7 +146,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7021150",
-    "nombre": "Eukanuba Adult Small Breed",
+    "nombre": "Adult Small Breed",
     "descripcion": "Adult · Razas Pequeñas",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -158,7 +158,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7122030",
-    "nombre": "Eukanuba Adult Medium Breed",
+    "nombre": "Adult Medium Breed",
     "descripcion": "Adult · Razas Medianas",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -170,7 +170,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7022150",
-    "nombre": "Eukanuba Adult Medium Breed",
+    "nombre": "Adult Medium Breed",
     "descripcion": "Adult · Razas Medianas",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -182,7 +182,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7123030",
-    "nombre": "Eukanuba Adult Large Breed",
+    "nombre": "Adult Large Breed",
     "descripcion": "Adult · Razas Grandes",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -194,7 +194,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7023150",
-    "nombre": "Eukanuba Adult Large Breed",
+    "nombre": "Adult Large Breed",
     "descripcion": "Adult · Razas Grandes",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -206,7 +206,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7131030",
-    "nombre": "Eukanuba Senior Small Breed",
+    "nombre": "Senior Small Breed",
     "descripcion": "Senior · Razas Pequeñas",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -218,7 +218,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7032030",
-    "nombre": "Eukanuba Senior Medium Breed",
+    "nombre": "Senior Medium Breed",
     "descripcion": "Senior · Razas Medianas",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -230,7 +230,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7032150",
-    "nombre": "Eukanuba Senior Medium Breed",
+    "nombre": "Senior Medium Breed",
     "descripcion": "Senior · Razas Medianas",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -242,7 +242,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7033030",
-    "nombre": "Eukanuba Senior Large Breed",
+    "nombre": "Senior Large Breed",
     "descripcion": "Senior · Razas Grandes",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -254,7 +254,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7033150",
-    "nombre": "Eukanuba Senior Large Breed",
+    "nombre": "Senior Large Breed",
     "descripcion": "Senior · Razas Grandes",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -266,7 +266,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7141010",
-    "nombre": "Eukanuba Fit Body Small Breed",
+    "nombre": "Fit Body Small Breed",
     "descripcion": "Fit Body · Razas Pequeñas",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -278,7 +278,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7241030",
-    "nombre": "Eukanuba Fit Body Small Breed",
+    "nombre": "Fit Body Small Breed",
     "descripcion": "Fit Body · Razas Pequeñas",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -290,7 +290,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7142030",
-    "nombre": "Eukanuba Fit Body Medium Breed",
+    "nombre": "Fit Body Medium Breed",
     "descripcion": "Fit Body · Razas Medianas",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -302,7 +302,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7142150",
-    "nombre": "Eukanuba Fit Body Medium Breed",
+    "nombre": "Fit Body Medium Breed",
     "descripcion": "Fit Body · Razas Medianas",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -314,7 +314,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7143030",
-    "nombre": "Eukanuba Fit Body Large Breed",
+    "nombre": "Fit Body Large Breed",
     "descripcion": "Fit Body · Razas Grandes",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -326,7 +326,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7143150",
-    "nombre": "Eukanuba Fit Body Large Breed",
+    "nombre": "Fit Body Large Breed",
     "descripcion": "Fit Body · Razas Grandes",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -338,7 +338,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "1508150",
-    "nombre": "Eukanuba Puppy Premium Performance",
+    "nombre": "Puppy Premium Performance",
     "descripcion": "Premium Performance · Puppy",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -350,7 +350,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "1358150",
-    "nombre": "Eukanuba Adult Premium Performance",
+    "nombre": "Adult Premium Performance",
     "descripcion": "Premium Performance · Adulto",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -362,7 +362,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7212030",
-    "nombre": "Eukanuba Puppy Medium Lamb",
+    "nombre": "Puppy Medium Lamb",
     "descripcion": "Lamb · Puppy",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -374,7 +374,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7212150",
-    "nombre": "Eukanuba Puppy Medium Lamb",
+    "nombre": "Puppy Medium Lamb",
     "descripcion": "Lamb · Puppy",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -386,7 +386,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7222030",
-    "nombre": "Eukanuba Cordero Adult Medium",
+    "nombre": "Cordero Adult Medium",
     "descripcion": "Lamb · Adulto",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -398,7 +398,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "7222150",
-    "nombre": "Eukanuba Cordero Adult Medium",
+    "nombre": "Cordero Adult Medium",
     "descripcion": "Lamb · Adulto",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -410,7 +410,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "60010143",
-    "nombre": "Eukanuba Kitten Healthy Start",
+    "nombre": "Kitten Healthy Start",
     "descripcion": "Gato · Kitten",
     "presentacion": "Bolsa 1 kg",
     "especie": "GATO",
@@ -422,7 +422,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "60010145",
-    "nombre": "Eukanuba Kitten Healthy Start",
+    "nombre": "Kitten Healthy Start",
     "descripcion": "Gato · Kitten",
     "presentacion": "Bolsa 3 kg",
     "especie": "GATO",
@@ -434,7 +434,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "60010147",
-    "nombre": "Eukanuba Kitten Healthy Start",
+    "nombre": "Kitten Healthy Start",
     "descripcion": "Gato · Kitten",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "GATO",
@@ -446,7 +446,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "60010149",
-    "nombre": "Eukanuba Gato Adulto Top Condition",
+    "nombre": "Gato Adulto Top Condition",
     "descripcion": "Gato · Adulto",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -458,7 +458,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "60010211",
-    "nombre": "Eukanuba Gato Adulto Top Condition",
+    "nombre": "Gato Adulto Top Condition",
     "descripcion": "Gato · Adulto",
     "presentacion": "Bolsa 3 kg",
     "especie": "GATO",
@@ -470,7 +470,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "60010213",
-    "nombre": "Eukanuba Gato Adulto Top Condition",
+    "nombre": "Gato Adulto Top Condition",
     "descripcion": "Gato · Adulto",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "GATO",
@@ -482,7 +482,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "60010214",
-    "nombre": "Eukanuba Gato Adulto Top Condition",
+    "nombre": "Gato Adulto Top Condition",
     "descripcion": "Gato · Adulto",
     "presentacion": "Bolsa 15 kg",
     "especie": "GATO",
@@ -494,7 +494,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "60015031",
-    "nombre": "Eukanuba Training Treats",
+    "nombre": "Training Treats",
     "descripcion": "Wet & Treats · Adulto",
     "presentacion": "Pack 16 x 100 g",
     "especie": "PERRO",
@@ -506,7 +506,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "60015032",
-    "nombre": "Eukanuba Training Treats",
+    "nombre": "Training Treats",
     "descripcion": "Wet & Treats · Adulto",
     "presentacion": "Pack 4 x 500 g",
     "especie": "PERRO",
@@ -518,7 +518,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "60001720",
-    "nombre": "Eukanuba Adulto Chicken & Vegetable Stew",
+    "nombre": "Adulto Chicken & Vegetable Stew",
     "descripcion": "Wet & Treats · Adulto",
     "presentacion": "Pack 3 x 355 g",
     "especie": "PERRO",
@@ -530,7 +530,7 @@
   {
     "marca": "Eukanuba",
     "codigo": "60001724",
-    "nombre": "Eukanuba Adulto Chicken, Rice & Veget. Dinner",
+    "nombre": "Adulto Chicken, Rice & Veget. Dinner",
     "descripcion": "Wet & Treats · Adulto",
     "presentacion": "Pack 3 x 375 g",
     "especie": "PERRO",
@@ -542,7 +542,7 @@
   {
     "marca": "Optimum",
     "codigo": "10224840",
-    "nombre": "Optimum Dog Wet Puppy",
+    "nombre": "Dog Wet Puppy",
     "descripcion": "Sobrecitos Alimento Humedo",
     "presentacion": "Caja 12 sobres x 100 g",
     "especie": "PERRO",
@@ -554,7 +554,7 @@
   {
     "marca": "Optimum",
     "codigo": "10224841",
-    "nombre": "Optimum Dog Wet SB",
+    "nombre": "Dog Wet SB",
     "descripcion": "Sobrecitos Alimento Humedo",
     "presentacion": "Caja 12 sobres x 100 g",
     "especie": "PERRO",
@@ -566,7 +566,7 @@
   {
     "marca": "Optimum",
     "codigo": "10224842",
-    "nombre": "Optimum Dog Wet MED/LG",
+    "nombre": "Dog Wet MED/LG",
     "descripcion": "Sobrecitos Alimento Humedo",
     "presentacion": "Caja 12 sobres x 100 g",
     "especie": "PERRO",
@@ -578,7 +578,7 @@
   {
     "marca": "Optimum",
     "codigo": "10224802",
-    "nombre": "Optimum Puppy Small Breed",
+    "nombre": "Puppy Small Breed",
     "descripcion": "Perro Cachorro",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -590,7 +590,7 @@
   {
     "marca": "Optimum",
     "codigo": "10224823",
-    "nombre": "Optimum Puppy Small Breed",
+    "nombre": "Puppy Small Breed",
     "descripcion": "Perro Cachorro",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -602,7 +602,7 @@
   {
     "marca": "Optimum",
     "codigo": "10224825",
-    "nombre": "Optimum Puppy MED/LG",
+    "nombre": "Puppy MED/LG",
     "descripcion": "Perro Cachorro",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -614,7 +614,7 @@
   {
     "marca": "Optimum",
     "codigo": "10224826",
-    "nombre": "Optimum Puppy MED/LG",
+    "nombre": "Puppy MED/LG",
     "descripcion": "Perro Cachorro",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -626,7 +626,7 @@
   {
     "marca": "Optimum",
     "codigo": "10224828",
-    "nombre": "Optimum Adult Small Breed",
+    "nombre": "Adult Small Breed",
     "descripcion": "Perro Adulto",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -638,7 +638,7 @@
   {
     "marca": "Optimum",
     "codigo": "10224829",
-    "nombre": "Optimum Adult Small Breed",
+    "nombre": "Adult Small Breed",
     "descripcion": "Perro Adulto",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -650,7 +650,7 @@
   {
     "marca": "Optimum",
     "codigo": "10224831",
-    "nombre": "Optimum Adult MED/LG",
+    "nombre": "Adult MED/LG",
     "descripcion": "Perro Adulto",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -662,7 +662,7 @@
   {
     "marca": "Optimum",
     "codigo": "10224843",
-    "nombre": "Optimum Cat Wet Kitten",
+    "nombre": "Cat Wet Kitten",
     "descripcion": "Sobrecitos Alimento Humedo",
     "presentacion": "Caja 12 sobres x 85 g",
     "especie": "GATO",
@@ -674,7 +674,7 @@
   {
     "marca": "Optimum",
     "codigo": "10224844",
-    "nombre": "Optimum Cat Wet Adult",
+    "nombre": "Cat Wet Adult",
     "descripcion": "Sobrecitos Alimento Humedo",
     "presentacion": "Caja 12 sobres x 85 g",
     "especie": "GATO",
@@ -686,7 +686,7 @@
   {
     "marca": "Optimum",
     "codigo": "10224845",
-    "nombre": "Optimum Cat Wet Castrados",
+    "nombre": "Cat Wet Castrados",
     "descripcion": "Sobrecitos Alimento Humedo",
     "presentacion": "Caja 12 sobres x 85 g",
     "especie": "GATO",
@@ -698,7 +698,7 @@
   {
     "marca": "Optimum",
     "codigo": "10224832",
-    "nombre": "Optimum Kitten",
+    "nombre": "Kitten",
     "descripcion": "Gatito",
     "presentacion": "Bolsa 1 kg",
     "especie": "GATO",
@@ -710,7 +710,7 @@
   {
     "marca": "Optimum",
     "codigo": "10224838",
-    "nombre": "Optimum Gato Adulto",
+    "nombre": "Gato Adulto",
     "descripcion": "Gato Adulto",
     "presentacion": "Bolsa 3 kg",
     "especie": "GATO",
@@ -722,7 +722,7 @@
   {
     "marca": "Optimum",
     "codigo": "10224839",
-    "nombre": "Optimum Gato Adulto",
+    "nombre": "Gato Adulto",
     "descripcion": "Gato Adulto",
     "presentacion": "Bolsa 10 kg",
     "especie": "GATO",
@@ -734,7 +734,7 @@
   {
     "marca": "Optimum",
     "codigo": "10224836",
-    "nombre": "Optimum Gato Castrados",
+    "nombre": "Gato Castrados",
     "descripcion": "Gato Castrado",
     "presentacion": "Bolsa 3 kg",
     "especie": "GATO",
@@ -746,7 +746,7 @@
   {
     "marca": "IAMS",
     "codigo": "10214407",
-    "nombre": "IAMS Pro Puppy Large/Giant Breed",
+    "nombre": "Pro Puppy Large/Giant Breed",
     "descripcion": "Perro Cachorro",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -758,7 +758,7 @@
   {
     "marca": "IAMS",
     "codigo": "10214410",
-    "nombre": "IAMS Pro Puppy Large/Giant Breed",
+    "nombre": "Pro Puppy Large/Giant Breed",
     "descripcion": "Perro Cachorro",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -770,7 +770,7 @@
   {
     "marca": "IAMS",
     "codigo": "10214423",
-    "nombre": "IAMS Adult Small/Medium Breed",
+    "nombre": "Adult Small/Medium Breed",
     "descripcion": "Perro Cachorro",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -782,7 +782,7 @@
   {
     "marca": "IAMS",
     "codigo": "10214424",
-    "nombre": "IAMS Adult Large/Giant Breed",
+    "nombre": "Adult Large/Giant Breed",
     "descripcion": "Perro Cachorro",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -794,7 +794,7 @@
   {
     "marca": "IAMS",
     "codigo": "10145239",
-    "nombre": "IAMS Kitten Food",
+    "nombre": "Kitten Food",
     "descripcion": "Gatito",
     "presentacion": "Bolsa 3 kg",
     "especie": "GATO",
@@ -806,7 +806,7 @@
   {
     "marca": "IAMS",
     "codigo": "10210334",
-    "nombre": "IAMS Cat Food Chicken Formula",
+    "nombre": "Cat Food Chicken Formula",
     "descripcion": "Gato Adulto",
     "presentacion": "Bolsa 3 kg",
     "especie": "GATO",
@@ -818,7 +818,7 @@
   {
     "marca": "IAMS",
     "codigo": "10210452",
-    "nombre": "IAMS Cat Food Chicken Formula",
+    "nombre": "Cat Food Chicken Formula",
     "descripcion": "Gato Adulto",
     "presentacion": "Bolsa 15 kg",
     "especie": "GATO",
@@ -830,7 +830,7 @@
   {
     "marca": "IAMS",
     "codigo": "10208406",
-    "nombre": "IAMS Pro Cat Adult Light",
+    "nombre": "Pro Cat Adult Light",
     "descripcion": "Gato Adulto Light",
     "presentacion": "Bolsa 3 kg",
     "especie": "GATO",
@@ -842,7 +842,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2553003",
-    "nombre": "Royal Canin Babycat Milk",
+    "nombre": "Babycat Milk",
     "descripcion": "Feline Health Nutrition · Milk",
     "presentacion": "Caja 3 x 100 g",
     "especie": "GATO",
@@ -854,7 +854,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3400204",
-    "nombre": "Royal Canin Mother & Babycat",
+    "nombre": "Mother & Babycat",
     "descripcion": "Feline Health Nutrition · Húmedos",
     "presentacion": "Caja 6 latas x 195 g",
     "especie": "GATO",
@@ -866,7 +866,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3401102",
-    "nombre": "Royal Canin Kitten",
+    "nombre": "Kitten",
     "descripcion": "Feline Health Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "GATO",
@@ -878,7 +878,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3393102",
-    "nombre": "Royal Canin Instinctive",
+    "nombre": "Instinctive",
     "descripcion": "Feline Health Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "GATO",
@@ -890,7 +890,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3394102",
-    "nombre": "Royal Canin Instinctive 7+",
+    "nombre": "Instinctive 7+",
     "descripcion": "Feline Health Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "GATO",
@@ -902,7 +902,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "1518102",
-    "nombre": "Royal Canin Sensory Taste",
+    "nombre": "Sensory Taste",
     "descripcion": "Feline Health Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "GATO",
@@ -914,7 +914,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "1517102",
-    "nombre": "Royal Canin Sensory Smell",
+    "nombre": "Sensory Smell",
     "descripcion": "Feline Health Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "GATO",
@@ -926,7 +926,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "1510102",
-    "nombre": "Royal Canin Sensory Feel",
+    "nombre": "Sensory Feel",
     "descripcion": "Feline Health Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "GATO",
@@ -938,7 +938,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "FA58A",
-    "nombre": "Royal Canin Ageing +11",
+    "nombre": "Ageing +11",
     "descripcion": "Feline Health Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "GATO",
@@ -950,7 +950,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3673004",
-    "nombre": "Royal Canin Mother & Babycat",
+    "nombre": "Mother & Babycat",
     "descripcion": "Feline Health Nutrition · Growth",
     "presentacion": "Bolsa 0,4 kg",
     "especie": "GATO",
@@ -962,7 +962,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3673015",
-    "nombre": "Royal Canin Mother & Babycat",
+    "nombre": "Mother & Babycat",
     "descripcion": "Feline Health Nutrition · Growth",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -974,7 +974,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2522004",
-    "nombre": "Royal Canin Kitten",
+    "nombre": "Kitten",
     "descripcion": "Feline Health Nutrition · Growth",
     "presentacion": "Bolsa 0,4 kg",
     "especie": "GATO",
@@ -986,7 +986,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2522015",
-    "nombre": "Royal Canin Kitten",
+    "nombre": "Kitten",
     "descripcion": "Feline Health Nutrition · Growth",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -998,7 +998,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2522075",
-    "nombre": "Royal Canin Kitten",
+    "nombre": "Kitten",
     "descripcion": "Feline Health Nutrition · Growth",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "GATO",
@@ -1010,7 +1010,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3613004",
-    "nombre": "Royal Canin Indoor",
+    "nombre": "Indoor",
     "descripcion": "Feline Health Nutrition · Indoor",
     "presentacion": "Bolsa 0,4 kg",
     "especie": "GATO",
@@ -1022,7 +1022,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3613015",
-    "nombre": "Royal Canin Indoor",
+    "nombre": "Indoor",
     "descripcion": "Feline Health Nutrition · Indoor",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -1034,7 +1034,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3613075",
-    "nombre": "Royal Canin Indoor",
+    "nombre": "Indoor",
     "descripcion": "Feline Health Nutrition · Indoor",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "GATO",
@@ -1046,7 +1046,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3623015",
-    "nombre": "Royal Canin Indoor Longhair",
+    "nombre": "Indoor Longhair",
     "descripcion": "Feline Health Nutrition · Indoor",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -1058,7 +1058,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3663004",
-    "nombre": "Royal Canin Indoor 7+",
+    "nombre": "Indoor 7+",
     "descripcion": "Feline Health Nutrition · Indoor",
     "presentacion": "Bolsa 0,4 kg",
     "especie": "GATO",
@@ -1070,7 +1070,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3663015",
-    "nombre": "Royal Canin Indoor 7+",
+    "nombre": "Indoor 7+",
     "descripcion": "Feline Health Nutrition · Indoor",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -1082,7 +1082,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3663075",
-    "nombre": "Royal Canin Indoor 7+",
+    "nombre": "Indoor 7+",
     "descripcion": "Feline Health Nutrition · Indoor",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "GATO",
@@ -1094,7 +1094,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3603004",
-    "nombre": "Royal Canin Fit",
+    "nombre": "Fit",
     "descripcion": "Feline Health Nutrition · In & Outdoor",
     "presentacion": "Bolsa 0,4 kg",
     "especie": "GATO",
@@ -1106,7 +1106,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3603015",
-    "nombre": "Royal Canin Fit",
+    "nombre": "Fit",
     "descripcion": "Feline Health Nutrition · In & Outdoor",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -1118,7 +1118,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "60011579",
-    "nombre": "Royal Canin Fit",
+    "nombre": "Fit",
     "descripcion": "Feline Health Nutrition · In & Outdoor",
     "presentacion": "Bolsa 3 kg",
     "especie": "GATO",
@@ -1130,7 +1130,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2520075",
-    "nombre": "Royal Canin Fit",
+    "nombre": "Fit",
     "descripcion": "Feline Health Nutrition · In & Outdoor",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "GATO",
@@ -1142,7 +1142,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2520150",
-    "nombre": "Royal Canin Fit",
+    "nombre": "Fit",
     "descripcion": "Feline Health Nutrition · In & Outdoor",
     "presentacion": "Bolsa 15 kg",
     "especie": "GATO",
@@ -1154,7 +1154,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3653015",
-    "nombre": "Royal Canin Active 7+",
+    "nombre": "Active 7+",
     "descripcion": "Feline Health Nutrition · In & Outdoor",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -1166,7 +1166,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3643015",
-    "nombre": "Royal Canin Exigent",
+    "nombre": "Exigent",
     "descripcion": "Feline Health Nutrition · In & Outdoor",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -1178,7 +1178,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3633004",
-    "nombre": "Royal Canin Sensible",
+    "nombre": "Sensible",
     "descripcion": "Feline Health Nutrition · In & Outdoor",
     "presentacion": "Bolsa 0,4 kg",
     "especie": "GATO",
@@ -1190,7 +1190,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3633015",
-    "nombre": "Royal Canin Sensible",
+    "nombre": "Sensible",
     "descripcion": "Feline Health Nutrition · In & Outdoor",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -1202,7 +1202,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3634075",
-    "nombre": "Royal Canin Sensible",
+    "nombre": "Sensible",
     "descripcion": "Feline Health Nutrition · In & Outdoor",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "GATO",
@@ -1214,7 +1214,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "10407704",
-    "nombre": "Royal Canin Ageing +11",
+    "nombre": "Ageing +11",
     "descripcion": "Feline Health Nutrition · In & Outdoor",
     "presentacion": "Bolsa 2 kg",
     "especie": "GATO",
@@ -1226,7 +1226,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "10407710",
-    "nombre": "Royal Canin Ageing 15+",
+    "nombre": "Ageing 15+",
     "descripcion": "Feline Health Nutrition · In & Outdoor",
     "presentacion": "Bolsa 2 kg",
     "especie": "GATO",
@@ -1238,7 +1238,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3406102",
-    "nombre": "Royal Canin Persian",
+    "nombre": "Persian",
     "descripcion": "Feline Breed Nutrition · Húmedo",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "GATO",
@@ -1250,7 +1250,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3363015",
-    "nombre": "Royal Canin Persian",
+    "nombre": "Persian",
     "descripcion": "Feline Breed Nutrition · Secos",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -1262,7 +1262,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3363075",
-    "nombre": "Royal Canin Persian",
+    "nombre": "Persian",
     "descripcion": "Feline Breed Nutrition · Secos",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "GATO",
@@ -1274,7 +1274,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3364015",
-    "nombre": "Royal Canin Siamese",
+    "nombre": "Siamese",
     "descripcion": "Feline Breed Nutrition · Secos",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -1286,7 +1286,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3364075",
-    "nombre": "Royal Canin Siamese",
+    "nombre": "Siamese",
     "descripcion": "Feline Breed Nutrition · Secos",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "GATO",
@@ -1298,7 +1298,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3399102",
-    "nombre": "Royal Canin Light Weight Care",
+    "nombre": "Light Weight Care",
     "descripcion": "Feline Care Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "GATO",
@@ -1310,7 +1310,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3391102",
-    "nombre": "Royal Canin Digest Sensitive",
+    "nombre": "Digest Sensitive",
     "descripcion": "Feline Care Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "GATO",
@@ -1322,7 +1322,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3396102",
-    "nombre": "Royal Canin Hair & Skin Care Pouch",
+    "nombre": "Hair & Skin Care Pouch",
     "descripcion": "Feline Care Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "GATO",
@@ -1334,7 +1334,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "1466102",
-    "nombre": "Royal Canin Appetite Control",
+    "nombre": "Appetite Control",
     "descripcion": "Feline Care Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "GATO",
@@ -1346,7 +1346,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "CW34H",
-    "nombre": "Royal Canin FCN Hairball Care",
+    "nombre": "FCN Hairball Care",
     "descripcion": "Feline Care Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "GATO",
@@ -1358,7 +1358,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "CW34T",
-    "nombre": "Royal Canin FCN Urinary Care",
+    "nombre": "FCN Urinary Care",
     "descripcion": "Feline Care Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "GATO",
@@ -1370,7 +1370,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "1465015",
-    "nombre": "Royal Canin Appetite Control",
+    "nombre": "Appetite Control",
     "descripcion": "Feline Care Nutrition · Secos",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -1382,7 +1382,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "1465030",
-    "nombre": "Royal Canin Appetite Control",
+    "nombre": "Appetite Control",
     "descripcion": "Feline Care Nutrition · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "GATO",
@@ -1394,7 +1394,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2524015",
-    "nombre": "Royal Canin Weight Care",
+    "nombre": "Weight Care",
     "descripcion": "Feline Care Nutrition · Secos",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -1406,7 +1406,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2524075",
-    "nombre": "Royal Canin Weight Care",
+    "nombre": "Weight Care",
     "descripcion": "Feline Care Nutrition · Secos",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "GATO",
@@ -1418,7 +1418,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2526020",
-    "nombre": "Royal Canin Hair & Skin Care",
+    "nombre": "Hair & Skin Care",
     "descripcion": "Feline Care Nutrition · Secos",
     "presentacion": "Bolsa 2 kg",
     "especie": "GATO",
@@ -1430,7 +1430,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2534015",
-    "nombre": "Royal Canin Hairball Care",
+    "nombre": "Hairball Care",
     "descripcion": "Feline Care Nutrition · Secos",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -1442,7 +1442,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2555020",
-    "nombre": "Royal Canin Digestive Care",
+    "nombre": "Digestive Care",
     "descripcion": "Feline Care Nutrition · Secos",
     "presentacion": "Bolsa 2 kg",
     "especie": "GATO",
@@ -1454,7 +1454,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "1800015",
-    "nombre": "Royal Canin Urinary Care",
+    "nombre": "Urinary Care",
     "descripcion": "Feline Care Nutrition · Secos",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -1466,7 +1466,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "1800075",
-    "nombre": "Royal Canin Urinary Care",
+    "nombre": "Urinary Care",
     "descripcion": "Feline Care Nutrition · Secos",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "GATO",
@@ -1478,7 +1478,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3390102",
-    "nombre": "Royal Canin Urinary SO Feline Wet",
+    "nombre": "Urinary SO Feline Wet",
     "descripcion": "Veterinary Health Nutrition Feline · Húmedo",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "GATO",
@@ -1490,7 +1490,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2210004",
-    "nombre": "Royal Canin Urinary SO Feline",
+    "nombre": "Urinary SO Feline",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 0,4 kg",
     "especie": "GATO",
@@ -1502,7 +1502,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2210015",
-    "nombre": "Royal Canin Urinary SO Feline",
+    "nombre": "Urinary SO Feline",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -1514,7 +1514,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3901075",
-    "nombre": "Royal Canin Urinary SO High Dilution",
+    "nombre": "Urinary SO High Dilution",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "GATO",
@@ -1526,7 +1526,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2125102",
-    "nombre": "Royal Canin Satiety Feline Wet",
+    "nombre": "Satiety Feline Wet",
     "descripcion": "Veterinary Health Nutrition Feline · Húmedo",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "GATO",
@@ -1538,7 +1538,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2126015",
-    "nombre": "Royal Canin Satiety Feline",
+    "nombre": "Satiety Feline",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -1550,7 +1550,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2106115",
-    "nombre": "Royal Canin Diabetic Feline",
+    "nombre": "Diabetic Feline",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -1562,7 +1562,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3902020",
-    "nombre": "Royal Canin Hypoallergenic Feline",
+    "nombre": "Hypoallergenic Feline",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 2 kg",
     "especie": "GATO",
@@ -1574,7 +1574,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "1950020",
-    "nombre": "Royal Canin Anallergenic Feline",
+    "nombre": "Anallergenic Feline",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 2 kg",
     "especie": "GATO",
@@ -1586,7 +1586,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3402234",
-    "nombre": "Royal Canin Recovery",
+    "nombre": "Recovery",
     "descripcion": "Veterinary Health Nutrition Feline · Húmedos",
     "presentacion": "Caja 12 latas x 195 g",
     "especie": "GATO",
@@ -1598,7 +1598,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3398812",
-    "nombre": "Royal Canin GI Feline Wet",
+    "nombre": "GI Feline Wet",
     "descripcion": "Veterinary Health Nutrition Feline · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "GATO",
@@ -1610,7 +1610,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "DA40C",
-    "nombre": "Royal Canin Fibre Response Pouch",
+    "nombre": "Fibre Response Pouch",
     "descripcion": "Veterinary Health Nutrition Feline · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "GATO",
@@ -1622,7 +1622,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "DA68F",
-    "nombre": "Royal Canin Gastro Kitten Mousse",
+    "nombre": "Gastro Kitten Mousse",
     "descripcion": "Veterinary Health Nutrition Feline · Húmedos",
     "presentacion": "Caja 6 latas x 195 g",
     "especie": "GATO",
@@ -1634,7 +1634,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2231020",
-    "nombre": "Royal Canin Gastrointestinal Feline",
+    "nombre": "Gastrointestinal Feline",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 2 kg",
     "especie": "GATO",
@@ -1646,7 +1646,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "10411043",
-    "nombre": "Royal Canin Gastrointestinal Hydrolyzed Protein",
+    "nombre": "Gastrointestinal Hydrolyzed Protein",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -1658,7 +1658,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2233020",
-    "nombre": "Royal Canin GI Moderate Calorie Feline",
+    "nombre": "GI Moderate Calorie Feline",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 2 kg",
     "especie": "GATO",
@@ -1670,7 +1670,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2232020",
-    "nombre": "Royal Canin Fibre Response Feline",
+    "nombre": "Fibre Response Feline",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 2 kg",
     "especie": "GATO",
@@ -1682,7 +1682,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2217015",
-    "nombre": "Royal Canin Hepatic Feline",
+    "nombre": "Hepatic Feline",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -1694,7 +1694,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3402102",
-    "nombre": "Royal Canin Early Renal Pouch",
+    "nombre": "Early Renal Pouch",
     "descripcion": "Veterinary Health Nutrition Feline · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "GATO",
@@ -1706,7 +1706,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3400102",
-    "nombre": "Royal Canin Renal Feline Pouch",
+    "nombre": "Renal Feline Pouch",
     "descripcion": "Veterinary Health Nutrition Feline · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "GATO",
@@ -1718,7 +1718,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3900020",
-    "nombre": "Royal Canin Renal Feline",
+    "nombre": "Renal Feline",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 2 kg",
     "especie": "GATO",
@@ -1730,7 +1730,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "1242015",
-    "nombre": "Royal Canin Early Renal",
+    "nombre": "Early Renal",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -1742,7 +1742,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "1242030",
-    "nombre": "Royal Canin Early Renal",
+    "nombre": "Early Renal",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "GATO",
@@ -1754,7 +1754,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4090102",
-    "nombre": "Royal Canin Mature Consult Wet",
+    "nombre": "Mature Consult Wet",
     "descripcion": "Veterinary Health Nutrition Feline · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "GATO",
@@ -1766,7 +1766,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4088102",
-    "nombre": "Royal Canin Neutered Balance Wet",
+    "nombre": "Neutered Balance Wet",
     "descripcion": "Veterinary Health Nutrition Feline · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "GATO",
@@ -1778,7 +1778,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3956020",
-    "nombre": "Royal Canin Calm Feline",
+    "nombre": "Calm Feline",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 2 kg",
     "especie": "GATO",
@@ -1790,7 +1790,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "1235004",
-    "nombre": "Royal Canin GC Weight Control",
+    "nombre": "GC Weight Control",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 0,4 kg",
     "especie": "GATO",
@@ -1802,7 +1802,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2721015",
-    "nombre": "Royal Canin GC Weight Control",
+    "nombre": "GC Weight Control",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -1814,7 +1814,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2721030",
-    "nombre": "Royal Canin GC Weight Control",
+    "nombre": "GC Weight Control",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "GATO",
@@ -1826,7 +1826,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2721075",
-    "nombre": "Royal Canin GC Weight Control",
+    "nombre": "GC Weight Control",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "GATO",
@@ -1838,7 +1838,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2721120",
-    "nombre": "Royal Canin GC Weight Control",
+    "nombre": "GC Weight Control",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 12 kg",
     "especie": "GATO",
@@ -1850,7 +1850,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2724015",
-    "nombre": "Royal Canin GC Mature Consult",
+    "nombre": "GC Mature Consult",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -1862,7 +1862,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2724035",
-    "nombre": "Royal Canin GC Mature Consult",
+    "nombre": "GC Mature Consult",
     "descripcion": "Veterinary Health Nutrition Feline · Secos",
     "presentacion": "Bolsa 3,5 kg",
     "especie": "GATO",
@@ -1874,7 +1874,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4900102",
-    "nombre": "Royal Canin Puppy Protech",
+    "nombre": "Puppy Protech",
     "descripcion": "Size Health Nutrition · Milk",
     "presentacion": "Caja 12 x 100 g",
     "especie": "PERRO",
@@ -1886,7 +1886,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3404396",
-    "nombre": "Royal Canin Starter Mother & Babydog",
+    "nombre": "Starter Mother & Babydog",
     "descripcion": "Size Health Nutrition · Húmedos",
     "presentacion": "Caja 6 latas x 195 g",
     "especie": "PERRO",
@@ -1898,7 +1898,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2438102",
-    "nombre": "Royal Canin Mini Puppy",
+    "nombre": "Mini Puppy",
     "descripcion": "Size Health Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "PERRO",
@@ -1910,7 +1910,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2451102",
-    "nombre": "Royal Canin Mini Adult",
+    "nombre": "Mini Adult",
     "descripcion": "Size Health Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "PERRO",
@@ -1922,7 +1922,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2456102",
-    "nombre": "Royal Canin Mini Ageing 12+",
+    "nombre": "Mini Ageing 12+",
     "descripcion": "Size Health Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "PERRO",
@@ -1934,7 +1934,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2421014",
-    "nombre": "Royal Canin Medium Puppy",
+    "nombre": "Medium Puppy",
     "descripcion": "Size Health Nutrition · Húmedos",
     "presentacion": "Caja 10 pouch x 140 g",
     "especie": "PERRO",
@@ -1946,7 +1946,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2621014",
-    "nombre": "Royal Canin Medium Adult",
+    "nombre": "Medium Adult",
     "descripcion": "Size Health Nutrition · Húmedos",
     "presentacion": "Caja 10 pouch x 140 g",
     "especie": "PERRO",
@@ -1958,7 +1958,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2410014",
-    "nombre": "Royal Canin Maxi Puppy",
+    "nombre": "Maxi Puppy",
     "descripcion": "Size Health Nutrition · Húmedos",
     "presentacion": "Caja 10 pouch x 140 g",
     "especie": "PERRO",
@@ -1970,7 +1970,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2501014",
-    "nombre": "Royal Canin Maxi Adult",
+    "nombre": "Maxi Adult",
     "descripcion": "Size Health Nutrition · Húmedos",
     "presentacion": "Caja 10 pouch x 140 g",
     "especie": "PERRO",
@@ -1982,7 +1982,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "5450110",
-    "nombre": "Royal Canin X- Small Puppy",
+    "nombre": "X- Small Puppy",
     "descripcion": "Size Health Nutrition · X-small",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -1994,7 +1994,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "5451210",
-    "nombre": "Royal Canin X- Small Adulto",
+    "nombre": "X- Small Adulto",
     "descripcion": "Size Health Nutrition · X-small",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -2006,7 +2006,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2439010",
-    "nombre": "Royal Canin Starter Mini",
+    "nombre": "Starter Mini",
     "descripcion": "Size Health Nutrition · Mini",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -2018,7 +2018,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2439030",
-    "nombre": "Royal Canin Starter Mini",
+    "nombre": "Starter Mini",
     "descripcion": "Size Health Nutrition · Mini",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2030,7 +2030,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3000010",
-    "nombre": "Royal Canin Mini Puppy",
+    "nombre": "Mini Puppy",
     "descripcion": "Size Health Nutrition · Mini",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -2042,7 +2042,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3000030",
-    "nombre": "Royal Canin Mini Puppy",
+    "nombre": "Mini Puppy",
     "descripcion": "Size Health Nutrition · Mini",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2054,7 +2054,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3000075",
-    "nombre": "Royal Canin Mini Puppy",
+    "nombre": "Mini Puppy",
     "descripcion": "Size Health Nutrition · Mini",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "PERRO",
@@ -2066,7 +2066,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3000150",
-    "nombre": "Royal Canin Mini Puppy",
+    "nombre": "Mini Puppy",
     "descripcion": "Size Health Nutrition · Mini",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -2078,7 +2078,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2461010",
-    "nombre": "Royal Canin Mini Adult",
+    "nombre": "Mini Adult",
     "descripcion": "Size Health Nutrition · Mini",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -2090,7 +2090,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2461030",
-    "nombre": "Royal Canin Mini Adult",
+    "nombre": "Mini Adult",
     "descripcion": "Size Health Nutrition · Mini",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2102,7 +2102,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2461075",
-    "nombre": "Royal Canin Mini Adult",
+    "nombre": "Mini Adult",
     "descripcion": "Size Health Nutrition · Mini",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "PERRO",
@@ -2114,7 +2114,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "60011309",
-    "nombre": "Royal Canin Mini Adult",
+    "nombre": "Mini Adult",
     "descripcion": "Size Health Nutrition · Mini",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -2126,7 +2126,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "60011309-B",
-    "nombre": "Royal Canin Mini Adult",
+    "nombre": "Mini Adult",
     "descripcion": "Size Health Nutrition · Mini",
     "presentacion": "Bolsa 13+2 kg",
     "especie": "PERRO",
@@ -2138,7 +2138,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2464010",
-    "nombre": "Royal Canin Mini Indoor",
+    "nombre": "Mini Indoor",
     "descripcion": "Size Health Nutrition · Mini",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -2150,7 +2150,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2464030",
-    "nombre": "Royal Canin Mini Indoor",
+    "nombre": "Mini Indoor",
     "descripcion": "Size Health Nutrition · Mini",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2162,7 +2162,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2462010",
-    "nombre": "Royal Canin Mini Adult 8+",
+    "nombre": "Mini Adult 8+",
     "descripcion": "Size Health Nutrition · Mini",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -2174,7 +2174,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2462030",
-    "nombre": "Royal Canin Mini Adult 8+",
+    "nombre": "Mini Adult 8+",
     "descripcion": "Size Health Nutrition · Mini",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2186,7 +2186,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2466010",
-    "nombre": "Royal Canin Mini Ageing 12+",
+    "nombre": "Mini Ageing 12+",
     "descripcion": "Size Health Nutrition · Mini",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -2198,7 +2198,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2466030",
-    "nombre": "Royal Canin Mini Ageing 12+",
+    "nombre": "Mini Ageing 12+",
     "descripcion": "Size Health Nutrition · Mini",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2210,7 +2210,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2426030",
-    "nombre": "Royal Canin Starter Medium",
+    "nombre": "Starter Medium",
     "descripcion": "Size Health Nutrition · Medium",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2222,7 +2222,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2427010",
-    "nombre": "Royal Canin Medium Puppy",
+    "nombre": "Medium Puppy",
     "descripcion": "Size Health Nutrition · Medium",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -2234,7 +2234,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3003030",
-    "nombre": "Royal Canin Medium Puppy",
+    "nombre": "Medium Puppy",
     "descripcion": "Size Health Nutrition · Medium",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2246,7 +2246,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2427150",
-    "nombre": "Royal Canin Medium Puppy",
+    "nombre": "Medium Puppy",
     "descripcion": "Size Health Nutrition · Medium",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -2258,7 +2258,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2631030",
-    "nombre": "Royal Canin Medium Adult",
+    "nombre": "Medium Adult",
     "descripcion": "Size Health Nutrition · Medium",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2270,7 +2270,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2631075",
-    "nombre": "Royal Canin Medium Adult",
+    "nombre": "Medium Adult",
     "descripcion": "Size Health Nutrition · Medium",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "PERRO",
@@ -2282,7 +2282,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3004150",
-    "nombre": "Royal Canin Medium Adult",
+    "nombre": "Medium Adult",
     "descripcion": "Size Health Nutrition · Medium",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -2294,7 +2294,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2722030",
-    "nombre": "Royal Canin Medium Adult 7+",
+    "nombre": "Medium Adult 7+",
     "descripcion": "Size Health Nutrition · Medium",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2306,7 +2306,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2722150",
-    "nombre": "Royal Canin Medium Adult 7+",
+    "nombre": "Medium Adult 7+",
     "descripcion": "Size Health Nutrition · Medium",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -2318,7 +2318,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2634150",
-    "nombre": "Royal Canin Medium Ageing 10+",
+    "nombre": "Medium Ageing 10+",
     "descripcion": "Size Health Nutrition · Medium",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -2330,7 +2330,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2416100",
-    "nombre": "Royal Canin Starter Maxi",
+    "nombre": "Starter Maxi",
     "descripcion": "Size Health Nutrition · Maxi",
     "presentacion": "Bolsa 10 kg",
     "especie": "PERRO",
@@ -2342,7 +2342,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2416010",
-    "nombre": "Royal Canin Maxi Puppy",
+    "nombre": "Maxi Puppy",
     "descripcion": "Size Health Nutrition · Maxi",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -2354,7 +2354,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2415030",
-    "nombre": "Royal Canin Maxi Puppy",
+    "nombre": "Maxi Puppy",
     "descripcion": "Size Health Nutrition · Maxi",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2366,7 +2366,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3006150",
-    "nombre": "Royal Canin Maxi Puppy",
+    "nombre": "Maxi Puppy",
     "descripcion": "Size Health Nutrition · Maxi",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -2378,7 +2378,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2510030",
-    "nombre": "Royal Canin Maxi Adult",
+    "nombre": "Maxi Adult",
     "descripcion": "Size Health Nutrition · Maxi",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2390,7 +2390,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3007150",
-    "nombre": "Royal Canin Maxi Adult",
+    "nombre": "Maxi Adult",
     "descripcion": "Size Health Nutrition · Maxi",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -2402,7 +2402,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2521150",
-    "nombre": "Royal Canin Maxi Adult 5+",
+    "nombre": "Maxi Adult 5+",
     "descripcion": "Size Health Nutrition · Maxi",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -2414,7 +2414,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2512150",
-    "nombre": "Royal Canin Maxi Ageing 8+",
+    "nombre": "Maxi Ageing 8+",
     "descripcion": "Size Health Nutrition · Maxi",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -2426,7 +2426,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2412100",
-    "nombre": "Royal Canin Starter Giant",
+    "nombre": "Starter Giant",
     "descripcion": "Size Health Nutrition · Giant",
     "presentacion": "Bolsa 10 kg",
     "especie": "PERRO",
@@ -2438,7 +2438,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2412010",
-    "nombre": "Royal Canin Giant Puppy",
+    "nombre": "Giant Puppy",
     "descripcion": "Size Health Nutrition · Giant",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -2450,7 +2450,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2413150",
-    "nombre": "Royal Canin Giant Puppy",
+    "nombre": "Giant Puppy",
     "descripcion": "Size Health Nutrition · Giant",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -2462,7 +2462,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2428150",
-    "nombre": "Royal Canin Giant Junior",
+    "nombre": "Giant Junior",
     "descripcion": "Size Health Nutrition · Giant",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -2474,7 +2474,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3009150",
-    "nombre": "Royal Canin Giant Adult",
+    "nombre": "Giant Adult",
     "descripcion": "Size Health Nutrition · Giant",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -2486,7 +2486,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3404102",
-    "nombre": "Royal Canin Poodle",
+    "nombre": "Poodle",
     "descripcion": "Breed Health Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "PERRO",
@@ -2498,7 +2498,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3403102",
-    "nombre": "Royal Canin Yorkshire",
+    "nombre": "Yorkshire",
     "descripcion": "Breed Health Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "PERRO",
@@ -2510,7 +2510,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3407102",
-    "nombre": "Royal Canin Dachshund",
+    "nombre": "Dachshund",
     "descripcion": "Breed Health Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "PERRO",
@@ -2522,7 +2522,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3846010",
-    "nombre": "Royal Canin Chihuahua Adulto",
+    "nombre": "Chihuahua Adulto",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -2534,7 +2534,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3813010",
-    "nombre": "Royal Canin Yorkshire Terrier Puppy",
+    "nombre": "Yorkshire Terrier Puppy",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -2546,7 +2546,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3813030",
-    "nombre": "Royal Canin Yorkshire Terrier Puppy",
+    "nombre": "Yorkshire Terrier Puppy",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2558,7 +2558,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3840010",
-    "nombre": "Royal Canin Yorkshire Terrier Adulto",
+    "nombre": "Yorkshire Terrier Adulto",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -2570,7 +2570,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3840030",
-    "nombre": "Royal Canin Yorkshire Terrier Adulto",
+    "nombre": "Yorkshire Terrier Adulto",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2582,7 +2582,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3812010",
-    "nombre": "Royal Canin Caniche Puppy",
+    "nombre": "Caniche Puppy",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -2594,7 +2594,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3812030",
-    "nombre": "Royal Canin Caniche Puppy",
+    "nombre": "Caniche Puppy",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2606,7 +2606,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3841010",
-    "nombre": "Royal Canin Caniche Adulto",
+    "nombre": "Caniche Adulto",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -2618,7 +2618,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3841030",
-    "nombre": "Royal Canin Caniche Adulto",
+    "nombre": "Caniche Adulto",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2630,7 +2630,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3841075",
-    "nombre": "Royal Canin Caniche Adulto",
+    "nombre": "Caniche Adulto",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "PERRO",
@@ -2642,7 +2642,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3775010",
-    "nombre": "Royal Canin Jack Russell Puppy",
+    "nombre": "Jack Russell Puppy",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -2654,7 +2654,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3775030",
-    "nombre": "Royal Canin Jack Russell Puppy",
+    "nombre": "Jack Russell Puppy",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2666,7 +2666,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3771010",
-    "nombre": "Royal Canin Jack Russell Adulto",
+    "nombre": "Jack Russell Adulto",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -2678,7 +2678,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3771030",
-    "nombre": "Royal Canin Jack Russell Adulto",
+    "nombre": "Jack Russell Adulto",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2690,7 +2690,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3745010",
-    "nombre": "Royal Canin Dachshund Puppy",
+    "nombre": "Dachshund Puppy",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -2702,7 +2702,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3745030",
-    "nombre": "Royal Canin Dachshund Puppy",
+    "nombre": "Dachshund Puppy",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2714,7 +2714,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3743030",
-    "nombre": "Royal Canin Dachshund Adulto",
+    "nombre": "Dachshund Adulto",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2726,7 +2726,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3844030",
-    "nombre": "Royal Canin Schnauzer Miniature Adulto",
+    "nombre": "Schnauzer Miniature Adulto",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2738,7 +2738,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3847010",
-    "nombre": "Royal Canin Bulldog Frances Puppy",
+    "nombre": "Bulldog Frances Puppy",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -2750,7 +2750,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3847030",
-    "nombre": "Royal Canin Bulldog Frances Puppy",
+    "nombre": "Bulldog Frances Puppy",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2762,7 +2762,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3846030",
-    "nombre": "Royal Canin Bulldog Francés Adulto",
+    "nombre": "Bulldog Francés Adulto",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2774,7 +2774,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3846075",
-    "nombre": "Royal Canin Bulldog Francés Adulto",
+    "nombre": "Bulldog Francés Adulto",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "PERRO",
@@ -2786,7 +2786,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3765010",
-    "nombre": "Royal Canin Pug Puppy",
+    "nombre": "Pug Puppy",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -2798,7 +2798,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3765030",
-    "nombre": "Royal Canin Pug Puppy",
+    "nombre": "Pug Puppy",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2810,7 +2810,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3761030",
-    "nombre": "Royal Canin Pug Adulto",
+    "nombre": "Pug Adulto",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2822,7 +2822,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3761075",
-    "nombre": "Royal Canin Pug Adulto",
+    "nombre": "Pug Adulto",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "PERRO",
@@ -2834,7 +2834,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3755030",
-    "nombre": "Royal Canin Bulldog Puppy",
+    "nombre": "Bulldog Puppy",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -2846,7 +2846,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3755075",
-    "nombre": "Royal Canin Bulldog Puppy",
+    "nombre": "Bulldog Puppy",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "PERRO",
@@ -2858,7 +2858,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3755120",
-    "nombre": "Royal Canin Bulldog Adulto",
+    "nombre": "Bulldog Adulto",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 12 kg",
     "especie": "PERRO",
@@ -2870,7 +2870,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3812120",
-    "nombre": "Royal Canin Ovejero Alemán Puppy",
+    "nombre": "Ovejero Alemán Puppy",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 12 kg",
     "especie": "PERRO",
@@ -2882,7 +2882,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3810120",
-    "nombre": "Royal Canin Ovejero Alemán Adulto",
+    "nombre": "Ovejero Alemán Adulto",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 12 kg",
     "especie": "PERRO",
@@ -2894,7 +2894,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3821120",
-    "nombre": "Royal Canin Labrador Retriever Puppy",
+    "nombre": "Labrador Retriever Puppy",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 12 kg",
     "especie": "PERRO",
@@ -2906,7 +2906,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3811120",
-    "nombre": "Royal Canin Labrador Retriever Adulto",
+    "nombre": "Labrador Retriever Adulto",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 12 kg",
     "especie": "PERRO",
@@ -2918,7 +2918,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3814120",
-    "nombre": "Royal Canin Boxer Puppy",
+    "nombre": "Boxer Puppy",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 12 kg",
     "especie": "PERRO",
@@ -2930,7 +2930,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3312120",
-    "nombre": "Royal Canin Boxer Adulto",
+    "nombre": "Boxer Adulto",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 12 kg",
     "especie": "PERRO",
@@ -2942,7 +2942,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3816120",
-    "nombre": "Royal Canin Golden Retriever Puppy",
+    "nombre": "Golden Retriever Puppy",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 12 kg",
     "especie": "PERRO",
@@ -2954,7 +2954,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3815120",
-    "nombre": "Royal Canin Golden Retriever Adulto",
+    "nombre": "Golden Retriever Adulto",
     "descripcion": "Breed Health Nutrition · Secos",
     "presentacion": "Bolsa 12 kg",
     "especie": "PERRO",
@@ -2966,7 +2966,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4455012",
-    "nombre": "Royal Canin Dermacomfort",
+    "nombre": "Dermacomfort",
     "descripcion": "Canine Care Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "PERRO",
@@ -2978,7 +2978,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4453012",
-    "nombre": "Royal Canin Weight Care",
+    "nombre": "Weight Care",
     "descripcion": "Canine Care Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "PERRO",
@@ -2990,7 +2990,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4011012",
-    "nombre": "Royal Canin Sterilized",
+    "nombre": "Sterilized",
     "descripcion": "Canine Care Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "PERRO",
@@ -3002,7 +3002,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4211012",
-    "nombre": "Royal Canin Exigent",
+    "nombre": "Exigent",
     "descripcion": "Canine Care Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "PERRO",
@@ -3014,7 +3014,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4111012",
-    "nombre": "Royal Canin Relax Care",
+    "nombre": "Relax Care",
     "descripcion": "Canine Care Nutrition · Húmedos",
     "presentacion": "Caja 12 pouch x 85 g",
     "especie": "PERRO",
@@ -3026,7 +3026,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4453010",
-    "nombre": "Royal Canin Mini Weight Care",
+    "nombre": "Mini Weight Care",
     "descripcion": "Canine Care Nutrition · Secos",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -3038,7 +3038,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4453030",
-    "nombre": "Royal Canin Mini Weight Care",
+    "nombre": "Mini Weight Care",
     "descripcion": "Canine Care Nutrition · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -3050,7 +3050,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4455010",
-    "nombre": "Royal Canin Mini Dermacomfort",
+    "nombre": "Mini Dermacomfort",
     "descripcion": "Canine Care Nutrition · Secos",
     "presentacion": "Bolsa 1 kg",
     "especie": "PERRO",
@@ -3062,7 +3062,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4455030",
-    "nombre": "Royal Canin Mini Dermacomfort",
+    "nombre": "Mini Dermacomfort",
     "descripcion": "Canine Care Nutrition · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -3074,7 +3074,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4011030",
-    "nombre": "Royal Canin Mini Castrados",
+    "nombre": "Mini Castrados",
     "descripcion": "Canine Care Nutrition · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -3086,7 +3086,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4211030",
-    "nombre": "Royal Canin Mini Exigent",
+    "nombre": "Mini Exigent",
     "descripcion": "Canine Care Nutrition · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -3098,7 +3098,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4623030",
-    "nombre": "Royal Canin Medium Weight Care",
+    "nombre": "Medium Weight Care",
     "descripcion": "Canine Care Nutrition · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -3110,7 +3110,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4623100",
-    "nombre": "Royal Canin Medium Weight Care",
+    "nombre": "Medium Weight Care",
     "descripcion": "Canine Care Nutrition · Secos",
     "presentacion": "Bolsa 10 kg",
     "especie": "PERRO",
@@ -3122,7 +3122,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4624030",
-    "nombre": "Royal Canin Medium Dermacomfort",
+    "nombre": "Medium Dermacomfort",
     "descripcion": "Canine Care Nutrition · Secos",
     "presentacion": "Bolsa 3 kg",
     "especie": "PERRO",
@@ -3134,7 +3134,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4624100",
-    "nombre": "Royal Canin Medium Dermacomfort",
+    "nombre": "Medium Dermacomfort",
     "descripcion": "Canine Care Nutrition · Secos",
     "presentacion": "Bolsa 10 kg",
     "especie": "PERRO",
@@ -3146,7 +3146,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4503100",
-    "nombre": "Royal Canin Maxi Weight Care",
+    "nombre": "Maxi Weight Care",
     "descripcion": "Canine Care Nutrition · Secos",
     "presentacion": "Bolsa 10 kg",
     "especie": "PERRO",
@@ -3158,7 +3158,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4504100",
-    "nombre": "Royal Canin Maxi Dermacomfort",
+    "nombre": "Maxi Dermacomfort",
     "descripcion": "Canine Care Nutrition · Secos",
     "presentacion": "Bolsa 10 kg",
     "especie": "PERRO",
@@ -3170,7 +3170,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2104216",
-    "nombre": "Royal Canin Urinary SO Canine Wet",
+    "nombre": "Urinary SO Canine Wet",
     "descripcion": "Veterinary Health Nutrition Canine · Húmedo",
     "presentacion": "Caja 6 latas x 200 g",
     "especie": "PERRO",
@@ -3182,7 +3182,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2114015",
-    "nombre": "Royal Canin Urinary SO Canine",
+    "nombre": "Urinary SO Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "PERRO",
@@ -3194,7 +3194,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2114100",
-    "nombre": "Royal Canin Urinary SO Canine",
+    "nombre": "Urinary SO Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 10 kg",
     "especie": "PERRO",
@@ -3206,7 +3206,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "1271015",
-    "nombre": "Royal Canin Urinary Ageing 7+",
+    "nombre": "Urinary Ageing 7+",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "PERRO",
@@ -3218,7 +3218,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "1271100",
-    "nombre": "Royal Canin Urinary Ageing 7+",
+    "nombre": "Urinary Ageing 7+",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 10 kg",
     "especie": "PERRO",
@@ -3230,7 +3230,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3801020",
-    "nombre": "Royal Canin Urinary Small Dog",
+    "nombre": "Urinary Small Dog",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 2 kg",
     "especie": "PERRO",
@@ -3242,7 +3242,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2072234",
-    "nombre": "Royal Canin Satiety Canine Wet",
+    "nombre": "Satiety Canine Wet",
     "descripcion": "Veterinary Health Nutrition Canine · Húmedos",
     "presentacion": "Caja 6 latas x 195 g",
     "especie": "PERRO",
@@ -3254,7 +3254,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3399234",
-    "nombre": "Royal Canin Diabetic Special Wet",
+    "nombre": "Diabetic Special Wet",
     "descripcion": "Veterinary Health Nutrition Canine · Húmedos",
     "presentacion": "Caja 6 latas x 195 g",
     "especie": "PERRO",
@@ -3266,7 +3266,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2073015",
-    "nombre": "Royal Canin Satiety Canine",
+    "nombre": "Satiety Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "PERRO",
@@ -3278,7 +3278,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2073075",
-    "nombre": "Royal Canin Satiety Canine",
+    "nombre": "Satiety Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "PERRO",
@@ -3290,7 +3290,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2073150",
-    "nombre": "Royal Canin Satiety Canine",
+    "nombre": "Satiety Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -3302,7 +3302,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4252015",
-    "nombre": "Royal Canin Satiety Small Dog",
+    "nombre": "Satiety Small Dog",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "PERRO",
@@ -3314,7 +3314,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2007020",
-    "nombre": "Royal Canin Diabetic Canine",
+    "nombre": "Diabetic Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 2 kg",
     "especie": "PERRO",
@@ -3326,7 +3326,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2007100",
-    "nombre": "Royal Canin Diabetic Canine",
+    "nombre": "Diabetic Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 10 kg",
     "especie": "PERRO",
@@ -3338,7 +3338,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3397112",
-    "nombre": "Royal Canin Hypoallergenic Canine Wet",
+    "nombre": "Hypoallergenic Canine Wet",
     "descripcion": "Veterinary Health Nutrition Canine · Húmedo",
     "presentacion": "Caja 6 latas x 200 g",
     "especie": "PERRO",
@@ -3350,7 +3350,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3318020",
-    "nombre": "Royal Canin Hypoallergenic Puppy",
+    "nombre": "Hypoallergenic Puppy",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 2 kg",
     "especie": "PERRO",
@@ -3362,7 +3362,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3318100",
-    "nombre": "Royal Canin Hypoallergenic Puppy",
+    "nombre": "Hypoallergenic Puppy",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 10 kg",
     "especie": "PERRO",
@@ -3374,7 +3374,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2912020",
-    "nombre": "Royal Canin Hypoallergenic Canine",
+    "nombre": "Hypoallergenic Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 2 kg",
     "especie": "PERRO",
@@ -3386,7 +3386,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2912100",
-    "nombre": "Royal Canin Hypoallergenic Canine",
+    "nombre": "Hypoallergenic Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 10 kg",
     "especie": "PERRO",
@@ -3398,7 +3398,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2922020",
-    "nombre": "Royal Canin Hypoallergenic Canine Small Dog",
+    "nombre": "Hypoallergenic Canine Small Dog",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 2 kg",
     "especie": "PERRO",
@@ -3410,7 +3410,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3964020",
-    "nombre": "Royal Canin Hypoallergenic Moderate Calorie",
+    "nombre": "Hypoallergenic Moderate Calorie",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 2 kg",
     "especie": "PERRO",
@@ -3422,7 +3422,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4014015",
-    "nombre": "Royal Canin Anallergenic Canine",
+    "nombre": "Anallergenic Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "PERRO",
@@ -3434,7 +3434,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4014080",
-    "nombre": "Royal Canin Anallergenic Canine",
+    "nombre": "Anallergenic Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 8 kg",
     "especie": "PERRO",
@@ -3446,7 +3446,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3396024",
-    "nombre": "Royal Canin GI Canine Wet",
+    "nombre": "GI Canine Wet",
     "descripcion": "Veterinary Health Nutrition Canine · Húmedos",
     "presentacion": "Caja 6 latas x 200 g",
     "especie": "PERRO",
@@ -3458,7 +3458,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3392024",
-    "nombre": "Royal Canin Hepatic Canine Wet",
+    "nombre": "Hepatic Canine Wet",
     "descripcion": "Veterinary Health Nutrition Canine · Húmedos",
     "presentacion": "Caja 6 latas x 200 g",
     "especie": "PERRO",
@@ -3470,7 +3470,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3394024",
-    "nombre": "Royal Canin GI Low Fat Canine Wet",
+    "nombre": "GI Low Fat Canine Wet",
     "descripcion": "Veterinary Health Nutrition Canine · Húmedos",
     "presentacion": "Caja 6 latas x 200 g",
     "especie": "PERRO",
@@ -3482,7 +3482,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3395012",
-    "nombre": "Royal Canin GI Puppy Wet",
+    "nombre": "GI Puppy Wet",
     "descripcion": "Veterinary Health Nutrition Canine · Húmedos",
     "presentacion": "Caja 6 latas x 195 g",
     "especie": "PERRO",
@@ -3494,7 +3494,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3911020",
-    "nombre": "Royal Canin Gastrointestinal Canine",
+    "nombre": "Gastrointestinal Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 2 kg",
     "especie": "PERRO",
@@ -3506,7 +3506,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3911100",
-    "nombre": "Royal Canin Gastrointestinal Canine",
+    "nombre": "Gastrointestinal Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 10 kg",
     "especie": "PERRO",
@@ -3518,7 +3518,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2171020",
-    "nombre": "Royal Canin Gastrointestinal Puppy",
+    "nombre": "Gastrointestinal Puppy",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 2 kg",
     "especie": "PERRO",
@@ -3530,7 +3530,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2119015",
-    "nombre": "Royal Canin Hepatic Canine",
+    "nombre": "Hepatic Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "PERRO",
@@ -3542,7 +3542,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2119100",
-    "nombre": "Royal Canin Hepatic Canine",
+    "nombre": "Hepatic Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 10 kg",
     "especie": "PERRO",
@@ -3554,7 +3554,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2173100",
-    "nombre": "Royal Canin GI Moderate Calorie",
+    "nombre": "GI Moderate Calorie",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 10 kg",
     "especie": "PERRO",
@@ -3566,7 +3566,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3932015",
-    "nombre": "Royal Canin GI Low Fat Canine",
+    "nombre": "GI Low Fat Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "PERRO",
@@ -3578,7 +3578,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3391024",
-    "nombre": "Royal Canin Renal Canine Wet",
+    "nombre": "Renal Canine Wet",
     "descripcion": "Veterinary Health Nutrition Canine · Húmedos",
     "presentacion": "Caja 6 latas x 200 g",
     "especie": "PERRO",
@@ -3590,7 +3590,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3400492",
-    "nombre": "Royal Canin Renal Special Wet",
+    "nombre": "Renal Special Wet",
     "descripcion": "Veterinary Health Nutrition Canine · Húmedos",
     "presentacion": "Caja 3 latas x 410 g",
     "especie": "PERRO",
@@ -3602,7 +3602,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3916015",
-    "nombre": "Royal Canin Renal Canine",
+    "nombre": "Renal Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "PERRO",
@@ -3614,7 +3614,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3916100",
-    "nombre": "Royal Canin Renal Canine",
+    "nombre": "Renal Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 10 kg",
     "especie": "PERRO",
@@ -3626,7 +3626,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3933020",
-    "nombre": "Royal Canin Mobility Canine",
+    "nombre": "Mobility Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 2 kg",
     "especie": "PERRO",
@@ -3638,7 +3638,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3933100",
-    "nombre": "Royal Canin Mobility Canine",
+    "nombre": "Mobility Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 10 kg",
     "especie": "PERRO",
@@ -3650,7 +3650,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3937150",
-    "nombre": "Royal Canin Mobility Larger Dogs",
+    "nombre": "Mobility Larger Dogs",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -3662,7 +3662,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3930020",
-    "nombre": "Royal Canin Cardiac Canine",
+    "nombre": "Cardiac Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 2 kg",
     "especie": "PERRO",
@@ -3674,7 +3674,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3930100",
-    "nombre": "Royal Canin Cardiac Canine",
+    "nombre": "Cardiac Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 10 kg",
     "especie": "PERRO",
@@ -3686,7 +3686,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4161020",
-    "nombre": "Royal Canin Renal Special Canine",
+    "nombre": "Renal Special Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Secos",
     "presentacion": "Bolsa 2 kg",
     "especie": "PERRO",
@@ -3698,7 +3698,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3955020",
-    "nombre": "Royal Canin Calm Canine",
+    "nombre": "Calm Canine",
     "descripcion": "Veterinary Health Nutrition Canine · Seco",
     "presentacion": "Bolsa 2 kg",
     "especie": "PERRO",
@@ -3710,7 +3710,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3402002",
-    "nombre": "Royal Canin Recovery Cat/Dog",
+    "nombre": "Recovery Cat/Dog",
     "descripcion": "VD · Liquid",
     "presentacion": "Caja 3 envases x 200 ml",
     "especie": null,
@@ -3722,7 +3722,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3400002",
-    "nombre": "Royal Canin Renal Dog",
+    "nombre": "Renal Dog",
     "descripcion": "VD · Liquid",
     "presentacion": "Caja 3 envases x 200 ml",
     "especie": "PERRO",
@@ -3734,7 +3734,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "3401002",
-    "nombre": "Royal Canin Renal Cat",
+    "nombre": "Renal Cat",
     "descripcion": "VD · Liquid",
     "presentacion": "Caja 3 envases x 200 ml",
     "especie": "GATO",
@@ -3746,7 +3746,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "2359150",
-    "nombre": "Royal Canin Club Performance Dog Junior",
+    "nombre": "Club Performance Dog Junior",
     "descripcion": "Club Performance · Perro",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -3758,7 +3758,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4224150",
-    "nombre": "Royal Canin Club Performance Dog Adulto",
+    "nombre": "Club Performance Dog Adulto",
     "descripcion": "Club Performance · Perro",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -3770,7 +3770,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4224200",
-    "nombre": "Royal Canin Club Performance Dog Adulto",
+    "nombre": "Club Performance Dog Adulto",
     "descripcion": "Club Performance · Perro",
     "presentacion": "Bolsa 20 kg",
     "especie": "PERRO",
@@ -3782,7 +3782,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4227150",
-    "nombre": "Royal Canin Club Performance Weight Control",
+    "nombre": "Club Performance Weight Control",
     "descripcion": "Club Performance · Perro",
     "presentacion": "Bolsa 15 kg",
     "especie": "PERRO",
@@ -3794,7 +3794,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4274015",
-    "nombre": "Royal Canin Club Performance Cat Kitten",
+    "nombre": "Club Performance Cat Kitten",
     "descripcion": "Club Performance · Gato",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -3806,7 +3806,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4274075",
-    "nombre": "Royal Canin Club Performance Cat Kitten",
+    "nombre": "Club Performance Cat Kitten",
     "descripcion": "Club Performance · Gato",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "GATO",
@@ -3818,7 +3818,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4273015",
-    "nombre": "Royal Canin Club Performance Cat",
+    "nombre": "Club Performance Cat",
     "descripcion": "Club Performance · Gato",
     "presentacion": "Bolsa 1,5 kg",
     "especie": "GATO",
@@ -3830,7 +3830,7 @@
   {
     "marca": "Royal Canin",
     "codigo": "4273075",
-    "nombre": "Royal Canin Club Performance Cat",
+    "nombre": "Club Performance Cat",
     "descripcion": "Club Performance · Gato",
     "presentacion": "Bolsa 7,5 kg",
     "especie": "GATO",
