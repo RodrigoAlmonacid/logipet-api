@@ -6,6 +6,9 @@ import { faker } from '@faker-js/faker';
 import * as bcrypt from 'bcrypt';
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import {
+  MotivoBaja,
+} from '@prisma/client';
 
 import { PERMISOS as P } from '../src/utils/permisos.constants';
 import { randomInt } from 'crypto';
@@ -13,7 +16,7 @@ import { randomInt } from 'crypto';
 const prisma = new PrismaClient();
 
 const SALT = 10;
-const EMPLEADOS_EXTRA = 8;
+const EMPLEADOS_EXTRA = 18;
 
 faker.seed(2026);
 
@@ -249,7 +252,7 @@ async function seedEmpleados() {
   const rolesGestion = await prisma.rol.findMany({
     where: {
       nombre: {
-        in: ['administracion', 'deposito', 'ruteo', 'chofer'],
+        in: ['vendedor', 'administracion', 'deposito', 'ruteo', 'chofer'],
       },
     },
   });
@@ -305,32 +308,46 @@ async function seedEmpleados() {
   // Empleados ficticios
   const passwordHash = await bcrypt.hash('Logipet1234', SALT);
 
-  await Promise.all(
-    Array.from({ length: EMPLEADOS_EXTRA }, (_, i) => {
-      const n = i + 3;
-      const email = `empleado${String(n).padStart(2, '0')}@logipet-demo.com`;
+  const distribucionRoles = [
+    { nombre: 'vendedor', cantidad: 30 },
+    { nombre: 'administracion', cantidad: 3 },
+    { nombre: 'deposito', cantidad: 8 },
+    { nombre: 'ruteo', cantidad: 2 },
+    { nombre: 'chofer', cantidad: 6 },
+  ];
 
-      const rol = faker.helpers.arrayElement(rolesGestion);
+  let n = 3;
 
-      return prisma.empleado.upsert({
+  for (const { nombre, cantidad } of distribucionRoles) {
+    const rol = rolesGestion.find(
+      (r) => r.nombre.toLowerCase() === nombre.toLowerCase(),
+    );
+
+    if (!rol) {
+      throw new Error(`No se encontró el rol "${nombre}" en rolesGestion`);
+    }
+
+    for (let i = 0; i < cantidad; i++) {
+      const numero = n++;
+      const email = `empleado${String(numero).padStart(2, '0')}@logipet-demo.com`;
+
+      await prisma.empleado.upsert({
         where: { email },
-
         update: {},
-
         create: {
           email,
           pass: passwordHash,
           nombre: faker.person.firstName(),
           apellido: faker.person.lastName(),
-          legajo: `prueba-${n}`,
+          legajo: `prueba-${numero}`,
           activo: true,
           roles: {
             connect: [{ id: rol.id }],
           },
         },
       });
-    }),
-  );
+    }
+  }
 
   console.log('Empleados cargados correctamente');
 }
@@ -428,6 +445,316 @@ async function seedClientes() {
 }
 
 // --------------------------------------------------
+// PEDIDOS HISTÓRICOS
+// --------------------------------------------------
+
+const PEDIDOS_HISTORICOS = 500;
+
+const ESTADOS_PEDIDO = {
+  pendiente: 'pendiente',
+  pendientePreparacion: 'pendiente_preparacion',
+  enPreparacion: 'en_preparacion',
+  preparado: 'preparado',
+  enRuta: 'en_ruta',
+  entregado: 'entregado',
+  cancelado: 'cancelado',
+  rechazado: 'rechazado',
+};
+
+const MOTIVOS_CANCELACION: MotivoBaja[] = [
+  'ARREPENTIMIENTO',
+  'PRODUCTO_DANADO',
+  'CLIENTE_AUSENTE',
+  'CLIENTE_RECHAZO',
+];
+
+const redondear = (n: number) => Math.round(n * 100) / 100;
+
+function elegir<T>(items: T[]): T {
+  return items[randomInt(0, items.length)];
+}
+
+function fechaAleatoria(inicio: Date, fin: Date): Date {
+  const desde = inicio.getTime();
+  const hasta = fin.getTime();
+
+  return new Date(randomInt(desde, hasta + 1));
+}
+
+function sumarDias(fecha: Date, dias: number): Date {
+  const resultado = new Date(fecha);
+  resultado.setDate(resultado.getDate() + dias);
+  return resultado;
+}
+
+function mezclar<T>(items: T[]): T[] {
+  const copia = [...items];
+
+  for (let i = copia.length - 1; i > 0; i--) {
+    const j = randomInt(0, i + 1);
+    [copia[i], copia[j]] = [copia[j], copia[i]];
+  }
+
+  return copia;
+}
+
+async function seedPedidosHistoricos() {
+  console.log('Generando pedidos históricos (7-8 días de ciclo por pedido)...');
+
+  const yaExisten = await prisma.pedido.count({
+    where: {
+      createdAt: {
+        gte: new Date('2024-11-04T00:00:00.000Z'),
+        lt: new Date('2026-11-05T00:00:00.000Z'),
+      },
+    },
+  });
+
+  if (yaExisten > 0) {
+    console.log(`Ya existen ${yaExisten} pedidos en el período histórico. Se omite la generación.`);
+    return;
+  }
+
+  const estados = await prisma.estado.findMany();
+  const estadoId = new Map(estados.map((e) => [e.nombre, e.id]));
+
+  for (const nombre of Object.keys(DESCRIPCIONES_ESTADOS)) {
+    if (!estadoId.has(nombre)) throw new Error(`No existe el estado: ${nombre}`);
+  }
+
+  const clientes = await prisma.cliente.findMany({
+    where: { activo: true },
+    include: { comercios: { where: { activo: true } } },
+  });
+  const clientesConComercios = clientes.filter((c) => c.comercios.length > 0);
+
+  const articulos = await prisma.articulo.findMany({
+    where: { deletedAt: null, alicuotaIva: { isNot: null } },
+    include: { alicuotaIva: true },
+  });
+
+  // Empleados por rol
+  const vendedores = await prisma.empleado.findMany({ where: { activo: true, roles: { some: { nombre: 'vendedor' } } } });
+  const choferes = await prisma.empleado.findMany({ where: { activo: true, roles: { some: { nombre: 'chofer' } } } });
+  const admins = await prisma.empleado.findMany({ where: { activo: true, roles: { some: { nombre: 'administracion' } } } });
+  const depositos = await prisma.empleado.findMany({ where: { activo: true, roles: { some: { nombre: 'deposito' } } } });
+  const ruteos = await prisma.empleado.findMany({ where: { activo: true, roles: { some: { nombre: 'ruteo' } } } });
+
+  if (!clientesConComercios.length || !vendedores.length || !articulos.length || !choferes.length || !admins.length || !depositos.length || !ruteos.length) {
+    throw new Error('Faltan catálogos o empleados necesarios para auditar estados.');
+  }
+
+  const camionesData = [
+    { interno: 101, marca: 'Mercedes-Benz', modelo: 'Sprinter', capacidad: 1200 },
+    { interno: 102, marca: 'Iveco', modelo: 'Daily', capacidad: 1500 },
+    { interno: 103, marca: 'Ford', modelo: 'Transit', capacidad: 1000 },
+  ];
+  const camiones = [];
+  for (const cData of camionesData) {
+    camiones.push(await prisma.camion.upsert({
+      where: { interno: cData.interno },
+      update: { marca: cData.marca, modelo: cData.modelo, capacidad: cData.capacidad, deletedAt: null },
+      create: cData,
+    }));
+  }
+
+  // Desplazamos la fecha fin máxima para que el pedido tenga al menos 8 días libres antes del presente
+  const fechaInicio = new Date('2024-11-04T00:00:00.000Z');
+  const fechaFinPedidos = new Date('2026-10-25T23:59:59.000Z'); // Deja 9 días de margen
+  
+  const motivosCancelacion = ['ARREPENTIMIENTO', 'PRODUCTO_DANADO', 'CLIENTE_RECHAZO'] as MotivoBaja[];
+
+  type PedidoGenerado = {
+    clienteId: number; comercioId: number; empleadoId: number;
+    importe: number; pesoGramos: number; createdAt: Date;
+    entregaEstimada: Date | null; stockDescontado: boolean;
+    articulos: any[]; historialEstados: any[]; envioId?: number;
+  };
+
+  const pedidos: PedidoGenerado[] = [];
+  const enviosPorFechaCamion = new Map<string, { fechaEntrega: Date; camionId: number; choferId: number }>();
+
+  for (let i = 0; i < PEDIDOS_HISTORICOS; i++) {
+    const cliente = elegir(clientesConComercios);
+    const comercio = elegir(cliente.comercios);
+    const vendedor = elegir(vendedores);
+    const admin = elegir(admins);
+    const empDeposito = elegir(depositos);
+    const empRuteo = elegir(ruteos);
+    const chofer = elegir(choferes); 
+
+    const tipo = i < 400 ? 'entregado' : i < 450 ? 'cancelado' : 'rechazado';
+    const fechaPedido = fechaAleatoria(fechaInicio, fechaFinPedidos);
+
+    // -- 1. GENERAR SECUENCIA DE ESTADOS BASADO EN REGLAS DE TRANSICIÓN --
+    const secuenciaEstados: { estado: string; auditorId: number }[] = [];
+    secuenciaEstados.push({ estado: 'borrador', auditorId: vendedor.id });
+    secuenciaEstados.push({ estado: 'pendiente', auditorId: vendedor.id });
+
+    if (tipo === 'entregado') {
+      secuenciaEstados.push({ estado: 'pendiente_preparacion', auditorId: admin.id });
+      secuenciaEstados.push({ estado: 'en_preparacion', auditorId: empDeposito.id });
+      secuenciaEstados.push({ estado: 'preparado', auditorId: empDeposito.id });
+      secuenciaEstados.push({ estado: 'en_ruta', auditorId: empRuteo.id });
+      
+      // Simular un 10% de probabilidad de que no se haya entregado y se reprograme
+      if (Math.random() < 0.1) {
+        secuenciaEstados.push({ estado: 'no_entregado', auditorId: chofer.id });
+        secuenciaEstados.push({ estado: 'en_ruta', auditorId: empRuteo.id });
+      }
+      secuenciaEstados.push({ estado: 'entregado', auditorId: chofer.id });
+      
+    } else if (tipo === 'rechazado') {
+      secuenciaEstados.push({ estado: 'rechazado', auditorId: admin.id });
+    } else if (tipo === 'cancelado') {
+      // Puede cancelarse en diferentes puntos de la preparación
+      const nivelAvance = randomInt(0, 4);
+      if (nivelAvance >= 1) secuenciaEstados.push({ estado: 'pendiente_preparacion', auditorId: admin.id });
+      if (nivelAvance >= 2) secuenciaEstados.push({ estado: 'en_preparacion', auditorId: empDeposito.id });
+      if (nivelAvance >= 3) {
+        secuenciaEstados.push({ estado: 'preparado', auditorId: empDeposito.id });
+        secuenciaEstados.push({ estado: 'en_ruta', auditorId: empRuteo.id });
+      }
+      secuenciaEstados.push({ estado: 'cancelado', auditorId: admin.id });
+    }
+
+    // -- 2. REPARTIR 7 a 8 DÍAS ENTRE LOS ESTADOS DE LA SECUENCIA --
+    const diasTotales = 7 + Math.random(); // 7.0 a 8.0 días aprox.
+    const msTotales = diasTotales * 24 * 60 * 60 * 1000;
+    
+    // Creamos "pesos" aleatorios para cada transición
+    const pesos = Array.from({ length: secuenciaEstados.length - 1 }, () => Math.random());
+    const sumaPesos = pesos.reduce((a, b) => a + b, 0);
+
+    const historial: any[] = [];
+    let fechaActual = new Date(fechaPedido);
+    let fechaEntregaDefinitiva: Date | null = null;
+
+    for (let s = 0; s < secuenciaEstados.length; s++) {
+      const est = secuenciaEstados[s];
+      let fechaFinEstado = null;
+
+      if (s < secuenciaEstados.length - 1) {
+        // Calcular tiempo hasta el siguiente estado basado en su "peso"
+        const msFraccion = msTotales * (pesos[s] / sumaPesos);
+        fechaFinEstado = new Date(fechaActual.getTime() + msFraccion);
+      }
+
+      const extras: any = { auditorId: est.auditorId };
+      if (est.estado === 'cancelado') {
+        extras.motivo = elegir(motivosCancelacion);
+        extras.observacion = 'Cancelación simulada (dato histórico)';
+      } else if (est.estado === 'rechazado') {
+        extras.observacion = 'Rechazo simulado (dato histórico)';
+      } else if (est.estado === 'entregado') {
+        fechaEntregaDefinitiva = fechaActual;
+      }
+
+      historial.push({
+        estadoId: estadoId.get(est.estado)!,
+        fechaCreac: fechaActual,
+        fechaFin: fechaFinEstado,
+        ...extras,
+      });
+
+      if (fechaFinEstado) fechaActual = new Date(fechaFinEstado);
+    }
+
+    // -- 3. CALCULAR MONTOS DEL PEDIDO --
+    const articulosElegidos = mezclar(articulos).slice(0, randomInt(1, Math.min(6, articulos.length) + 1));
+    let importePedido = 0;
+    let pesoPedido = 0;
+
+    const detalles = articulosElegidos.map((articulo) => {
+      const cantidad = randomInt(1, 9);
+      const precioVenta = redondear((articulo.precioSugeridoPublico ?? articulo.precio) * (1 - ((fechaFinPedidos.getTime() - fechaPedido.getTime()) / (fechaFinPedidos.getTime() - fechaInicio.getTime())) * 0.45));
+      const descPorc = elegir([0, 0, 0, 5, 8, 10]);
+      const ivaPorc = articulo.alicuotaIva?.porcentaje ?? 21;
+
+      const importeNeto = (precioVenta * cantidad) * (1 - (descPorc / 100));
+      importePedido += importeNeto + (importeNeto * (ivaPorc / 100));
+      if (articulo.pesoGramos) pesoPedido += articulo.pesoGramos * cantidad;
+
+      return {
+        articuloId: articulo.id, cantidad, precioVenta,
+        alicuotaIvaPorcentaje: ivaPorc, descuentoPorcentaje: descPorc,
+        pesoUnitarioGramos: articulo.pesoGramos ?? null,
+      };
+    });
+
+    let envioId: number | undefined;
+
+    // Solo se asocia a un Envío si la ruta logró completarse 
+    if (fechaEntregaDefinitiva) {
+      const camion = elegir(camiones);
+      const claveEnvio = `${fechaEntregaDefinitiva.toISOString().slice(0, 10)}-${camion.id}`;
+
+      enviosPorFechaCamion.set(claveEnvio, {
+        fechaEntrega: fechaEntregaDefinitiva,
+        camionId: camion.id,
+        choferId: chofer.id,
+      });
+
+      (pedidos as any)._envioPorPedido ??= [];
+      (pedidos as any)._envioPorPedido[i] = claveEnvio;
+    }
+
+    pedidos.push({
+      clienteId: cliente.id,
+      comercioId: comercio.id,
+      empleadoId: vendedor.id,
+      importe: redondear(importePedido),
+      pesoGramos: pesoPedido,
+      createdAt: fechaPedido,
+      entregaEstimada: null,
+      stockDescontado: tipo === 'entregado', // Stock solo bajó si se entregó (simplificación del historial)
+      articulos: detalles,
+      historialEstados: historial,
+      envioId,
+    });
+  }
+
+  // 4. INSERTAR EN BASE DE DATOS
+  const envioIds = new Map<string, number>();
+
+  for (const [clave, envioData] of enviosPorFechaCamion.entries()) {
+    const envio = await prisma.envio.create({
+      data: {
+        fechaEntrega: envioData.fechaEntrega,
+        camionId: envioData.camionId,
+        empleados: { connect: [{ id: envioData.choferId }] },
+      },
+    });
+    envioIds.set(clave, envio.id);
+  }
+
+  const clavesEnvioPorPedido = (pedidos as any)._envioPorPedido ?? [];
+
+  for (let i = 0; i < pedidos.length; i++) {
+    const pedido = pedidos[i];
+    const claveEnvio = clavesEnvioPorPedido[i];
+    const envioId = claveEnvio ? envioIds.get(claveEnvio) : undefined;
+
+    await prisma.pedido.create({
+      data: {
+        clienteId: pedido.clienteId,
+        comercioId: pedido.comercioId,
+        empleadoId: pedido.empleadoId,
+        importe: pedido.importe,
+        pesoGramos: pedido.pesoGramos,
+        createdAt: pedido.createdAt,
+        entregaEstimada: pedido.entregaEstimada,
+        stockDescontado: pedido.stockDescontado,
+        ...(envioId ? { envioId } : {}),
+        articulos: { create: pedido.articulos },
+        historialEstados: { create: pedido.historialEstados },
+      },
+    });
+  }
+
+  console.log(`Se generaron ${PEDIDOS_HISTORICOS} pedidos históricos (ciclos de 7-8 días), ${enviosPorFechaCamion.size} envíos y 3 camiones.`);
+}
+// --------------------------------------------------
 // EJECUCIÓN PRINCIPAL
 // --------------------------------------------------
 
@@ -441,6 +768,7 @@ async function main() {
   await seedEmpleados();
   await seedArticulos();
   await seedClientes();
+  await seedPedidosHistoricos();
 
   console.log('====================================');
   console.log(' Seed finalizado correctamente');

@@ -13,6 +13,7 @@ import { PermisoModule } from './permiso/permiso.module';
 import { PedidoModule } from './pedido/pedido.module';
 import { GeocodificacionModule } from './geocodificacion/geocodificacion.module';
 import { ComercioModule } from './comercio/comercio.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 
 @Module({
@@ -27,7 +28,8 @@ import { ComercioModule } from './comercio/comercio.module';
     PermisoModule, 
     PedidoModule, 
     GeocodificacionModule, 
-    ComercioModule
+    ComercioModule,
+    DashboardModule
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],
