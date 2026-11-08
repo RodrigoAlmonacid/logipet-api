@@ -12,6 +12,7 @@ import {
 
 import { PERMISOS as P } from '../src/utils/permisos.constants';
 import { randomInt } from 'crypto';
+import { popularidad, elegirPonderados, factorEstacional, seedStockCoherente } from './seed-demanda';
 
 const prisma = new PrismaClient();
 
@@ -121,6 +122,13 @@ const ROLES: Record<string, { descripcion: string; permisos: string[] }> = {
       P.PEDIDO_VIEW,
       P.PEDIDO_VIEW_ALL,
       P.CLIENTE_VIEW,
+    ],
+  },
+
+  controlStock: {
+    descripcion: 'Evalúa compras a proveedores',
+    permisos: [
+      P.STOCK_VIEW, P.ARTICULO_VIEW
     ],
   },
 };
@@ -252,7 +260,7 @@ async function seedEmpleados() {
   const rolesGestion = await prisma.rol.findMany({
     where: {
       nombre: {
-        in: ['vendedor', 'administracion', 'deposito', 'ruteo', 'chofer'],
+        in: ['vendedor', 'administracion', 'deposito', 'ruteo', 'chofer', 'controlStock'],
       },
     },
   });
@@ -314,6 +322,7 @@ async function seedEmpleados() {
     { nombre: 'deposito', cantidad: 8 },
     { nombre: 'ruteo', cantidad: 2 },
     { nombre: 'chofer', cantidad: 6 },
+    { nombre: 'controlStock', cantidad: 2 },
   ];
 
   let n = 3;
@@ -448,7 +457,7 @@ async function seedClientes() {
 // PEDIDOS HISTÓRICOS
 // --------------------------------------------------
 
-const PEDIDOS_HISTORICOS = 500;
+const PEDIDOS_HISTORICOS = 3000;
 
 const ESTADOS_PEDIDO = {
   pendiente: 'pendiente',
@@ -561,7 +570,7 @@ async function seedPedidosHistoricos() {
   // Desplazamos la fecha fin máxima para que el pedido tenga al menos 8 días libres antes del presente
   const fechaInicio = new Date('2024-11-04T00:00:00.000Z');
   const fechaFinPedidos = new Date('2026-10-25T23:59:59.000Z'); // Deja 9 días de margen
-  
+
   const motivosCancelacion = ['ARREPENTIMIENTO', 'PRODUCTO_DANADO', 'CLIENTE_RECHAZO'] as MotivoBaja[];
 
   type PedidoGenerado = {
@@ -569,10 +578,21 @@ async function seedPedidosHistoricos() {
     importe: number; pesoGramos: number; createdAt: Date;
     entregaEstimada: Date | null; stockDescontado: boolean;
     articulos: any[]; historialEstados: any[]; envioId?: number;
+    claveEnvio?: string;
   };
 
   const pedidos: PedidoGenerado[] = [];
   const enviosPorFechaCamion = new Map<string, { fechaEntrega: Date; camionId: number; choferId: number }>();
+
+  const pop = popularidad(articulos);
+
+  const cantEntregados = Math.round(PEDIDOS_HISTORICOS * 0.8);
+  const cantCancelados = Math.round(PEDIDOS_HISTORICOS * 0.1);
+  const tipos: ('entregado' | 'cancelado' | 'rechazado')[] = mezclar([
+    ...Array.from({ length: cantEntregados }, () => 'entregado' as const),
+    ...Array.from({ length: cantCancelados }, () => 'cancelado' as const),
+    ...Array.from({ length: PEDIDOS_HISTORICOS - cantEntregados - cantCancelados }, () => 'rechazado' as const),
+  ]);
 
   for (let i = 0; i < PEDIDOS_HISTORICOS; i++) {
     const cliente = elegir(clientesConComercios);
@@ -581,9 +601,9 @@ async function seedPedidosHistoricos() {
     const admin = elegir(admins);
     const empDeposito = elegir(depositos);
     const empRuteo = elegir(ruteos);
-    const chofer = elegir(choferes); 
+    const chofer = elegir(choferes);
 
-    const tipo = i < 400 ? 'entregado' : i < 450 ? 'cancelado' : 'rechazado';
+    const tipo = tipos[i];
     const fechaPedido = fechaAleatoria(fechaInicio, fechaFinPedidos);
 
     // -- 1. GENERAR SECUENCIA DE ESTADOS BASADO EN REGLAS DE TRANSICIÓN --
@@ -596,14 +616,14 @@ async function seedPedidosHistoricos() {
       secuenciaEstados.push({ estado: 'en_preparacion', auditorId: empDeposito.id });
       secuenciaEstados.push({ estado: 'preparado', auditorId: empDeposito.id });
       secuenciaEstados.push({ estado: 'en_ruta', auditorId: empRuteo.id });
-      
+
       // Simular un 10% de probabilidad de que no se haya entregado y se reprograme
       if (Math.random() < 0.1) {
         secuenciaEstados.push({ estado: 'no_entregado', auditorId: chofer.id });
         secuenciaEstados.push({ estado: 'en_ruta', auditorId: empRuteo.id });
       }
       secuenciaEstados.push({ estado: 'entregado', auditorId: chofer.id });
-      
+
     } else if (tipo === 'rechazado') {
       secuenciaEstados.push({ estado: 'rechazado', auditorId: admin.id });
     } else if (tipo === 'cancelado') {
@@ -621,7 +641,7 @@ async function seedPedidosHistoricos() {
     // -- 2. REPARTIR 7 a 8 DÍAS ENTRE LOS ESTADOS DE LA SECUENCIA --
     const diasTotales = 7 + Math.random(); // 7.0 a 8.0 días aprox.
     const msTotales = diasTotales * 24 * 60 * 60 * 1000;
-    
+
     // Creamos "pesos" aleatorios para cada transición
     const pesos = Array.from({ length: secuenciaEstados.length - 1 }, () => Math.random());
     const sumaPesos = pesos.reduce((a, b) => a + b, 0);
@@ -661,12 +681,14 @@ async function seedPedidosHistoricos() {
     }
 
     // -- 3. CALCULAR MONTOS DEL PEDIDO --
-    const articulosElegidos = mezclar(articulos).slice(0, randomInt(1, Math.min(6, articulos.length) + 1));
+    const mesPedido = fechaPedido.getUTCMonth();
+    const pesosArt = articulos.map((a) => (pop.get(a.id) ?? 0.01) * factorEstacional(a.especie, mesPedido));
+    const articulosElegidos = elegirPonderados(articulos, pesosArt, randomInt(1, 7), Math.random);
     let importePedido = 0;
     let pesoPedido = 0;
 
     const detalles = articulosElegidos.map((articulo) => {
-      const cantidad = randomInt(1, 9);
+      const cantidad = Math.max(1, Math.round(randomInt(1, 9) * (1 + 4 * (pop.get(articulo.id) ?? 0.01))));
       const precioVenta = redondear((articulo.precioSugeridoPublico ?? articulo.precio) * (1 - ((fechaFinPedidos.getTime() - fechaPedido.getTime()) / (fechaFinPedidos.getTime() - fechaInicio.getTime())) * 0.45));
       const descPorc = elegir([0, 0, 0, 5, 8, 10]);
       const ivaPorc = articulo.alicuotaIva?.porcentaje ?? 21;
@@ -683,20 +705,18 @@ async function seedPedidosHistoricos() {
     });
 
     let envioId: number | undefined;
+    let claveEnvio: string | undefined;
 
     // Solo se asocia a un Envío si la ruta logró completarse 
     if (fechaEntregaDefinitiva) {
       const camion = elegir(camiones);
-      const claveEnvio = `${fechaEntregaDefinitiva.toISOString().slice(0, 10)}-${camion.id}`;
+      claveEnvio = `${fechaEntregaDefinitiva.toISOString().slice(0, 10)}-${camion.id}`;
 
       enviosPorFechaCamion.set(claveEnvio, {
         fechaEntrega: fechaEntregaDefinitiva,
         camionId: camion.id,
         choferId: chofer.id,
       });
-
-      (pedidos as any)._envioPorPedido ??= [];
-      (pedidos as any)._envioPorPedido[i] = claveEnvio;
     }
 
     pedidos.push({
@@ -711,8 +731,10 @@ async function seedPedidosHistoricos() {
       articulos: detalles,
       historialEstados: historial,
       envioId,
+      claveEnvio,
     });
   }
+  pedidos.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
 
   // 4. INSERTAR EN BASE DE DATOS
   const envioIds = new Map<string, number>();
@@ -728,11 +750,10 @@ async function seedPedidosHistoricos() {
     envioIds.set(clave, envio.id);
   }
 
-  const clavesEnvioPorPedido = (pedidos as any)._envioPorPedido ?? [];
 
   for (let i = 0; i < pedidos.length; i++) {
     const pedido = pedidos[i];
-    const claveEnvio = clavesEnvioPorPedido[i];
+    const claveEnvio = pedido.claveEnvio;
     const envioId = claveEnvio ? envioIds.get(claveEnvio) : undefined;
 
     await prisma.pedido.create({
@@ -769,6 +790,7 @@ async function main() {
   await seedArticulos();
   await seedClientes();
   await seedPedidosHistoricos();
+  await seedStockCoherente(prisma);
 
   console.log('====================================');
   console.log(' Seed finalizado correctamente');

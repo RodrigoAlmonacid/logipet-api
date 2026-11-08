@@ -14,6 +14,7 @@ import { PedidoModule } from './pedido/pedido.module';
 import { GeocodificacionModule } from './geocodificacion/geocodificacion.module';
 import { ComercioModule } from './comercio/comercio.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { ReabastecimientoModule } from './reabastecimiento/reabastecimiento.module';
 
 
 @Module({
@@ -29,7 +30,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
     PedidoModule, 
     GeocodificacionModule, 
     ComercioModule,
-    DashboardModule
+    DashboardModule,
+    ReabastecimientoModule,
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],
