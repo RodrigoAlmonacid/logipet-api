@@ -277,6 +277,7 @@ async function seedEmpleados() {
       nombre: 'Rodrigo',
       apellido: 'Almonacid',
       legajo: 'fai-4968',
+      cuil: '20-12345678-9',
       rolId: rolSuperadmin.id,
     },
     {
@@ -285,6 +286,7 @@ async function seedEmpleados() {
       nombre: 'Lucas',
       apellido: 'Cerda',
       legajo: 'fai-4967',
+      cuil: '20-12345679-8',
       rolId: rolVendedor.id,
     },
   ];
@@ -338,7 +340,9 @@ async function seedEmpleados() {
 
     for (let i = 0; i < cantidad; i++) {
       const numero = n++;
+      const numCuil = randomInt(100000, 9999999);
       const email = `empleado${String(numero).padStart(2, '0')}@logipet-demo.com`;
+      const cuil = `20-${String(10000000 + numCuil).padStart(8, '0')}-9`;
 
       await prisma.empleado.upsert({
         where: { email },
@@ -349,6 +353,7 @@ async function seedEmpleados() {
           nombre: faker.person.firstName(),
           apellido: faker.person.lastName(),
           legajo: `prueba-${numero}`,
+          cuil,
           activo: true,
           roles: {
             connect: [{ id: rol.id }],
