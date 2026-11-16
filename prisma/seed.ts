@@ -112,6 +112,11 @@ const ROLES: Record<string, { descripcion: string; permisos: string[] }> = {
       P.PEDIDO_VIEW,
       P.PEDIDO_VIEW_ALL,
       P.CLIENTE_VIEW,
+      P.DEPOSITO_VIEW,            // ← new
+      P.PLANRUTA_VIEW,            // ← new
+      P.PLANRUTA_CREATE,          // ← new
+      P.PLANRUTA_UPDATE,          // ← new
+      P.PLANRUTA_OPTIMIZE,        // ← new
     ],
   },
 
@@ -754,6 +759,63 @@ async function seedPedidosHistoricos() {
 
   console.log(`Se generaron ${PEDIDOS_HISTORICOS} pedidos históricos (ciclos de 7-8 días), ${enviosPorFechaCamion.size} envíos y 3 camiones.`);
 }
+
+const DEPOSITOS_NEUQUEN = [
+  {
+    nombre: 'Depósito Central Neuquén',
+    direccion: 'Av. Argentina 800, Neuquén',
+    latitud: -38.9517,
+    longitud: -68.0626,
+    horaApertura: '08:00',
+    horaCierre: '18:00',
+  },
+  {
+    nombre: 'Playa Norte Plottier',
+    direccion: 'Ruta 22 km 1285, Plottier',
+    latitud: -38.9333,
+    longitud: -68.2833,
+    horaApertura: '08:00',
+    horaCierre: '18:00',
+  },
+  {
+    nombre: 'Centro Logístico Cipolletti',
+    direccion: 'Av. Mengelle 1100, Cipolletti',
+    latitud: -38.9350,
+    longitud: -67.9931,
+    horaApertura: '08:00',
+    horaCierre: '18:00',
+  },
+] as const;
+
+async function seedDepositos() {
+  console.log('Cargando depósitos...');
+
+  for (const dep of DEPOSITOS_NEUQUEN) {
+    await prisma.deposito.upsert({
+      where: { nombre: dep.nombre },
+      update: {
+        direccion: dep.direccion,
+        latitud: dep.latitud,
+        longitud: dep.longitud,
+        horaApertura: dep.horaApertura,
+        horaCierre: dep.horaCierre,
+        activo: true,
+      },
+      create: {
+        nombre: dep.nombre,
+        direccion: dep.direccion,
+        latitud: dep.latitud,
+        longitud: dep.longitud,
+        horaApertura: dep.horaApertura,
+        horaCierre: dep.horaCierre,
+        activo: true,
+      },
+    });
+  }
+
+  console.log(`${DEPOSITOS_NEUQUEN.length} depósitos cargados correctamente`);
+}
+
 // --------------------------------------------------
 // EJECUCIÓN PRINCIPAL
 // --------------------------------------------------
@@ -768,6 +830,7 @@ async function main() {
   await seedEmpleados();
   await seedArticulos();
   await seedClientes();
+  await seedDepositos();  
   await seedPedidosHistoricos();
 
   console.log('====================================');
@@ -783,3 +846,5 @@ main()
   .finally(async () => {
     await prisma.$disconnect();
   });
+
+  

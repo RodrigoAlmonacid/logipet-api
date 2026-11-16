@@ -1,5 +1,5 @@
-FROM node:22
-
+FROM node:22-alpine AS development
+RUN apk add --no-cache openssl
 # Desactivar telemetría e interacciones automáticas de Prisma
 ENV PRISMA_DISABLE_TELEMETRY=1
 ENV CHECKPOINT_DISABLE=1

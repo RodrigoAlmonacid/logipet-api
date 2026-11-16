@@ -14,7 +14,8 @@ import { PedidoModule } from './pedido/pedido.module';
 import { GeocodificacionModule } from './geocodificacion/geocodificacion.module';
 import { ComercioModule } from './comercio/comercio.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-
+import { DepositoModule } from './deposito/deposito.module';
+import { PlanRutaModule } from './plan-ruta/plan-ruta.module';
 
 @Module({
   imports: [
@@ -29,7 +30,9 @@ import { DashboardModule } from './dashboard/dashboard.module';
     PedidoModule, 
     GeocodificacionModule, 
     ComercioModule,
-    DashboardModule
+    DashboardModule,
+    DepositoModule,
+    PlanRutaModule
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],
