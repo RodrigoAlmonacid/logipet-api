@@ -14,6 +14,8 @@ import { PedidoModule } from './pedido/pedido.module';
 import { GeocodificacionModule } from './geocodificacion/geocodificacion.module';
 import { ComercioModule } from './comercio/comercio.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { DepositoModule } from './deposito/deposito.module';
+import { PlanRutaModule } from './plan-ruta/plan-ruta.module';
 import { ReabastecimientoModule } from './reabastecimiento/reabastecimiento.module';
 
 
@@ -31,6 +33,8 @@ import { ReabastecimientoModule } from './reabastecimiento/reabastecimiento.modu
     GeocodificacionModule, 
     ComercioModule,
     DashboardModule,
+    DepositoModule,
+    PlanRutaModule
     ReabastecimientoModule,
   ],
   controllers: [AppController],
