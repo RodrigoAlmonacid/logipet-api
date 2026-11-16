@@ -34,7 +34,7 @@ import { ReabastecimientoModule } from './reabastecimiento/reabastecimiento.modu
     ComercioModule,
     DashboardModule,
     DepositoModule,
-    PlanRutaModule
+    PlanRutaModule,
     ReabastecimientoModule,
   ],
   controllers: [AppController],
