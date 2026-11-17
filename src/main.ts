@@ -1,3 +1,10 @@
+if (typeof global.navigator === 'undefined') {
+  (global as any).navigator = {
+    userAgent: 'node',
+    hardwareConcurrency: require('os').cpus().length || 4,
+  };
+}
+
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';

@@ -34,7 +34,7 @@ export class OsrmService {
   private readonly baseUrl: string;
 
   constructor(private readonly config: ConfigService) {
-    const url = this.config.get<string>('OSRM_URL') ?? 'http://localhost:5000';
+    const url = this.config.get<string>(`${process.env.OSRM_URL}`) ?? 'http://localhost:5000';
     this.baseUrl = url.replace(/\/+$/, ''); // sin trailing slash
   }
 

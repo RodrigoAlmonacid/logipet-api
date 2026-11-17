@@ -9,7 +9,7 @@ import { join } from 'path';
 import {
   MotivoBaja,
 } from '@prisma/client';
-
+import { nombreAleatorio, apellidoAleatorio } from './fakerName.helper';
 import { PERMISOS as P } from '../src/utils/permisos.constants';
 import { randomInt } from 'crypto';
 import { popularidad, elegirPonderados, factorEstacional, seedStockCoherente } from './seed-demanda';
@@ -355,8 +355,8 @@ async function seedEmpleados() {
         create: {
           email,
           pass: passwordHash,
-          nombre: faker.person.firstName(),
-          apellido: faker.person.lastName(),
+          nombre: nombreAleatorio(),
+          apellido: apellidoAleatorio(),
           legajo: `prueba-${numero}`,
           cuil,
           activo: true,
