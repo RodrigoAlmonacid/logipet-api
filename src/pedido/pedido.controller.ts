@@ -60,6 +60,7 @@ export class PedidoController {
     @Res() res: Response,
   ) {
     const pedido = await this.pedidoService.findOneParaExportar(id, req.user.id);
+
     const pdf = await this.presupuestoPdfService.generar(pedido);
 
     res.set({

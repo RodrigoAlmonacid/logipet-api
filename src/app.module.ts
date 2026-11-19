@@ -17,6 +17,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { DepositoModule } from './deposito/deposito.module';
 import { PlanRutaModule } from './plan-ruta/plan-ruta.module';
 import { ReabastecimientoModule } from './reabastecimiento/reabastecimiento.module';
+import { CamionModule } from './camion/camion.module';
 
 
 @Module({
@@ -36,6 +37,7 @@ import { ReabastecimientoModule } from './reabastecimiento/reabastecimiento.modu
     DepositoModule,
     PlanRutaModule,
     ReabastecimientoModule,
+    CamionModule,
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],
