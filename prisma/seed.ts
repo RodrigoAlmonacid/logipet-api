@@ -9,7 +9,7 @@ import { join } from 'path';
 import {
   MotivoBaja,
 } from '@prisma/client';
-
+import { nombreAleatorio, apellidoAleatorio } from './fakerName.helper';
 import { PERMISOS as P } from '../src/utils/permisos.constants';
 import { randomInt } from 'crypto';
 import { popularidad, elegirPonderados, factorEstacional, seedStockCoherente } from './seed-demanda';
@@ -118,6 +118,8 @@ const ROLES: Record<string, { descripcion: string; permisos: string[] }> = {
       P.PLANRUTA_CREATE,          // ← new
       P.PLANRUTA_UPDATE,          // ← new
       P.PLANRUTA_OPTIMIZE,        // ← new
+      P.PEDIDO_ROUTE,
+      P.PLANRUTA_DISPATCH
     ],
   },
 
@@ -127,7 +129,20 @@ const ROLES: Record<string, { descripcion: string; permisos: string[] }> = {
       P.PEDIDO_VIEW,
       P.PEDIDO_VIEW_ALL,
       P.CLIENTE_VIEW,
+      P.PEDIDO_DELIVER,
+      P.ENVIO_VIEW_OWN
     ],
+  },
+
+  ayudante: {
+    descripcion: 'Asiste al chofer en la entrega de pedidos',
+    permisos: [
+      P.PEDIDO_VIEW,
+      P.PEDIDO_VIEW_ALL,
+      P.CLIENTE_VIEW,
+      P.PEDIDO_DELIVER,
+      P.ENVIO_VIEW_OWN
+    ]
   },
 
   controlStock: {
@@ -265,7 +280,7 @@ async function seedEmpleados() {
   const rolesGestion = await prisma.rol.findMany({
     where: {
       nombre: {
-        in: ['vendedor', 'administracion', 'deposito', 'ruteo', 'chofer', 'controlStock'],
+        in: ['vendedor', 'administracion', 'deposito', 'ruteo', 'chofer', 'ayudante', 'controlStock'],
       },
     },
   });
@@ -326,9 +341,10 @@ async function seedEmpleados() {
   const distribucionRoles = [
     { nombre: 'vendedor', cantidad: 30 },
     { nombre: 'administracion', cantidad: 3 },
-    { nombre: 'deposito', cantidad: 8 },
+    { nombre: 'deposito', cantidad: 10 },
     { nombre: 'ruteo', cantidad: 2 },
-    { nombre: 'chofer', cantidad: 6 },
+    { nombre: 'chofer', cantidad: 4 },
+    { nombre: 'ayudante', cantidad: 4 },
     { nombre: 'controlStock', cantidad: 2 },
   ];
 
@@ -355,8 +371,8 @@ async function seedEmpleados() {
         create: {
           email,
           pass: passwordHash,
-          nombre: faker.person.firstName(),
-          apellido: faker.person.lastName(),
+          nombre: nombreAleatorio(),
+          apellido: apellidoAleatorio(),
           legajo: `prueba-${numero}`,
           cuil,
           activo: true,
@@ -415,14 +431,14 @@ async function seedArticulos() {
         ...articulo,
         marcaId,
         alicuotaIvaId: iva21.id,
-        stock: randomInt(1, 101),
+        stock: randomInt(1, 501),
       },
 
       create: {
         ...articulo,
         marcaId,
         alicuotaIvaId: iva21.id,
-        stock: randomInt(1, 101),
+        stock: randomInt(1, 501),
       },
     });
   }
@@ -856,7 +872,7 @@ async function main() {
   await seedEmpleados();
   await seedArticulos();
   await seedClientes();
-  await seedDepositos();  
+  await seedDepositos();
   await seedPedidosHistoricos();
   await seedStockCoherente(prisma);
 
@@ -874,4 +890,4 @@ main()
     await prisma.$disconnect();
   });
 
-  
+

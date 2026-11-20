@@ -43,6 +43,13 @@ export const PERMISOS = {
     PLANRUTA_OPTIMIZE: 'planruta:optimize',
     STOCK_VIEW: 'stock:view',
     STOCK_ANALYZE: 'stock:analyze',
+    CAMION_VIEW: 'camion:view',
+    CAMION_CREATE: 'camion:create',
+    CAMION_UPDATE: 'camion:update',
+    CAMION_DELETE: 'camion:delete',
+    PLANRUTA_DISPATCH: 'planruta:dispatch',   // ruteo: asigna chofer/ayudante y despacha
+    PEDIDO_DELIVER: 'pedido:deliver',         // chofer/ayudante: entregado / no entregado
+    ENVIO_VIEW_OWN: 'envio:view_own',         // chofer/ayudante: ver SU hoja de ruta
 } as const;
 
 export type PermisoCodigo = (typeof PERMISOS)[keyof typeof PERMISOS];

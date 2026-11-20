@@ -19,7 +19,7 @@ const EMPLEADO_RESUMEN = { select: { id: true, nombre: true, apellido: true } };
 const PEDIDO_INCLUDE = {
   cliente: true,
   empleado: { select: { id: true, nombre: true, apellido: true } },
-  articulos: { include: { articulo: true } },
+  articulos: { include: { articulo:{ include: { marca: true } } } },
   historialEstados: {
     include: { estado: true, auditor: EMPLEADO_RESUMEN },
     orderBy: { fechaCreac: 'asc' as const },
@@ -49,6 +49,7 @@ export class PedidoService {
       verificado: d.verificado,
       cantidadOriginal: d.cantidadOriginal,
       justificacionAjuste: d.justificacionAjuste,
+      marcaNombre: d.articulo.marca?.nombre ?? null,
     }));
 
     const totales = lineas.reduce(
@@ -399,6 +400,7 @@ export class PedidoService {
       }
 
       await this.cambiarEstado(tx, id, 'cancelado', user.id, dto);
+      await this.desasignarDeEnvio(tx, id); // si ya estaba en una hoja de ruta, sale de ella
 
       if (pedido.stockDescontado && REGLAS_MOTIVO[dto.motivo!].devuelveStock) {
         await this.devolverStock(tx, id);
@@ -408,13 +410,51 @@ export class PedidoService {
     return this.findOne(id);
   }
 
-  // chofer: en_ruta -> no_entregado (o cancelado si se negó)
+  // ---------- reparto ----------
+
+  // El pedido sale de la hoja de ruta (entrega fallida o cancelación): queda sin envío ni orden de parada.
+  private desasignarDeEnvio(tx: Prisma.TransactionClient, pedidoId: number) {
+    return tx.pedido.update({
+      where: { id: pedidoId },
+      data: { envioId: null, ordenRuta: null, llegadaEstimada: null },
+    });
+  }
+
+  // ruteo, al despachar: preparado | no_entregado (reprogramado) -> en_ruta
+  async pasarAEnRuta(tx: Prisma.TransactionClient, pedidoIds: number[], userId: number) {
+    for (const id of pedidoIds) await this.cambiarEstado(tx, id, 'en_ruta', userId);
+  }
+
+  // chofer o ayudante: solo pueden operar pedidos de un envío al que están asignados
+  private async validarRepartidorDelPedido(tx: Prisma.TransactionClient, pedidoId: number, userId: number) {
+    const pedido = await tx.pedido.findUnique({
+      where: { id: pedidoId },
+      select: { envio: { select: { empleados: { select: { id: true } } } } },
+    });
+    if (!pedido) throw new NotFoundException('Pedido no encontrado');
+    if (!pedido.envio?.empleados.some((e) => e.id === userId)) {
+      throw new ForbiddenException('Este pedido no está en tu hoja de ruta');
+    }
+  }
+
+  // chofer o ayudante: en_ruta -> entregado
+  async entregar(id: number, userId: number) {
+    await this.prisma.$transaction(async (tx) => {
+      await this.validarRepartidorDelPedido(tx, id, userId);
+      await this.cambiarEstado(tx, id, 'entregado', userId);
+    });
+    return this.findOne(id);
+  }
+
+  // chofer o ayudante: en_ruta -> no_entregado.
+  //  - CLIENTE_AUSENTE: queda no_entregado (stock reservado) y vuelve a la cola de ruteo para la próxima hoja.
+  //  - otros motivos: se cancela, y el stock vuelve o no según REGLAS_MOTIVO.
   async marcarNoEntregado(id: number, dto: { motivo: MotivoBaja; observacion?: string }, userId: number) {
     await this.prisma.$transaction(async (tx) => {
-      if (dto.motivo === 'CLIENTE_AUSENTE') {
-        await this.cambiarEstado(tx, id, 'no_entregado', userId, dto); // stock reservado, se reprograma
-      } else {
-        await this.cambiarEstado(tx, id, 'no_entregado', userId, dto);
+      await this.validarRepartidorDelPedido(tx, id, userId);
+      await this.cambiarEstado(tx, id, 'no_entregado', userId, dto);
+      await this.desasignarDeEnvio(tx, id); // sin envío vuelve a ser elegible para el optimizador
+      if (dto.motivo !== 'CLIENTE_AUSENTE') {
         await this.cambiarEstado(tx, id, 'cancelado', userId, dto);
         if (REGLAS_MOTIVO[dto.motivo].devuelveStock) await this.devolverStock(tx, id);
       }

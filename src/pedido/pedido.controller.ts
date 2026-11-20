@@ -12,6 +12,7 @@ import { RechazarPedidoDto } from './dto/rechazar-pedido.dto';
 import { CancelarPedidoDto } from './dto/cancelat-pedido.dto';
 import { AuthUser } from '../auth/auth-user';
 import { VerificarLineaDto } from './dto/verificar-linea.dto';
+import { NoEntregadoDto } from './dto/no-entregado.dto';
 
 @Controller('pedidos')
 @UseGuards(AuthGuard('jwt'), PermissionsGuard)
@@ -141,5 +142,23 @@ export class PedidoController {
   @RequirePermissions(PERMISOS.PEDIDO_PREPARE)
   preparado(@Param('id', ParseIntPipe) id: number, @Req() req: { user: AuthUser }) {
     return this.pedidoService.preparado(id, req.user.id);
+  }
+
+  // ---------- reparto (chofer o ayudante asignados al envío) ----------
+
+  @Patch(':id/entregar')
+  @RequirePermissions(PERMISOS.PEDIDO_DELIVER)
+  entregar(@Param('id', ParseIntPipe) id: number, @Req() req: { user: AuthUser }) {
+    return this.pedidoService.entregar(id, req.user.id);
+  }
+
+  @Patch(':id/no-entregado')
+  @RequirePermissions(PERMISOS.PEDIDO_DELIVER)
+  noEntregado(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() dto: NoEntregadoDto,
+    @Req() req: { user: AuthUser },
+  ) {
+    return this.pedidoService.marcarNoEntregado(id, dto, req.user.id);
   }
 }

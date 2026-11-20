@@ -61,7 +61,6 @@ model Comercio {
   horaAbreVesp   String
   horaCierreVesp String
   activo         Boolean  @default(true)
-  // BATCH 1 ADDITION: tiempo de descarga + firma por parada (minutos).
   tiempoServicioMin Int   @default(10)
   clienteId      Int
   cliente        Cliente  @relation(fields: [clienteId], references: [id])
@@ -126,13 +125,9 @@ model Pedido {
   comercio         Comercio        @relation(fields: [comercioId], references: [id])
   operarioId       Int?            @unique
   operario         Empleado?       @relation("PedidoOperario", fields: [operarioId], references: [id])
-  // BATCH 1 ADDITION: posición del pedido dentro de la ruta optimizada de su Envio.
   ordenRuta        Int? // 1-based; NULL hasta que se ejecuta el optimizador
   llegadaEstimada  DateTime? // ETA en esta parada, calculada por OR-Tools
-
-  // BATCH 1 ADDITION: evita duplicar ordenRuta dentro del mismo Envio.
-  // Postgres trata NULLs como distintos, así que los pedidos sin ruta no chocan.
-  @@unique([envioId, ordenRuta])
+  @@index([envioId])
 }
 
 model DetallePedido {
@@ -161,7 +156,6 @@ model Envio {
   camion       Camion     @relation(fields: [camionId], references: [id])
   pedidos      Pedido[]
   empleados    Empleado[]
-  // BATCH 1 ADDITION: cache del resultado del optimizador.
   planRutaId      Int?
   planRuta        PlanRuta?  @relation(fields: [planRutaId], references: [id])
   rutaOptima      Json? // GeoJSON FeatureCollection: un Feature LineString por segmento + markers
@@ -187,9 +181,8 @@ model Camion {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
   envios    Envio[]
-  // BATCH 1 ADDITION: dimensión de capacidad opcional (cm³) para comparar contra Articulo.volumenCm3.
+  planRutas PlanRuta[]
   capacidadVolumen Float?
-  // BATCH 1 ADDITION: false = fuera de servicio / en reparación. Excluye al camión del optimizador.
   disponible       Boolean @default(true)
 }
 
@@ -247,12 +240,6 @@ model Permiso {
   roles       Rol[]   @relation("RolPermisos")
 }
 
-// ============================================================
-// BATCH 1 ADDITION: modelos para el módulo de ruteo
-// ============================================================
-
-/// Depósito / playa de carga. Punto de partida y llegada del optimizador.
-/// Soporta múltiples depósitos: el usuario elige cuál usar en cada PlanRuta.
 model Deposito {
   id           Int       @id @default(autoincrement())
   nombre       String    @unique
@@ -270,10 +257,6 @@ model Deposito {
   @@index([activo])
 }
 
-/// Unidad de planificación diaria. Agrupa los Pedidos a rutear y los Camion
-/// disponibles para que el optimizador reparta el trabajo entre vehículos.
-/// El endpoint POST /plan-rutas/:id/optimize crea un Envio por cada camión
-/// asignado y persiste rutaOptima + ordenRuta + llegadaEstimada.
 model PlanRuta {
   id         Int       @id @default(autoincrement())
   fecha      DateTime  // el día que se está ruteando (00:00 UTC del día)
@@ -284,6 +267,7 @@ model PlanRuta {
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
   envios     Envio[]
+  camiones Camion[]
 
   @@index([depositoId])
   @@index([fecha])

@@ -55,7 +55,7 @@ export class PresupuestoPdfService {
           margin: [0, 0, 0, 16],
         },
         {
-          text: `Cliente: ${pedido.cliente.comercio} - Vendedor: ${pedido.empleado.nombre}`,
+          text: `Cliente: ${pedido.cliente.apellido}, ${pedido.cliente.nombre} (${pedido.comercio.nombre}) - Vendedor: ${pedido.empleado.nombre}`,
           margin: [0, 0, 0, 4],
         },
         {
