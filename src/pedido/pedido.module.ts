@@ -7,5 +7,6 @@ import { PresupuestoPdfService } from './presupuesto-pdf.service';
 @Module({
   controllers: [PedidoController],
   providers: [PedidoService, PresupuestoPdfService, PrismaService],
+  exports: [PedidoService],
 })
 export class PedidoModule {}

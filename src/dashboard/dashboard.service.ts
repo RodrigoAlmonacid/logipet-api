@@ -164,7 +164,10 @@ export class DashboardService {
         return { ...a, ventasPromedioSemanal, stockIdeal: ventasPromedioSemanal * 2 };
       })
       // sin ventas recientes no hay nada que reponer
-      .filter((a) => a.ventasPromedioSemanal > 0 && a.stock <= a.stockIdeal * UMBRAL_ALERTA)
+      .filter((a) => 
+         a.stock === 0 || 
+         (a.ventasPromedioSemanal > 0 && a.stock <= a.stockIdeal * UMBRAL_ALERTA)
+      )
       .sort((a, b) => a.stock - b.stock);
   }
 }

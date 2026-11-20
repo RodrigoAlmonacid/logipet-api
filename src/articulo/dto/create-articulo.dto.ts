@@ -18,7 +18,7 @@ export class CreateArticuloDto {
   @IsNumber() @Min(0)
   precio: number;
 
-  @IsInt() @Min(0)
+  @IsNumber() @Min(0)
   stock: number;
 
   @IsOptional() @IsInt()
@@ -28,12 +28,12 @@ export class CreateArticuloDto {
   alicuotaIvaId?: number | null;
 
   @IsOptional() 
-  @IsInt() 
+  @IsNumber() 
   @Min(1) 
   pesoGramos?: number;
 
   @IsOptional() 
-  @IsInt() 
+  @IsNumber() 
   @Min(1) 
   volumenCm3?: number;
 }
