@@ -1,11 +1,17 @@
 import {
-  BadRequestException, ConflictException, Injectable, InternalServerErrorException, NotFoundException,
+  BadRequestException, ConflictException, ForbiddenException, Injectable, InternalServerErrorException, NotFoundException,
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateEmpleadoDto } from './dto/create-empleado.dto';
 import { UpdateEmpleadoDto } from './dto/update-empleado.dto';
 import { MailService } from './../mail/mail.service';
 import * as bcrypt from 'bcrypt';
+import { AuthUser } from '../auth/auth-user';
+import { PERMISOS } from '../utils/permisos.constants';
+
+// Roles que solo puede dar o quitar quien administra roles (rol:manage): si no, un empleado con
+// permiso de edición podría asignarse (o asignar a un cómplice) más poder del que tiene.
+const ROLES_RESERVADOS = ['superadmin', 'administracion'];
 
 // Nunca devolvemos `pass`
 const EMPLEADO_SELECT = {
@@ -110,17 +116,60 @@ export class EmpleadoService {
     return empleado;
   }
 
-  async update(id: number, dto: UpdateEmpleadoDto) {
+  private puedeAdministrarRoles(actor: AuthUser) {
+    return actor.permisos.includes(PERMISOS.ROL_MANAGE);
+  }
+
+  /** Un superadmin solo puede ser modificado o dado de baja por alguien que administra roles. */
+  private async asegurarPuedeTocar(id: number, actor: AuthUser) {
+    const objetivo = await this.prisma.empleado.findUnique({ where: { id }, select: { roles: { select: { nombre: true } } } });
+    if (objetivo?.roles.some((r) => r.nombre === 'superadmin') && !this.puedeAdministrarRoles(actor)) {
+      throw new ForbiddenException('Solo un superadmin puede modificar a otro superadmin');
+    }
+  }
+
+  /** No se puede desactivar a quien está en la calle con una hoja de ruta despachada (con pedidos en ruta). */
+  private async asegurarSinHojaEnCurso(id: number) {
+    const enCalle = await this.prisma.envio.count({
+      where: {
+        empleados: { some: { id } },
+        planRuta: { estado: 'DESPACHADO' },
+        pedidos: { some: { historialEstados: { some: { fechaFin: null, estado: { nombre: 'en_ruta' } } } } },
+      },
+    });
+    if (enCalle > 0) {
+      throw new ConflictException('El empleado está en una hoja de ruta en reparto. Esperá a que termine las entregas.');
+    }
+  }
+
+  /** Cambios de roles: los reservados (superadmin, administracion) requieren rol:manage. */
+  private async validarCambioDeRoles(id: number, roleIds: number[], actor: AuthUser) {
+    const nuevos = new Set(roleIds);
+    const cantidad = await this.prisma.rol.count({ where: { id: { in: [...nuevos] } } });
+    if (cantidad !== nuevos.size) throw new BadRequestException('Alguno de los roles indicados no existe');
+    if (this.puedeAdministrarRoles(actor)) return;
+
+    const actuales = await this.prisma.rol.findMany({ where: { empleados: { some: { id } } }, select: { id: true } });
+    const antes = new Set(actuales.map((r) => r.id));
+    const cambiados = [...nuevos].filter((r) => !antes.has(r)).concat([...antes].filter((r) => !nuevos.has(r)));
+    if (cambiados.length === 0) return;
+    const reservados = await this.prisma.rol.count({ where: { id: { in: cambiados }, nombre: { in: ROLES_RESERVADOS } } });
+    if (reservados > 0) {
+      throw new ForbiddenException('Solo quien administra roles puede asignar o quitar los roles superadmin y administracion');
+    }
+  }
+
+  async update(id: number, dto: UpdateEmpleadoDto, actor: AuthUser) {
     await this.findOne(id);
+    await this.asegurarPuedeTocar(id, actor);
     const { roleIds, ...data } = dto;
     await this.validarUnicos(data.email, data.legajo, data.cuil, id);
 
-    if (roleIds) {
-      const cantidad = await this.prisma.rol.count({ where: { id: { in: roleIds } } });
-      if (cantidad !== new Set(roleIds).size) {
-        throw new BadRequestException('Alguno de los roles indicados no existe');
-      }
+    if (data.activo === false) {
+      if (id === actor.id) throw new BadRequestException('No podés desactivar tu propio usuario');
+      await this.asegurarSinHojaEnCurso(id);
     }
+    if (roleIds) await this.validarCambioDeRoles(id, roleIds, actor);
 
     return this.prisma.empleado.update({
       where: { id },
@@ -133,11 +182,13 @@ export class EmpleadoService {
   }
 
   // Baja lógica
-  async remove(id: number, currentUserId: number) {
-    if (id === currentUserId) {
+  async remove(id: number, actor: AuthUser) {
+    if (id === actor.id) {
       throw new BadRequestException('No podés dar de baja tu propio usuario');
     }
     await this.findOne(id);
+    await this.asegurarPuedeTocar(id, actor);
+    await this.asegurarSinHojaEnCurso(id);
     await this.prisma.empleado.update({ where: { id }, data: { activo: false, deletedAt: new Date() } });
     return { message: 'Empleado dado de baja' };
   }

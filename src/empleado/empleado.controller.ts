@@ -8,6 +8,7 @@ import { PERMISOS } from '../utils/permisos.constants';
 import { CreateEmpleadoDto } from './dto/create-empleado.dto';
 import { UpdateEmpleadoDto } from './dto/update-empleado.dto';
 import { EmpleadoService } from './empleado.service';
+import { AuthUser } from '../auth/auth-user';
 
 @Controller('empleados')
 @UseGuards(AuthGuard('jwt'), PermissionsGuard)
@@ -34,13 +35,13 @@ export class EmpleadoController {
 
   @Patch(':id')
   @RequirePermissions(PERMISOS.EMPLEADO_UPDATE)
-  update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateEmpleadoDto) {
-    return this.empleadosService.update(id, dto);
+  update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateEmpleadoDto, @Req() req: { user: AuthUser }) {
+    return this.empleadosService.update(id, dto, req.user);
   }
 
   @Delete(':id')
   @RequirePermissions(PERMISOS.EMPLEADO_DELETE)
-  remove(@Param('id', ParseIntPipe) id: number, @Req() req: { user: { id: number } }) {
-    return this.empleadosService.remove(id, req.user.id);
+  remove(@Param('id', ParseIntPipe) id: number, @Req() req: { user: AuthUser }) {
+    return this.empleadosService.remove(id, req.user);
   }
 }

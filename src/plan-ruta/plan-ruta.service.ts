@@ -90,12 +90,16 @@ export class PlanRutaService {
   // ============================================================
 
   async create(dto: CreatePlanRutaDto) {
-    // Validar que el depósito exista y esté activo
-    const deposito = await this.depositoService.findOne(dto.depositoId);
+    // Hay un único depósito de salida (la empresa no maneja stock por depósito ni traslados entre depósitos):
+    // si el front no manda depositoId se usa el depósito activo.
+    const deposito = dto.depositoId
+      ? await this.depositoService.findOne(dto.depositoId)
+      : await this.prisma.deposito.findFirst({ where: { activo: true }, orderBy: { id: 'asc' } });
+    if (!deposito) {
+      throw new BadRequestException('No hay un depósito activo configurado para armar la hoja de ruta.');
+    }
     if (!deposito.activo) {
-      throw new BadRequestException(
-        'El depósito seleccionado no está activo. Elegí otro.',
-      );
+      throw new BadRequestException('El depósito de salida no está activo.');
     }
 
     // El usuario de ruteo ingresa los vehículos disponibles: es obligatorio elegir al menos uno.
@@ -127,7 +131,7 @@ export class PlanRutaService {
     return this.prisma.planRuta.create({
       data: {
         fecha: fechaDate,
-        depositoId: dto.depositoId,
+        depositoId: deposito.id,
         horaLimite: horaLimiteDate,
         estado: 'PENDIENTE',
         camiones: { connect: camionIds.map((id) => ({ id })) },

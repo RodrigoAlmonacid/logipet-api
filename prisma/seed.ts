@@ -55,14 +55,18 @@ const DESCRIPCIONES_ESTADOS: Record<string, string> = {
 // ROLES Y PERMISOS
 // --------------------------------------------------
 
+// Criterio:
+//   PEDIDO_VIEW      = "tengo pedidos propios" (solo vendedores).
+//   PEDIDO_VIEW_ALL  = supervisión: ve "en proceso" y "finalizados" de TODOS (administración y superadmin).
+//   Los roles operativos (depósito, ruteo, chofer, ayudante) trabajan solo desde su bandeja / hoja de ruta.
 const ROLES: Record<string, { descripcion: string; permisos: string[] }> = {
   superadmin: {
-    descripcion: 'Acceso total al sistema',
+    descripcion: 'Acceso total al sistema. Único que administra roles',
     permisos: Object.values(P),
   },
 
   vendedor: {
-    descripcion: 'Arma presupuestos y confirma pedidos propios',
+    descripcion: 'Arma, confirma y sigue sus propios pedidos',
     permisos: [
       P.PEDIDO_VIEW,
       P.PEDIDO_CREATE,
@@ -75,13 +79,65 @@ const ROLES: Record<string, { descripcion: string; permisos: string[] }> = {
   },
 
   administracion: {
-    descripcion: 'Aprueba o rechaza pedidos y administra maestros',
+    descripcion: 'Controla los pedidos de los vendedores (aprueba/rechaza) y administra clientes y empleados',
     permisos: [
-      P.PEDIDO_VIEW,
       P.PEDIDO_VIEW_ALL,
       P.PEDIDO_APPROVE,
       P.PEDIDO_REJECT,
       P.PEDIDO_CANCEL_ANY,
+      P.CLIENTE_VIEW,
+      P.CLIENTE_CREATE,
+      P.CLIENTE_UPDATE,
+      P.CLIENTE_DELETE,
+      P.EMPLEADO_VIEW,
+      P.EMPLEADO_CREATE,
+      P.EMPLEADO_UPDATE,
+      P.EMPLEADO_DELETE,
+      P.ARTICULO_VIEW,
+    ],
+  },
+
+  deposito: {
+    descripcion: 'Prepara los pedidos de la cola del depósito',
+    permisos: [
+      P.PEDIDO_PREPARE,
+      P.ARTICULO_VIEW,
+    ],
+  },
+
+  ruteo: {
+    descripcion: 'Arma las hojas de ruta, asigna choferes y despacha',
+    permisos: [
+      P.PEDIDO_ROUTE,
+      P.PLANRUTA_VIEW,
+      P.PLANRUTA_CREATE,
+      P.PLANRUTA_UPDATE,
+      P.PLANRUTA_OPTIMIZE,
+      P.PLANRUTA_DISPATCH,
+      P.CAMION_VIEW,
+      P.CAMION_UPDATE, // marcar un camión disponible / fuera de servicio
+    ],
+  },
+
+  chofer: {
+    descripcion: 'Ve su hoja de ruta y marca las entregas',
+    permisos: [
+      P.PEDIDO_DELIVER,
+      P.ENVIO_VIEW_OWN,
+    ],
+  },
+
+  ayudante: {
+    descripcion: 'Acompaña al chofer: mismas funciones de reparto',
+    permisos: [
+      P.PEDIDO_DELIVER,
+      P.ENVIO_VIEW_OWN,
+    ],
+  },
+
+  controlStock: {
+    descripcion: 'Administra artículos y marcas; usa el asistente de reabastecimiento',
+    permisos: [
       P.ARTICULO_VIEW,
       P.ARTICULO_CREATE,
       P.ARTICULO_UPDATE,
@@ -90,65 +146,8 @@ const ROLES: Record<string, { descripcion: string; permisos: string[] }> = {
       P.MARCA_CREATE,
       P.MARCA_UPDATE,
       P.MARCA_DELETE,
-      P.CLIENTE_VIEW,
-      P.CLIENTE_CREATE,
-      P.CLIENTE_UPDATE,
-      P.CLIENTE_DELETE,
-      P.EMPLEADO_VIEW,
-    ],
-  },
-
-  deposito: {
-    descripcion: 'Prepara pedidos',
-    permisos: [
-      P.PEDIDO_VIEW,
-      P.PEDIDO_VIEW_ALL,
-      P.ARTICULO_VIEW,
-    ],
-  },
-
-  ruteo: {
-    descripcion: 'Arma camiones y rutas',
-    permisos: [
-      P.PEDIDO_VIEW,
-      P.PEDIDO_VIEW_ALL,
-      P.CLIENTE_VIEW,
-      P.DEPOSITO_VIEW,            // ← new
-      P.PLANRUTA_VIEW,            // ← new
-      P.PLANRUTA_CREATE,          // ← new
-      P.PLANRUTA_UPDATE,          // ← new
-      P.PLANRUTA_OPTIMIZE,        // ← new
-      P.PEDIDO_ROUTE,
-      P.PLANRUTA_DISPATCH
-    ],
-  },
-
-  chofer: {
-    descripcion: 'Entrega pedidos',
-    permisos: [
-      P.PEDIDO_VIEW,
-      P.PEDIDO_VIEW_ALL,
-      P.CLIENTE_VIEW,
-      P.PEDIDO_DELIVER,
-      P.ENVIO_VIEW_OWN
-    ],
-  },
-
-  ayudante: {
-    descripcion: 'Asiste al chofer en la entrega de pedidos',
-    permisos: [
-      P.PEDIDO_VIEW,
-      P.PEDIDO_VIEW_ALL,
-      P.CLIENTE_VIEW,
-      P.PEDIDO_DELIVER,
-      P.ENVIO_VIEW_OWN
-    ]
-  },
-
-  controlStock: {
-    descripcion: 'Evalúa compras a proveedores',
-    permisos: [
-      P.STOCK_VIEW, P.ARTICULO_VIEW
+      P.STOCK_VIEW,
+      P.STOCK_ANALYZE,
     ],
   },
 };
@@ -802,28 +801,13 @@ async function seedPedidosHistoricos() {
   console.log(`Se generaron ${PEDIDOS_HISTORICOS} pedidos históricos (ciclos de 7-8 días), ${enviosPorFechaCamion.size} envíos y 3 camiones.`);
 }
 
+// La empresa tiene un único depósito de salida (no se maneja stock por depósito ni traslados entre depósitos).
 const DEPOSITOS_NEUQUEN = [
   {
     nombre: 'Depósito Central Neuquén',
     direccion: 'Av. Argentina 800, Neuquén',
     latitud: -38.9517,
     longitud: -68.0626,
-    horaApertura: '08:00',
-    horaCierre: '18:00',
-  },
-  {
-    nombre: 'Playa Norte Plottier',
-    direccion: 'Ruta 22 km 1285, Plottier',
-    latitud: -38.9333,
-    longitud: -68.2833,
-    horaApertura: '08:00',
-    horaCierre: '18:00',
-  },
-  {
-    nombre: 'Centro Logístico Cipolletti',
-    direccion: 'Av. Mengelle 1100, Cipolletti',
-    latitud: -38.9350,
-    longitud: -67.9931,
     horaApertura: '08:00',
     horaCierre: '18:00',
   },
@@ -854,6 +838,12 @@ async function seedDepositos() {
       },
     });
   }
+
+  // Si la base ya tenía otros depósitos de una carga anterior, quedan inactivos.
+  await prisma.deposito.updateMany({
+    where: { nombre: { notIn: DEPOSITOS_NEUQUEN.map((d) => d.nombre) } },
+    data: { activo: false },
+  });
 
   console.log(`${DEPOSITOS_NEUQUEN.length} depósitos cargados correctamente`);
 }
