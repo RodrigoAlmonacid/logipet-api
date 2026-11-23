@@ -482,7 +482,53 @@ export class PlanRutaService {
     });
   }
 
-  /** Fechas en las que se puede armar una hoja de ruta (para el selector del front). */
+  /**
+   * Reparto de hoy visto por el VENDEDOR: solo sus propios pedidos que salieron a reparto.
+   * Incluye lo que sigue en la calle de una hoja anterior y los que hoy resultaron "no entregado"
+   * (cliente ausente: salen del envío y vuelven a la cola, pero el vendedor quiere enterarse).
+   * No expone importes ni datos del equipo: solo a quién se visita, cuándo y cómo viene.
+   */
+  async miReparto(vendedorId: number) {
+    const inicio = inicioDiaLocal(new Date());
+    const fin = new Date(inicio.getTime() + DIA_MS);
+    const pedidos = await this.prisma.pedido.findMany({
+      where: {
+        empleadoId: vendedorId,
+        OR: [
+          { envio: { planRuta: { estado: 'DESPACHADO', fecha: { gte: inicio, lt: fin } } } },
+          { envio: { planRuta: { estado: 'DESPACHADO' } }, historialEstados: { some: { fechaFin: null, estado: { nombre: 'en_ruta' } } } },
+          { historialEstados: { some: { estado: { nombre: 'no_entregado' }, fechaCreac: { gte: inicio, lt: fin } } } },
+        ],
+      },
+      select: {
+        id: true,
+        ordenRuta: true,
+        llegadaEstimada: true,
+        cliente: { select: { nombre: true, apellido: true } },
+        comercio: { select: { nombre: true, direccion: true } },
+        envio: { select: { camion: { select: { interno: true } } } },
+        historialEstados: { where: { fechaFin: null }, select: { estado: { select: { nombre: true } } } },
+      },
+    });
+    const items = pedidos.map((p) => ({
+      pedidoId: p.id,
+      estado: p.historialEstados[0]?.estado.nombre ?? '',
+      ordenRuta: p.ordenRuta,
+      llegadaEstimada: p.llegadaEstimada,
+      camionInterno: p.envio?.camion.interno ?? null,
+      cliente: p.cliente,
+      comercio: p.comercio,
+    }));
+    // En la calle primero (por hora estimada), después lo ya resuelto.
+    const peso = (e: string) => (e === 'en_ruta' ? 0 : e === 'entregado' ? 1 : 2);
+    return items.sort(
+      (a, b) =>
+        peso(a.estado) - peso(b.estado) ||
+        (a.llegadaEstimada?.getTime() ?? Infinity) - (b.llegadaEstimada?.getTime() ?? Infinity) ||
+        a.pedidoId - b.pedidoId,
+    );
+  }
+
   /**
    * Elimina un plan que todavía no se optimizó (PENDIENTE) o cuya optimización falló (FALLIDO).
    * Un plan optimizado/despachado ya tiene envíos y pedidos asignados: ahí se usa "volver a optimizar".
@@ -568,6 +614,7 @@ export class PlanRutaService {
     }));
   }
 
+  /** Fechas en las que se puede armar una hoja de ruta (para el selector del front). */
   fechasDisponibles(): string[] {
     return fechasDisponibles();
   }
