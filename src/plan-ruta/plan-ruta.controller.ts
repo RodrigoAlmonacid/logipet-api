@@ -67,6 +67,13 @@ export class PlanRutaController {
     return this.planRutaService.misEnvios(req.user.id);
   }
 
+  /** Reparto de hoy de MIS pedidos (vendedor): a qué clientes se visita y cómo viene. */
+  @Get('mi-reparto')
+  @RequirePermissions(PERMISOS.PEDIDO_VIEW)
+  miReparto(@Req() req: { user: AuthUser }) {
+    return this.planRutaService.miReparto(req.user.id);
+  }
+
   @Get(':id')
   @RequirePermissions(PERMISOS.PLANRUTA_VIEW)
   findOne(@Param('id', ParseIntPipe) id: number) {

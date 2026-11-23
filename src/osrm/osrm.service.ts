@@ -34,7 +34,7 @@ export class OsrmService {
   private readonly baseUrl: string;
 
   constructor(private readonly config: ConfigService) {
-    const url = this.config.get<string>(`${process.env.OSRM_URL}`) ?? 'http://localhost:5000';
+    const url = this.config.get<string>('OSRM_URL') ?? 'http://localhost:5000';
     this.baseUrl = url.replace(/\/+$/, ''); // sin trailing slash
   }
 
@@ -117,7 +117,7 @@ export class OsrmService {
       // pero lo chequeamos por si el parámetro se pierde en algún redirect.
       throw new ServiceUnavailableException(
         'OSRM devolvió geometría como polyline en lugar de GeoJSON. ' +
-          'Verificá el parámetro geometries=geojson.',
+        'Verificá el parámetro geometries=geojson.',
       );
     }
 
@@ -194,7 +194,7 @@ export class OsrmService {
       const cause = (err as Error & { cause?: Error }).cause;
       this.logger.error(
         `OSRM fetch failed: ${(err as Error).message}` +
-          (cause ? ` (cause: ${cause.message})` : ''),
+        (cause ? ` (cause: ${cause.message})` : ''),
       );
       throw new ServiceUnavailableException(
         `No se pudo conectar con OSRM en ${this.baseUrl}. ¿Está levantado el contenedor?`,
