@@ -2,18 +2,18 @@ import { BadRequestException, ForbiddenException, Injectable } from '@nestjs/com
 import { PrismaService } from '../prisma/prisma.service';
 import { AuthUser } from '../auth/auth-user';
 import {
-  Desglose, Metrica, PedidoVenta, armarSerie, rangoSemanas, resolverAcceso,
+  Desglose, MAX_VENDEDORES_COMPARADOS, Metrica, PedidoVenta, armarEquipo, armarPorVendedor, armarSerie, rangoSemanas, resolverAcceso,
 } from './ventas-semanales';
 
 const METRICAS: Metrica[] = ['importe', 'pedidos', 'unidades'];
-const DESGLOSES: Desglose[] = ['total', 'marca', 'especie', 'vendedor'];
+const DESGLOSES: Desglose[] = ['total', 'marca', 'especie', 'vendedor', 'equipo'];
 const SEMANA_MS = 7 * 24 * 3600 * 1000;
 
 @Injectable()
 export class VentasSemanalesService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async obtener(user: AuthUser, q: { semanas?: string; metrica?: string; desglose?: string }, ahora = new Date()) {
+  async obtener(user: AuthUser, q: { semanas?: string; metrica?: string; desglose?: string; vendedores?: string }, ahora = new Date()) {
     const acceso = resolverAcceso(user.permisos);
     if (!acceso) throw new ForbiddenException('No tenés permisos para ver las ventas');
 
@@ -35,7 +35,8 @@ export class VentasSemanalesService {
 
     const filas = await this.prisma.pedido.findMany({
       where: {
-        ...(acceso.alcance === 'propios' ? { empleadoId: user.id } : {}),
+        // 'equipo' necesita las ventas de todos para calcular el promedio; solo se devuelven agregados.
+        ...(acceso.alcance === 'propios' && desglose !== 'equipo' ? { empleadoId: user.id } : {}),
         historialEstados: {
           some: { fechaFin: null, estado: { nombre: 'entregado' }, fechaCreac: { gte: desde, lt: hasta } },
         },
@@ -67,12 +68,23 @@ export class VentasSemanalesService {
       })),
     }));
 
-    return {
-      metrica,
-      desglose,
-      alcance: acceso.alcance,
-      opciones: { metricas: acceso.metricas, desgloses: acceso.desgloses },
-      ...armarSerie(pedidos, metrica, desglose, semanas),
-    };
+    const base = { metrica, desglose, alcance: acceso.alcance, opciones: { metricas: acceso.metricas, desgloses: acceso.desgloses } };
+
+    if (desglose === 'vendedor' || desglose === 'equipo') {
+      // Promedio por vendedor activo (con o sin ventas en el período).
+      const nVendedores = await this.prisma.empleado.count({
+        where: { activo: true, deletedAt: null, roles: { some: { nombre: 'vendedor' } } },
+      });
+      if (desglose === 'equipo') return { ...base, ...armarEquipo(pedidos, metrica, semanas, user.id, nVendedores) };
+
+      const seleccion = (q.vendedores ?? '')
+        .split(',')
+        .map((x) => Number(x))
+        .filter((x) => Number.isInteger(x) && x > 0)
+        .slice(0, MAX_VENDEDORES_COMPARADOS);
+      return { ...base, ...armarPorVendedor(pedidos, metrica, semanas, nVendedores, seleccion) };
+    }
+
+    return { ...base, ...armarSerie(pedidos, metrica, desglose, semanas) };
   }
 }
