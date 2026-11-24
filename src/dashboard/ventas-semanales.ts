@@ -1,12 +1,9 @@
-// ============================================================
 // Ventas por semana — agregación pura (sin Prisma ni Nest), para poder testearla sola.
-//
 // "Venta" = pedido cuyo estado actual es `entregado`; se la ubica en la semana en que se entregó.
 // Semana = lunes a domingo, hora Argentina (UTC-3 fijo).
-// ============================================================
 
 export type Metrica = 'importe' | 'pedidos' | 'unidades';
-export type Desglose = 'total' | 'marca' | 'especie' | 'vendedor';
+export type Desglose = 'total' | 'marca' | 'especie' | 'vendedor' | 'equipo';
 
 export interface LineaVenta {
   cantidad: number;
@@ -135,6 +132,89 @@ export function armarSerie(pedidos: PedidoVenta[], metrica: Metrica, desglose: D
 }
 
 // ------------------------------------------------------------
+// Comparativas entre vendedores
+//   - Dueño/administración (desglose 'vendedor'): vendedores elegidos (por defecto los 5 mejores) + línea de promedio.
+//     NO hay "Otras": sumar 25 vendedores contra 5 individuales no es comparable.
+//   - Vendedor (desglose 'equipo'): "Yo" contra el promedio del equipo, sin revelar a los demás.
+// ------------------------------------------------------------
+export const MAX_VENDEDORES_COMPARADOS = 8;
+export interface VendedorResumen { id: number; nombre: string; total: number }
+export interface ResultadoVendedores extends ResultadoVentas {
+  vendedores: VendedorResumen[]; // todos los que vendieron en el período (para el selector)
+  seleccion: number[]; // ids que se están mostrando
+}
+
+const redondear2 = (n: number) => Math.round(n * 100) / 100;
+
+/** Valor de la métrica por semana para un conjunto de pedidos (un pedido cuenta una sola vez). */
+function valoresSemanales(pedidos: PedidoVenta[], metrica: Metrica, semanas: Date[]): number[] {
+  const idx = new Map(semanas.map((s, i) => [s.getTime(), i]));
+  const acc = semanas.map(() => ({ importe: 0, unidades: 0, ids: new Set<number>() }));
+  for (const p of pedidos) {
+    const i = idx.get(inicioSemanaLocal(p.fecha).getTime());
+    if (i === undefined) continue;
+    for (const l of p.lineas) {
+      acc[i].importe += importeLinea(l);
+      acc[i].unidades += l.cantidad;
+    }
+    acc[i].ids.add(p.id);
+  }
+  return acc.map((c) => (metrica === 'importe' ? redondear2(c.importe) : metrica === 'unidades' ? c.unidades : c.ids.size));
+}
+
+const suma = (v: number[]) => v.reduce((a, b) => a + b, 0);
+const promedio = (v: number[], n: number) => v.map((x) => (n > 0 ? redondear2(x / n) : 0));
+
+export function armarPorVendedor(
+  pedidos: PedidoVenta[], metrica: Metrica, semanas: Date[], nVendedores: number, seleccion: number[] = [],
+): ResultadoVendedores {
+  const porVendedor = new Map<number, { nombre: string; pedidos: PedidoVenta[] }>();
+  for (const p of pedidos) {
+    const e = porVendedor.get(p.vendedor.id) ?? { nombre: `${p.vendedor.apellido}, ${p.vendedor.nombre}`, pedidos: [] };
+    e.pedidos.push(p);
+    porVendedor.set(p.vendedor.id, e);
+  }
+  const calculados = [...porVendedor.entries()]
+    .map(([id, e]) => {
+      const valores = valoresSemanales(e.pedidos, metrica, semanas);
+      return { id, nombre: e.nombre, valores, total: suma(valores) };
+    })
+    .filter((v) => v.total > 0)
+    .sort((a, b) => b.total - a.total || a.nombre.localeCompare(b.nombre));
+
+  const elegidos = (seleccion.length ? calculados.filter((v) => seleccion.includes(v.id)) : calculados.slice(0, 5)).slice(
+    0, MAX_VENDEDORES_COMPARADOS,
+  );
+  const todos = valoresSemanales(pedidos, metrica, semanas);
+
+  return {
+    semanas: semanas.map(etiquetaSemana),
+    series: [
+      ...elegidos.map((v) => ({ nombre: v.nombre, valores: v.valores })),
+      { nombre: 'Promedio por vendedor', valores: promedio(todos, nVendedores) },
+    ],
+    totalPeriodo: redondear2(suma(todos)),
+    vendedores: calculados.map((v) => ({ id: v.id, nombre: v.nombre, total: v.total })),
+    seleccion: elegidos.map((v) => v.id),
+  };
+}
+
+export function armarEquipo(
+  pedidos: PedidoVenta[], metrica: Metrica, semanas: Date[], miId: number, nVendedores: number,
+): ResultadoVentas {
+  const mios = valoresSemanales(pedidos.filter((p) => p.vendedor.id === miId), metrica, semanas);
+  const todos = valoresSemanales(pedidos, metrica, semanas);
+  return {
+    semanas: semanas.map(etiquetaSemana),
+    series: [
+      { nombre: 'Yo', valores: mios },
+      { nombre: 'Promedio del equipo', valores: promedio(todos, nVendedores) },
+    ],
+    totalPeriodo: redondear2(suma(mios)),
+  };
+}
+
+// ------------------------------------------------------------
 // Qué puede ver cada usuario
 // ------------------------------------------------------------
 export interface Acceso {
@@ -145,7 +225,8 @@ export interface Acceso {
 
 /**
  *  - pedido:view_all (administración, superadmin): todo, de todos los vendedores, incluido el desglose por vendedor.
- *  - pedido:view (vendedor): solo SUS ventas; sin desglose por vendedor (sería comparar consigo mismo).
+ *  - pedido:view (vendedor): solo SUS ventas, y "Yo vs. equipo" (su serie contra el PROMEDIO del equipo:
+ *    nunca ve cuánto vendió otro vendedor puntual).
  *  - stock:view (control de stock): ventas de todos pero solo en unidades/pedidos, sin importes ni vendedores.
  */
 export function resolverAcceso(permisos: string[]): Acceso | null {
@@ -153,7 +234,7 @@ export function resolverAcceso(permisos: string[]): Acceso | null {
     return { alcance: 'todos', metricas: ['importe', 'pedidos', 'unidades'], desgloses: ['total', 'marca', 'especie', 'vendedor'] };
   }
   if (permisos.includes('pedido:view')) {
-    return { alcance: 'propios', metricas: ['importe', 'pedidos', 'unidades'], desgloses: ['total', 'marca', 'especie'] };
+    return { alcance: 'propios', metricas: ['importe', 'pedidos', 'unidades'], desgloses: ['total', 'marca', 'especie', 'equipo'] };
   }
   if (permisos.includes('stock:view')) {
     return { alcance: 'todos', metricas: ['unidades', 'pedidos'], desgloses: ['total', 'marca', 'especie'] };
